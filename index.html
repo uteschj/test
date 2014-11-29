@@ -1,90 +1,54 @@
-<!DOCTYPE HTML>
-<html>
-<head>
-<title>Cordova</title>
-<link rel="stylesheet" href="style.css" media="screen" />
-<script type="text/javascript" charset="utf-8" src="cordova-2.0.0.js"></script>
-<script type="text/javascript" charset="utf-8" src="jquery-1.7.2.min.js"></script>
-<script type="text/javascript" charset="utf-8">
-var pictureSource; // picture source
-var destinationType; // sets the format of returned value 
-
+var pictureSource;   // picture source
+var destinationType; // sets the format of returned value
+ 
 document.addEventListener("deviceready", onDeviceReady, false);
-
+ 
 function onDeviceReady() {
     pictureSource = navigator.camera.PictureSourceType;
     destinationType = navigator.camera.DestinationType;
 }
-
-
-</script>
-
-
-
-
-</head>
-<body>
-<script type="text/javascript" charset="utf-8">
-    var myData = "";
-    $(document).ready(function() {
-        $("#getDataFromServer").click(function() {
-            var imageData = myData;
-            $.ajax({
-                type : "POST",
-                url : 'http://my.domain.name/saveImage.ashx',
-                data : {
-                    image : imageData
-                },
-                beforeSend : function() {
-                    $("#comment2").text("Start ajax " + imageData.length);
-                },
-                success : function(data) {
-                    $("#comment2").text("Uploaded! " + data);
-                },
-                error : function(request, error) {
-                    $("#comment2").text("Error! " + error);
-                }
-            });
-        });
-        })
-
-    function capturePhotoEdit(source) {
-        navigator.camera.getPicture(onPhotoDataSuccess, onFail, {
-            quality : 50,
-            destinationType : destinationType.DATA_URL,
-            sourceType : source
-        });
+ 
+function clearCache() {
+    navigator.camera.cleanup();
+}
+ 
+var retries = 0;
+function onCapturePhoto(fileURI) {
+    var win = function (r) {
+        clearCache();
+        retries = 0;
+        alert('Done!');
     }
-
-    function onFail(message) {
-        alert('Failed because: ' + message);
+ 
+    var fail = function (error) {
+        if (retries == 0) {
+            retries ++
+            setTimeout(function() {
+                onCapturePhoto(fileURI)
+            }, 1000)
+        } else {
+            retries = 0;
+            clearCache();
+            alert('Ups. Something wrong happens!');
+        }
     }
-
-    function onPhotoDataSuccess(imageData) {
-
-        console.log(imageData);
-
-        var smallImage = document.getElementById('smallImage');
-
-        smallImage.style.display = 'block';
-
-        smallImage.src = "data:image/jpeg;base64," + imageData;
-        myData = imageData;
-        $("#comment").text(imageData.length);
-
-    }
-</script>
-<h1>Hello World</h1>
-
-<p>
-    <a href="#" onclick="capturePhotoEdit(pictureSource.PHOTOLIBRARY);">get
-        image</a>
-</p>
-<p>
-    <a href="#" id="getDataFromServer">send image</a>
-</p>
-<span id="comment2"></span>
-<img style="display: none; width: 100px; height: 100px;"
-    id="smallImage" src="" />
-<span id="imagename"></span>
-<span id="comment"></span>
+ 
+    var options = new FileUploadOptions();
+    options.fileKey = "file";
+    options.fileName = fileURI.substr(fileURI.lastIndexOf('/') + 1);
+    options.mimeType = "image/jpeg";
+    options.params = {}; // if we need to send parameters to the server request
+    var ft = new FileTransfer();
+    ft.upload(fileURI, encodeURI("http://host/upload"), win, fail, options);
+}
+ 
+function capturePhoto() {
+    navigator.camera.getPicture(onCapturePhoto, onFail, {
+        quality: 100,
+        destinationType: destinationType.FILE_URI
+    });
+}
+ 
+function onFail(message) {
+    alert('Failed because: ' + message);
+}
