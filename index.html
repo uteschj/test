@@ -10,7 +10,7 @@
  <script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>
  <script src="jquery.mobile/jquery.mobile-1.4.5.min.js"></script>
 
- <script type="text/javascript" charset="utf-8" src="js/main.js"></script>
+ <!--<script type="text/javascript" charset="utf-8" src="js/main.js"></script>-->
     <script type="text/javascript" charset="utf-8">
     var pictureSource;   // picture source
     var destinationType; // sets the format of returned value
@@ -22,7 +22,7 @@
     function onDeviceReady() {
         pictureSource=navigator.camera.PictureSourceType;
         destinationType=navigator.camera.DestinationType;
-        $("#loginForm").on("submit",handleLogin);
+        //$("#loginForm").on("submit",handleLogin);
     }
     // Called when a photo is successfully retrieved
     //
@@ -136,6 +136,7 @@ alert('done with getimage');
 
 function handleLogin() {
     var form = $("#loginForm");    
+    alert('handlelogin');
     //disable the button so we can't resubmit while we wait
     $("#submitButton",form).attr("disabled","disabled");
     var u = $("#username", form).val();
