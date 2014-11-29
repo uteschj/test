@@ -159,13 +159,14 @@ $.ajax({
     success: function(data, textStatus, jqXHR)
     {
         //data - response from server
-        alert(jqXHR);
-        alert(data);
-        jsessionID = data;
+        //alert(jqXHR);
+        //alert(data);
+        window.localStorage.setItem("webSessionID", data);
+        //jsessionID = data;
     },
     error: function (jqXHR, textStatus, errorThrown)
     {
- alert('FAILd');
+ alert('Loggin FAILd');
     }
 });
 
@@ -176,10 +177,10 @@ $.ajax({
     }
     return false;
 }
-var jsessionID = "";
+
 function testSession() {
-  alert('sessionid ' + jsessionID)
-  var formData = {sessionID:jsessionID}; //Array 
+  alert('sessionid ' + window.localStorage.getItem("webSessionID"))
+  var formData = {sessionID:window.localStorage.getItem("webSessionID")}; //Array 
   $.ajax({
     url : "https://totalsupply1.com/log_in/testsession.php",
     type: "POST",
@@ -187,7 +188,7 @@ function testSession() {
     success: function(data, textStatus, jqXHR)
     {
         //data - response from server
-        alert(jqXHR);
+        //alert(jqXHR);
         alert(data);
     },
     error: function (jqXHR, textStatus, errorThrown)
@@ -202,19 +203,11 @@ function testSession() {
     </script>
   </head>
   <body onload="init()">
-    
-    
-    
-    
-    
-    
-    
-    
-    
+
 <div id="loginPage" data-role="page">
 
     <div data-role="header">
-        <h1>Auth Demo</h1>
+        <h1>Employee Login</h1>
     </div>
 
     <div data-role="content">    
@@ -238,10 +231,10 @@ function testSession() {
         </div>
         <div>
         <button onclick="testSession();">test session</button> <br><br>
-        <button onclick="capturePhoto();">Capture Photo</button> <br>
+       <!-- <button onclick="capturePhoto();">Capture Photo</button> <br>
     <button onclick="capturePhotoEdit();">Capture Editable Photo</button> <br>
     <button onclick="getPhoto(pictureSource.PHOTOLIBRARY);">From Photo Library</button><br>
-    <button onclick="getPhoto(pictureSource.SAVEDPHOTOALBUM);">From Photo Album</button><br><br>
+    <button onclick="getPhoto(pictureSource.SAVEDPHOTOALBUM);">From Photo Album</button><br><br> -->
     <button onclick="getImage();">send photo</button><br>
     <img style="display:none;width:60px;height:60px;" id="smallImage" src="" />
     <img style="display:none;" id="largeImage" src="" />
@@ -250,7 +243,7 @@ function testSession() {
     </div>
 
     <div data-role="footer">
-        <h4>&copy; Camden Enterprises</h4>
+        <h4>&copy; Utesch Enterprises</h4>
     </div>
 
 </div>
@@ -260,14 +253,5 @@ $("#loginPage").live("pageinit", function(e) {
         checkPreAuth();
     });
 </script>
-
-
-    
-    
-    
-    
-    
-    
-    
   </body>
 </html>
