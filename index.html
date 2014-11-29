@@ -178,6 +178,7 @@ $.ajax({
 }
 var jsessionID = "";
 function testSession() {
+  alert('sessionid ' + jsessionID)
   var formData = {sessionID:jsessionID}; //Array 
   $.ajax({
     url : "https://totalsupply1.com/log_in/process_Applogin.php",
