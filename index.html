@@ -105,7 +105,7 @@ alert('done with getimage');
         options.chunkedMode = false;
 
         var ft = new FileTransfer();
-        ft.upload(imageURI, "http://clubbedin.clanteam.com/upload.php", win, fail, options);
+        ft.upload(imageURI, "http://192.168.254.15/uploadtester.php", win, fail, options);
     }
 
     function win(r) {
