@@ -150,7 +150,7 @@ function handleLogin() {
       
       
       
-      var formData = {name:"ravi",age:"31"}; //Array 
+      var formData = {email:u,password:pass}; //Array 
  
 $.ajax({
     url : "https://totalsupply1.com/log_in/process_login.php",
@@ -159,7 +159,8 @@ $.ajax({
     success: function(data, textStatus, jqXHR)
     {
         //data - response from server
-        alert(textStatus);
+        alert(jqXHR);
+        alert(data);
     },
     error: function (jqXHR, textStatus, errorThrown)
     {
