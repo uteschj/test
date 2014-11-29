@@ -140,8 +140,9 @@ function handleLogin() {
     //disable the button so we can't resubmit while we wait
     $("#submitButton",form).attr("disabled","disabled");
     var u = $("#username", form).val();
-    var pass = $("#password", form).val();
-    var pass = hex_sha512(p);
+    alert(u);
+    var pass = hex_sha512($("#password", form).val());
+    alert(pass);
     console.log("click");
     if(u != '' && pass!= '') {
         $.post("https://totalsupply1.com/log_in/process_login.php", {email:u,p:pass}, function(res) {
