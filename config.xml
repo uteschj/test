@@ -45,7 +45,7 @@
     <!-- Core plugins -->
     <gap:plugin name="org.apache.cordova.camera" value="0.2.4" />
     <gap:plugin name="org.apache.cordova.file" />
-    <!--
+    
     <gap:plugin name="org.apache.cordova.media-capture" />
     <gap:plugin name="org.apache.cordova.console" />
     <gap:plugin name="org.apache.cordova.contacts" />
@@ -62,7 +62,7 @@
     <gap:plugin name="org.apache.cordova.splashscreen" />
     <gap:plugin name="org.apache.cordova.vibration" />
     <gap:plugin name="org.apache.cordova.battery-status" />
-    -->
+    
     
  
     <!--
