@@ -18,14 +18,15 @@ function handleLogin() {
     //disable the button so we can't resubmit while we wait
     $("#submitButton",form).attr("disabled","disabled");
     var u = $("#username", form).val();
-    var p = $("#password", form).val();
+    var pass = $("#password", form).val();
+    var pass = hex_sha512(p);
     console.log("click");
-    if(u != '' && p!= '') {
-        $.post("http://www.coldfusionjedi.com/demos/2011/nov/10/service.cfc?method=login&returnformat=json", {username:u,password:p}, function(res) {
+    if(u != '' && pass!= '') {
+        $.post("https://totalsupply1.com/log_in/process_login.php", {email:u,p:pass}, function(res) {
             if(res == true) {
                 //store
                 window.localStorage["username"] = u;
-                window.localStorage["password"] = p;             
+                window.localStorage["password"] = pass;             
                 $.mobile.changePage("some.html");
             } else {
                 navigator.notification.alert("Your login failed", function() {});
@@ -45,3 +46,8 @@ function deviceReady() {
 $("#loginForm").on("submit",handleLogin);
 
 }
+
+
+
+
+
