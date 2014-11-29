@@ -147,20 +147,26 @@ function handleLogin() {
     console.log("click");
     if(u != '' && pass!= '') {
       console.log("inside if u != ''");
-        $.post("https://totalsupply1.com/log_in/process_login.php", {"email":"test"}, function(res) {
-            if(res == true) {
-                //store
-                console.log("res is true");
-                window.localStorage["username"] = u;
-                window.localStorage["password"] = pass;             
-                $.mobile.changePage("some.html");
-            } else {
-              console.log("res is false");
-                alert(res);
-                navigator.notification.alert("Your login failed", function() {});
-            }
-         $("#submitButton").removeAttr("disabled");
-        },"json");
+      
+      
+      
+      var formData = {name:"ravi",age:"31"}; //Array 
+ 
+$.ajax({
+    url : "https://totalsupply1.com/log_in/process_login.php",
+    type: "POST",
+    data : formData,
+    success: function(data, textStatus, jqXHR)
+    {
+        //data - response from server
+        alert(textStatus);
+    },
+    error: function (jqXHR, textStatus, errorThrown)
+    {
+ alert('FAILd');
+    }
+});
+
     } else {
         //Thanks Igor!
         navigator.notification.alert("You must enter a username and password", function() {});
