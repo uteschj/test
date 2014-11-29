@@ -29,6 +29,7 @@ function handleLogin() {
                 window.localStorage["password"] = pass;             
                 $.mobile.changePage("some.html");
             } else {
+                alert('res');
                 navigator.notification.alert("Your login failed", function() {});
             }
          $("#submitButton").removeAttr("disabled");
