@@ -161,6 +161,7 @@ $.ajax({
         //data - response from server
         alert(jqXHR);
         alert(data);
+        jsessionID = data;
     },
     error: function (jqXHR, textStatus, errorThrown)
     {
@@ -174,6 +175,25 @@ $.ajax({
         $("#submitButton").removeAttr("disabled");
     }
     return false;
+}
+var jsessionID = "";
+function testSession() {
+  var formData = {sessionID:jsessionID}; //Array 
+  $.ajax({
+    url : "https://totalsupply1.com/log_in/process_Applogin.php",
+    type: "POST",
+    data : formData,
+    success: function(data, textStatus, jqXHR)
+    {
+        //data - response from server
+        alert(jqXHR);
+        alert(data);
+    },
+    error: function (jqXHR, textStatus, errorThrown)
+    {
+ alert('FAILd');
+    }
+});
 }
     </script>
   </head>
@@ -213,6 +233,7 @@ $.ajax({
         
         </div>
         <div>
+        <button onclick="testSession();">test session</button> <br><br>
         <button onclick="capturePhoto();">Capture Photo</button> <br>
     <button onclick="capturePhotoEdit();">Capture Editable Photo</button> <br>
     <button onclick="getPhoto(pictureSource.PHOTOLIBRARY);">From Photo Library</button><br>
