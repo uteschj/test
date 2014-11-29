@@ -147,7 +147,7 @@ function handleLogin() {
     console.log("click");
     if(u != '' && pass!= '') {
       console.log("inside if u != ''");
-        $.post("https://totalsupply1.com/log_in/process_login.php", {email:u,p:pass}, function(res) {
+        $.post("https://totalsupply1.com/log_in/process_login.php", {"email":"test"}, function(res) {
             if(res == true) {
                 //store
                 console.log("res is true");
