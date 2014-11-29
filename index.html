@@ -77,7 +77,7 @@
     }
     function sendPhoto(source) {
       // Retrieve image file location from specified source
-      navigator.camera.getPicture(onPhotoURISuccess, onFail, { quality: 50,
+      navigator.camera.getPicture(uploadPhoto, onFail, { quality: 100,
         destinationType: destinationType.FILE_URI,
         sourceType: source });
     }
