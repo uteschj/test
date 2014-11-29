@@ -100,9 +100,9 @@ sourceType: navigator.camera.PictureSourceType.PHOTOLIBRARY
 
         options.params = params;
         options.chunkedMode = false;
-
+alert("got this far");
         var ft = new FileTransfer();
-        ft.upload(imageURI, "http://192.168.254.15/uploadtester.php", win, fail, options);
+        ft.upload(imageURI, "https://dev.totalsupply1.com/uploadtester.php", win, fail, options);
     }
 
     function win(r) {
