@@ -54,6 +54,89 @@ $(function() {
     //
  
 
+    function getImage() {
+        // Retrieve image file location from specified source
+        navigator.camera.getPicture(uploadPhoto, function(message) {
+alert('get picture failed');
+},{
+quality: 100,
+destinationType: navigator.camera.DestinationType.FILE_URI,
+sourceType: navigator.camera.PictureSourceType.PHOTOLIBRARY
+}
+        );
+alert('done with getimage');
+    }
+    function takepicture(picturecode) {
+      if (picturecode == "zero")
+      {
+        // Retrieve image file location from specified source
+        navigator.camera.getPicture(uploadPhoto, function(message) {
+        alert('get picture failed');
+        },{
+        quality: 100,
+        destinationType: navigator.camera.DestinationType.FILE_URI,
+        sourceType: navigator.camera.PictureSourceType.PHOTOLIBRARY
+        }
+        );
+      }
+      else if (picturecode == "A") {
+        // Retrieve image file location from specified source
+        navigator.camera.getPicture(uploadPhotoA, function(message) {
+        alert('get picture failed');
+        },{
+        quality: 100,
+        destinationType: navigator.camera.DestinationType.FILE_URI,
+        sourceType: navigator.camera.PictureSourceType.PHOTOLIBRARY
+        }
+        );
+      }
+      else if (picturecode == "B") {
+        // Retrieve image file location from specified source
+        navigator.camera.getPicture(uploadPhotoB, function(message) {
+        alert('get picture failed');
+        },{
+        quality: 100,
+        destinationType: navigator.camera.DestinationType.FILE_URI,
+        sourceType: navigator.camera.PictureSourceType.PHOTOLIBRARY
+        }
+        );
+      }
+      else if (picturecode == "C") {
+        // Retrieve image file location from specified source
+        navigator.camera.getPicture(uploadPhotoC, function(message) {
+        alert('get picture failed');
+        },{
+        quality: 100,
+        destinationType: navigator.camera.DestinationType.FILE_URI,
+        sourceType: navigator.camera.PictureSourceType.PHOTOLIBRARY
+        }
+        );
+      }
+      else if (picturecode == "D") {
+        // Retrieve image file location from specified source
+        navigator.camera.getPicture(uploadPhotoD, function(message) {
+        alert('get picture failed');
+        },{
+        quality: 100,
+        destinationType: navigator.camera.DestinationType.FILE_URI,
+        sourceType: navigator.camera.PictureSourceType.PHOTOLIBRARY
+        }
+        );
+      }
+      else if (picturecode == "E") {
+        // Retrieve image file location from specified source
+        navigator.camera.getPicture(uploadPhotoE, function(message) {
+        alert('get picture failed');
+        },{
+        quality: 100,
+        destinationType: navigator.camera.DestinationType.FILE_URI,
+        sourceType: navigator.camera.PictureSourceType.PHOTOLIBRARY
+        }
+        );
+      }
+        
+        
+    }
     function uploadPhoto(imageURI) {
       alert('start of uploadPhto');
         var options = new FileUploadOptions();
@@ -61,8 +144,78 @@ $(function() {
         options.fileName=imageURI.substr(imageURI.lastIndexOf('/')+1);
         options.mimeType="image/jpeg";
         var params = new Object();
-        params.value1 = "test";
-        params.value2 = "param";
+        params.itemNumber = jsitem;
+        params.Delim = "";
+        options.params = params;
+        options.chunkedMode = false;
+        var ft = new FileTransfer();
+        ft.upload(imageURI, "http://192.168.254.15/uploadtester.php", win, fail, options);
+    }
+    function uploadPhotoA(imageURI) {
+      alert('start of uploadPhto');
+        var options = new FileUploadOptions();
+        options.fileKey="file";
+        options.fileName=imageURI.substr(imageURI.lastIndexOf('/')+1);
+        options.mimeType="image/jpeg";
+        var params = new Object();
+        params.itemNumber = jsitem;
+        params.Delim = "A";
+        options.params = params;
+        options.chunkedMode = false;
+        var ft = new FileTransfer();
+        ft.upload(imageURI, "http://192.168.254.15/uploadtester.php", win, fail, options);
+    }
+    function uploadPhotoB(imageURI) {
+      alert('start of uploadPhto');
+        var options = new FileUploadOptions();
+        options.fileKey="file";
+        options.fileName=imageURI.substr(imageURI.lastIndexOf('/')+1);
+        options.mimeType="image/jpeg";
+        var params = new Object();
+        params.itemNumber = jsitem;
+        params.Delim = "B";
+        options.params = params;
+        options.chunkedMode = false;
+        var ft = new FileTransfer();
+        ft.upload(imageURI, "http://192.168.254.15/uploadtester.php", win, fail, options);
+    }
+    function uploadPhotoC(imageURI) {
+      alert('start of uploadPhto');
+        var options = new FileUploadOptions();
+        options.fileKey="file";
+        options.fileName=imageURI.substr(imageURI.lastIndexOf('/')+1);
+        options.mimeType="image/jpeg";
+        var params = new Object();
+        params.itemNumber = jsitem;
+        params.Delim = "C";
+        options.params = params;
+        options.chunkedMode = false;
+        var ft = new FileTransfer();
+        ft.upload(imageURI, "http://192.168.254.15/uploadtester.php", win, fail, options);
+    }
+    function uploadPhotoD(imageURI) {
+      alert('start of uploadPhto');
+        var options = new FileUploadOptions();
+        options.fileKey="file";
+        options.fileName=imageURI.substr(imageURI.lastIndexOf('/')+1);
+        options.mimeType="image/jpeg";
+        var params = new Object();
+        params.itemNumber = jsitem;
+        params.Delim = "D";
+        options.params = params;
+        options.chunkedMode = false;
+        var ft = new FileTransfer();
+        ft.upload(imageURI, "http://192.168.254.15/uploadtester.php", win, fail, options);
+    }
+    function uploadPhotoE(imageURI) {
+      alert('start of uploadPhto');
+        var options = new FileUploadOptions();
+        options.fileKey="file";
+        options.fileName=imageURI.substr(imageURI.lastIndexOf('/')+1);
+        options.mimeType="image/jpeg";
+        var params = new Object();
+        params.itemNumber = jsitem;
+        params.Delim = "E";
         options.params = params;
         options.chunkedMode = false;
         var ft = new FileTransfer();
