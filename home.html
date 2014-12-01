@@ -101,6 +101,9 @@ $.ajax({
     success: function(data, textStatus, jqXHR)
     {
         //alert(data);
+        if (data != "sessionExpire") {
+        	window.location.replace('index.html');
+        }
         if (data != "") {
         $('#searchHistory').html(data);
 	}
@@ -127,9 +130,13 @@ $.ajax({
     success: function(data, textStatus, jqXHR)
     {
         //alert(data);
+        if (data != "sessionExpire") {
+        	window.location.replace('index.html');
+        }
         if (data != "<table border='1'></table>") {
         $('#webOrder').html(data);
         }
+        
        
     },
     error: function (jqXHR, textStatus, errorThrown)
@@ -156,6 +163,9 @@ $.ajax({
     success: function(data, textStatus, jqXHR)
     {
         //alert(data);
+        if (data != "sessionExpire") {
+        	window.location.replace('index.html');
+        }
         if (data != "<table border='1'></table>") {
         $('#rochOrder').html(data);
         }
