@@ -60,27 +60,12 @@ function onFail(message) {
     alert('Failed because: ' + message);
 }
 
-    function getImage() {
-        // Retrieve image file location from specified source
-        navigator.camera.getPicture(uploadPhoto, function(message) {
-alert('get picture failed');
-},{
-quality: 100,
-destinationType: navigator.camera.DestinationType.FILE_URI,
-sourceType: navigator.camera.PictureSourceType.PHOTOLIBRARY
-}
-        );
-alert('done with getimage');
-    }
+
     function takepicture(picturecode) {
-      alert('takepicture');
+      //alert('takepicture');
       if (picturecode == "zero")
       {
-        
-        // navigator.device.capture.captureImage(uploadPhoto, onFail, { limit: 1 }, quality: 100, destinationType: navigator.camera.DestinationType.FILE_URI);
-      
-        //navigator.camera.getPicture(uploadPhoto, onFail, { quality: 50,
-       // destinationType: destinationType.FILE_URL });
+
         navigator.camera.getPicture(uploadPhoto, onFail, { quality: 100,
         encodingType: navigator.camera.EncodingType.JPEG,
         destinationType: destinationType.FILE_URI,
@@ -132,7 +117,7 @@ alert('done with getimage');
         
     }
     function uploadPhoto(imageURI) {
-      clearCache();
+     // clearCache();
       var options = new FileUploadOptions();
         options.fileKey="file";
         options.fileName=imageURI.substr(imageURI.lastIndexOf('/')+1);
@@ -148,7 +133,7 @@ alert('done with getimage');
     
     }
     function uploadPhotoA(imageURI) {
-      clearCache():
+     // clearCache():
       //alert('start of uploadPhto');
         var options = new FileUploadOptions();
         options.fileKey="file";
@@ -222,7 +207,7 @@ alert('done with getimage');
         console.log("Code = " + r.responseCode);
         console.log("Response = " + r.response);
         console.log("Sent = " + r.bytesSent);
-        //alert(r.response);
+        alert(r.response);
     }
     function fail(error) {
         alert("An error has occurred: Code = " = error.code);
