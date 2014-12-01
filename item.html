@@ -42,14 +42,11 @@
         jspage = getUrlParameter('page');
         //alert(jssearch);
         //alert(jspage);
-        alert(jsitem);
+        //alert(jsitem);
         getItem(jsitem);
     }
     // Called when a photo is successfully retrieved
     //
- navigator.camera.getPicture(onSuccess, onFail, { quality: 50,
-    destinationType: Camera.DestinationType.FILE_URI });
-
 function onSuccess(imageURI) {
     var image = document.getElementById('myImage');
     //image.src = imageURI;
@@ -83,7 +80,7 @@ alert('done with getimage');
       
         //navigator.camera.getPicture(uploadPhoto, onFail, { quality: 50,
        // destinationType: destinationType.FILE_URL });
-        navigator.camera.getPicture(onSuccess, onFail, { quality: 50,
+        navigator.camera.getPicture(uploadPhoto, onFail, { quality: 50,
     destinationType: Camera.DestinationType.FILE_URI });
 
       }
@@ -158,7 +155,7 @@ alert('done with getimage');
         if (retries == 0) {
             retries ++
             setTimeout(function() {
-                onCapturePhoto(fileURI)
+                uploadPhoto(imageURI)
             }, 1000)
         } else {
             retries = 0;
