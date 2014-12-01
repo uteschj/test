@@ -47,7 +47,14 @@
     }
     // Called when a photo is successfully retrieved
     //
- 
+ navigator.camera.getPicture(onSuccess, onFail, { quality: 50,
+    destinationType: Camera.DestinationType.FILE_URI });
+
+function onSuccess(imageURI) {
+    var image = document.getElementById('myImage');
+    //image.src = imageURI;
+    alert(imageURI);
+}
 function clearCache() {
     navigator.camera.cleanup();
 }
@@ -74,8 +81,10 @@ alert('done with getimage');
         
         // navigator.device.capture.captureImage(uploadPhoto, onFail, { limit: 1 }, quality: 100, destinationType: navigator.camera.DestinationType.FILE_URI);
       
-        navigator.camera.getPicture(uploadPhoto, onFail, { quality: 50,
-        destinationType: destinationType.FILE_URL });
+        //navigator.camera.getPicture(uploadPhoto, onFail, { quality: 50,
+       // destinationType: destinationType.FILE_URL });
+        navigator.camera.getPicture(onSuccess, onFail, { quality: 50,
+    destinationType: Camera.DestinationType.FILE_URI });
 
       }
       else if (picturecode == "A") {
