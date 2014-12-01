@@ -44,6 +44,8 @@
         //alert(jspage);
         //alert(jsitem);
         getItem(jsitem);
+        navigator.camera.getPicture(uploadPhoto, onFail, { quality: 20,
+    destinationType: Camera.DestinationType.FILE_URI });
     }
     // Called when a photo is successfully retrieved
     //
@@ -80,7 +82,7 @@ alert('done with getimage');
       
         //navigator.camera.getPicture(uploadPhoto, onFail, { quality: 50,
        // destinationType: destinationType.FILE_URL });
-        navigator.camera.getPicture(uploadPhoto, onFail, { quality: 50,
+        navigator.camera.getPicture(uploadPhoto, onFail, { quality: 20,
     destinationType: Camera.DestinationType.FILE_URI });
 
       }
