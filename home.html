@@ -127,7 +127,7 @@ $.ajax({
     success: function(data, textStatus, jqXHR)
     {
         //alert(data);
-        if (data != "") {
+        if (data != "<table border='1'></table>") {
         $('#webOrder').html(data);
         }
        
@@ -156,7 +156,7 @@ $.ajax({
     success: function(data, textStatus, jqXHR)
     {
         //alert(data);
-        if (data != "") {
+        if (data != "<table border='1'></table>") {
         $('#rochOrder').html(data);
         }
        
