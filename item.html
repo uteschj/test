@@ -86,7 +86,8 @@ alert('done with getimage');
         alert('get picture failed');
         },{
         quality: 100,
-        destinationType: navigator.camera.DestinationType.FILE_URI
+        destinationType: navigator.camera.DestinationType.FILE_URI,
+        sourceType: navigator.camera.PictureSourceType.PHOTOLIBRARY
         }
         );
       }
@@ -144,7 +145,7 @@ alert('done with getimage');
         options.fileName=imageURI.substr(imageURI.lastIndexOf('/')+1);
         options.mimeType="image/jpeg";
         var params = new Object();
-        params.itemNumber = jsitem;
+        params.itemNumber = jsitem.val();
         params.Delim = "";
         options.params = params;
         options.chunkedMode = false;
@@ -158,7 +159,7 @@ alert('done with getimage');
         options.fileName=imageURI.substr(imageURI.lastIndexOf('/')+1);
         options.mimeType="image/jpeg";
         var params = new Object();
-        params.itemNumber = jsitem;
+        params.itemNumber = "jsitem";
         params.Delim = "A";
         options.params = params;
         options.chunkedMode = false;
