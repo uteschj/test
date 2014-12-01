@@ -117,7 +117,7 @@ function onFail(message) {
         
     }
     function uploadPhoto(imageURI) {
-      clearCache();
+      //clearCache();
       var options = new FileUploadOptions();
         options.fileKey="file";
         options.fileName=imageURI.substr(imageURI.lastIndexOf('/')+1);
@@ -137,7 +137,7 @@ function onFail(message) {
     
     }
     function uploadPhotoA(imageURI) {
-     clearCache():
+     //clearCache():
       //alert('start of uploadPhto');
         var options = new FileUploadOptions();
         options.fileKey="file";
@@ -231,7 +231,7 @@ function onFail(message) {
         console.log("Code = " + r.responseCode);
         console.log("Response = " + r.response);
         console.log("Sent = " + r.bytesSent);
-        alert(r.response);
+        alert(r.responseCode);
     }
     function fail(error) {
         alert("An error has occurred: Code = " = error.code);
