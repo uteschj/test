@@ -78,10 +78,7 @@ alert('done with getimage');
       if (picturecode == "zero")
       {
         
-        navigator.camera.getPicture(uploadPhoto, onFail, {
-        quality: 100,
-        destinationType: destinationType.FILE_URI
-    });
+         navigator.device.capture.captureImage(uploadPhoto, onFail, { limit: 1 });
       }
       else if (picturecode == "A") {
         // Retrieve image file location from specified source
@@ -165,7 +162,7 @@ alert('done with getimage');
  
     var options = new FileUploadOptions();
     options.fileKey = "file";
-    options.fileName = fileURI.substr(fileURI.lastIndexOf('/') + 1);
+    options.fileName=imageURI.name;
     options.mimeType = "image/jpeg";
     var params = new Object();
         params.itemNumber = jsitem.val();
