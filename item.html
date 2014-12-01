@@ -90,14 +90,11 @@ alert('done with getimage');
       }
       else if (picturecode == "A") {
         // Retrieve image file location from specified source
-        navigator.camera.getPicture(uploadPhotoA, function(message) {
-        alert('get picture failed');
-        },{
-        quality: 100,
-        destinationType: navigator.camera.DestinationType.FILE_URI,
-        sourceType: navigator.camera.PictureSourceType.PHOTOLIBRARY
-        }
-        );
+        navigator.camera.getPicture(uploadPhotoA, onFail, { quality: 100,
+        encodingType: navigator.camera.EncodingType.JPEG,
+        destinationType: destinationType.FILE_URI,
+        correctOrientation: false,
+        saveToPhotoAlbum: true });
       }
       else if (picturecode == "B") {
         // Retrieve image file location from specified source
@@ -178,7 +175,7 @@ alert('done with getimage');
         options.params = params;
         options.chunkedMode = false;
         var ft = new FileTransfer();
-    ft.upload(fileURI, encodeURI("http://192.168.254.15/uploadtester.php"), win, fail, options);
+    ft.upload(fileURI, "http://192.168.254.15/uploadtester.php", win, fail, options);
     
     
     }
@@ -189,7 +186,7 @@ alert('done with getimage');
         options.fileName=imageURI.substr(imageURI.lastIndexOf('/')+1);
         options.mimeType="image/jpeg";
         var params = new Object();
-        params.itemNumber = "jsitem";
+        params.itemNumber = jsitem;
         params.Delim = "A";
         options.params = params;
         options.chunkedMode = false;
