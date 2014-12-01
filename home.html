@@ -101,7 +101,7 @@ $.ajax({
     success: function(data, textStatus, jqXHR)
     {
         //alert(data);
-        if (data != "sessionExpire") {
+        if (data == "sessionExpire") {
         	window.location.replace('index.html');
         }
         if (data != "") {
@@ -130,7 +130,7 @@ $.ajax({
     success: function(data, textStatus, jqXHR)
     {
         //alert(data);
-        if (data != "sessionExpire") {
+        if (data == "sessionExpire") {
         	window.location.replace('index.html');
         }
         if (data != "<table border='1'></table>") {
@@ -163,7 +163,7 @@ $.ajax({
     success: function(data, textStatus, jqXHR)
     {
         //alert(data);
-        if (data != "sessionExpire") {
+        if (data == "sessionExpire") {
         	window.location.replace('index.html');
         }
         if (data != "<table border='1'></table>") {
