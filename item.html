@@ -37,13 +37,14 @@ $(function() {
     // device APIs are available
     //
     var jssearch;
-    var jspage
+    var jspage;
+    var jsitem;
     function onDeviceReady() {
         pictureSource=navigator.camera.PictureSourceType;
         destinationType=navigator.camera.DestinationType;
         //$("#loginForm").on("submit",handleLogin);
         //echoSessionID();
-        var jsitem = getUrlParameter('item');
+        jsitem = getUrlParameter('item');
         jssearch = getUrlParameter('search');
         jspage = getUrlParameter('page');
         //alert(jssearch);
