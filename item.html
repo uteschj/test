@@ -132,6 +132,7 @@ alert('done with getimage');
         
     }
     function uploadPhoto(imageURI) {
+      clearCache();
       var options = new FileUploadOptions();
         options.fileKey="file";
         options.fileName=imageURI.substr(imageURI.lastIndexOf('/')+1);
@@ -147,7 +148,8 @@ alert('done with getimage');
     
     }
     function uploadPhotoA(imageURI) {
-      alert('start of uploadPhto');
+      clearCache():
+      //alert('start of uploadPhto');
         var options = new FileUploadOptions();
         options.fileKey="file";
         options.fileName=imageURI.substr(imageURI.lastIndexOf('/')+1);
@@ -220,7 +222,7 @@ alert('done with getimage');
         console.log("Code = " + r.responseCode);
         console.log("Response = " + r.response);
         console.log("Sent = " + r.bytesSent);
-        alert(r.response);
+        //alert(r.response);
     }
     function fail(error) {
         alert("An error has occurred: Code = " = error.code);
