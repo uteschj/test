@@ -147,6 +147,9 @@ function onFail(message) {
         var params = new Object();
         params.itemNumber = jsitem;
         params.Delim = "None";
+         var session = window.localStorage.getItem("webSessionID");
+        params.sessionID = session;
+      
         options.params = params;
         options.headers = {
             Connection: "close"
@@ -154,20 +157,43 @@ function onFail(message) {
         }
         options.chunkedMode = false;
         var ft = new FileTransfer();
-        ft.upload(imageURI, "http://192.168.254.15/uploadtester.php", vwin, vfail, options);
+        ft.upload(imageURI, "https://totalsupply1.com/log_in/AppItemupload.processor.php", vwin, vfail, options);
     
     
     }
     function uploadPhotoA(imageURI) {
-     //clearCache():
-      //alert('start of uploadPhto');
-        var options = new FileUploadOptions();
+     //clearCache();
+      var vwin = function (r) {
+        //clearCache();
+        retries = 0;
+        alert('Done!');
+        getItem(jsitem);
+        
+    }
+ 
+    var vfail = function (error) {
+        if (retries == 0) {
+            retries ++
+            setTimeout(function() {
+                uploadPhoto(imageURI)
+            }, 1000)
+        } else {
+            retries = 0;
+            //clearCache();
+            alert('Ups. Something wrong happens!');
+        }
+    }
+    
+      var options = new FileUploadOptions();
         options.fileKey="file";
         options.fileName=imageURI.substr(imageURI.lastIndexOf('/')+1);
         options.mimeType="image/jpeg";
         var params = new Object();
         params.itemNumber = jsitem;
         params.Delim = "A";
+         var session = window.localStorage.getItem("webSessionID");
+        params.sessionID = session;
+      
         options.params = params;
         options.headers = {
             Connection: "close"
@@ -175,17 +201,41 @@ function onFail(message) {
         }
         options.chunkedMode = false;
         var ft = new FileTransfer();
-        ft.upload(imageURI, "http://192.168.254.15/uploadtester.php", win, fail, options);
+        ft.upload(imageURI, "https://totalsupply1.com/log_in/AppItemupload.processor.php", vwin, vfail, options);
     }
     function uploadPhotoB(imageURI) {
-      alert('start of uploadPhto');
-        var options = new FileUploadOptions();
+      //clearCache();
+      var vwin = function (r) {
+        //clearCache();
+        retries = 0;
+        alert('Done!');
+        getItem(jsitem);
+        
+    }
+ 
+    var vfail = function (error) {
+        if (retries == 0) {
+            retries ++
+            setTimeout(function() {
+                uploadPhoto(imageURI)
+            }, 1000)
+        } else {
+            retries = 0;
+            //clearCache();
+            alert('Ups. Something wrong happens!');
+        }
+    }
+    
+      var options = new FileUploadOptions();
         options.fileKey="file";
         options.fileName=imageURI.substr(imageURI.lastIndexOf('/')+1);
         options.mimeType="image/jpeg";
         var params = new Object();
         params.itemNumber = jsitem;
         params.Delim = "B";
+         var session = window.localStorage.getItem("webSessionID");
+        params.sessionID = session;
+      
         options.params = params;
         options.headers = {
             Connection: "close"
@@ -193,17 +243,41 @@ function onFail(message) {
         }
         options.chunkedMode = false;
         var ft = new FileTransfer();
-        ft.upload(imageURI, "http://192.168.254.15/uploadtester.php", win, fail, options);
+        ft.upload(imageURI, "https://totalsupply1.com/log_in/AppItemupload.processor.php", vwin, vfail, options);
     }
     function uploadPhotoC(imageURI) {
-      alert('start of uploadPhto');
-        var options = new FileUploadOptions();
+      //clearCache();
+      var vwin = function (r) {
+        //clearCache();
+        retries = 0;
+        alert('Done!');
+        getItem(jsitem);
+        
+    }
+ 
+    var vfail = function (error) {
+        if (retries == 0) {
+            retries ++
+            setTimeout(function() {
+                uploadPhoto(imageURI)
+            }, 1000)
+        } else {
+            retries = 0;
+            //clearCache();
+            alert('Ups. Something wrong happens!');
+        }
+    }
+    
+      var options = new FileUploadOptions();
         options.fileKey="file";
         options.fileName=imageURI.substr(imageURI.lastIndexOf('/')+1);
         options.mimeType="image/jpeg";
         var params = new Object();
         params.itemNumber = jsitem;
         params.Delim = "C";
+         var session = window.localStorage.getItem("webSessionID");
+        params.sessionID = session;
+      
         options.params = params;
         options.headers = {
             Connection: "close"
@@ -211,17 +285,41 @@ function onFail(message) {
         }
         options.chunkedMode = false;
         var ft = new FileTransfer();
-        ft.upload(imageURI, "http://192.168.254.15/uploadtester.php", win, fail, options);
+        ft.upload(imageURI, "https://totalsupply1.com/log_in/AppItemupload.processor.php", vwin, vfail, options);
     }
     function uploadPhotoD(imageURI) {
-      alert('start of uploadPhto');
-        var options = new FileUploadOptions();
+      //clearCache();
+      var vwin = function (r) {
+        //clearCache();
+        retries = 0;
+        alert('Done!');
+        getItem(jsitem);
+        
+    }
+ 
+    var vfail = function (error) {
+        if (retries == 0) {
+            retries ++
+            setTimeout(function() {
+                uploadPhoto(imageURI)
+            }, 1000)
+        } else {
+            retries = 0;
+            //clearCache();
+            alert('Ups. Something wrong happens!');
+        }
+    }
+    
+      var options = new FileUploadOptions();
         options.fileKey="file";
         options.fileName=imageURI.substr(imageURI.lastIndexOf('/')+1);
         options.mimeType="image/jpeg";
         var params = new Object();
         params.itemNumber = jsitem;
         params.Delim = "D";
+         var session = window.localStorage.getItem("webSessionID");
+        params.sessionID = session;
+      
         options.params = params;
         options.headers = {
             Connection: "close"
@@ -229,17 +327,41 @@ function onFail(message) {
         }
         options.chunkedMode = false;
         var ft = new FileTransfer();
-        ft.upload(imageURI, "http://192.168.254.15/uploadtester.php", win, fail, options);
+        ft.upload(imageURI, "https://totalsupply1.com/log_in/AppItemupload.processor.php", vwin, vfail, options);
     }
     function uploadPhotoE(imageURI) {
-      alert('start of uploadPhto');
-        var options = new FileUploadOptions();
+      //clearCache();
+      var vwin = function (r) {
+        //clearCache();
+        retries = 0;
+        alert('Done!');
+        getItem(jsitem);
+        
+    }
+ 
+    var vfail = function (error) {
+        if (retries == 0) {
+            retries ++
+            setTimeout(function() {
+                uploadPhoto(imageURI)
+            }, 1000)
+        } else {
+            retries = 0;
+            //clearCache();
+            alert('Ups. Something wrong happens!');
+        }
+    }
+    
+      var options = new FileUploadOptions();
         options.fileKey="file";
         options.fileName=imageURI.substr(imageURI.lastIndexOf('/')+1);
         options.mimeType="image/jpeg";
         var params = new Object();
         params.itemNumber = jsitem;
         params.Delim = "E";
+         var session = window.localStorage.getItem("webSessionID");
+        params.sessionID = session;
+      
         options.params = params;
         options.headers = {
             Connection: "close"
@@ -247,7 +369,7 @@ function onFail(message) {
         }
         options.chunkedMode = false;
         var ft = new FileTransfer();
-        ft.upload(imageURI, "http://192.168.254.15/uploadtester.php", win, fail, options);
+        ft.upload(imageURI, "https://totalsupply1.com/log_in/AppItemupload.processor.php", vwin, vfail, options);
     }
     function win(r) {
         console.log("Code = " + r.responseCode);
