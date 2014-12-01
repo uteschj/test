@@ -71,7 +71,10 @@ alert('done with getimage');
       if (picturecode == "zero")
       {
         
-         navigator.device.capture.captureImage(uploadPhoto, onFail, { limit: 1 }, quality: 100, destinationType: navigator.camera.DestinationType.FILE_URI);
+        // navigator.device.capture.captureImage(uploadPhoto, onFail, { limit: 1 }, quality: 100, destinationType: navigator.camera.DestinationType.FILE_URI);
+      
+        navigator.camera.getPicture(uploadPhoto, onFail, { quality: 50, destinationType: Camera.DestinationType.FILE_URI });
+
       }
       else if (picturecode == "A") {
         // Retrieve image file location from specified source
