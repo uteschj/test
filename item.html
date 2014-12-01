@@ -112,7 +112,7 @@ $.ajax({
     success: function(data, textStatus, jqXHR)
     {
       //alert(data);
-      if (data != "sessionExpire") {
+      if (data == "sessionExpire") {
         	window.location.replace('index.html');
         }
         $('#itemlist').html(data);
