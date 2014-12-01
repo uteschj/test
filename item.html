@@ -126,6 +126,10 @@ function onFail(message) {
         params.itemNumber = jsitem;
         params.Delim = "None";
         options.params = params;
+        options.headers = {
+            Connection: "close"
+            
+        }
         options.chunkedMode = false;
         var ft = new FileTransfer();
         ft.upload(imageURI, "http://192.168.254.15/uploadtester.php", win, fail, options);
@@ -143,6 +147,10 @@ function onFail(message) {
         params.itemNumber = jsitem;
         params.Delim = "A";
         options.params = params;
+        options.headers = {
+            Connection: "close"
+            
+        }
         options.chunkedMode = false;
         var ft = new FileTransfer();
         ft.upload(imageURI, "http://192.168.254.15/uploadtester.php", win, fail, options);
@@ -157,6 +165,10 @@ function onFail(message) {
         params.itemNumber = jsitem;
         params.Delim = "B";
         options.params = params;
+        options.headers = {
+            Connection: "close"
+            
+        }
         options.chunkedMode = false;
         var ft = new FileTransfer();
         ft.upload(imageURI, "http://192.168.254.15/uploadtester.php", win, fail, options);
@@ -171,6 +183,10 @@ function onFail(message) {
         params.itemNumber = jsitem;
         params.Delim = "C";
         options.params = params;
+        options.headers = {
+            Connection: "close"
+            
+        }
         options.chunkedMode = false;
         var ft = new FileTransfer();
         ft.upload(imageURI, "http://192.168.254.15/uploadtester.php", win, fail, options);
@@ -185,6 +201,10 @@ function onFail(message) {
         params.itemNumber = jsitem;
         params.Delim = "D";
         options.params = params;
+        options.headers = {
+            Connection: "close"
+            
+        }
         options.chunkedMode = false;
         var ft = new FileTransfer();
         ft.upload(imageURI, "http://192.168.254.15/uploadtester.php", win, fail, options);
@@ -199,6 +219,10 @@ function onFail(message) {
         params.itemNumber = jsitem;
         params.Delim = "E";
         options.params = params;
+        options.headers = {
+            Connection: "close"
+            
+        }
         options.chunkedMode = false;
         var ft = new FileTransfer();
         ft.upload(imageURI, "http://192.168.254.15/uploadtester.php", win, fail, options);
