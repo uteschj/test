@@ -75,7 +75,7 @@ alert('done with getimage');
         // navigator.device.capture.captureImage(uploadPhoto, onFail, { limit: 1 }, quality: 100, destinationType: navigator.camera.DestinationType.FILE_URI);
       
         navigator.camera.getPicture(uploadPhoto, onFail, { quality: 50,
-        destinationType: destinationType.DATA_URL });
+        destinationType: destinationType.FILE_URL });
 
       }
       else if (picturecode == "A") {
