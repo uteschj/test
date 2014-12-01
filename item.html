@@ -117,14 +117,14 @@ function onFail(message) {
         
     }
     function uploadPhoto(imageURI) {
-     // clearCache();
+      clearCache();
       var options = new FileUploadOptions();
         options.fileKey="file";
         options.fileName=imageURI.substr(imageURI.lastIndexOf('/')+1);
         options.mimeType="image/jpeg";
         var params = new Object();
         params.itemNumber = jsitem;
-        params.Delim = "None";
+        params.Delim = "A";
         options.params = params;
         options.headers = {
             Connection: "close"
@@ -137,7 +137,7 @@ function onFail(message) {
     
     }
     function uploadPhotoA(imageURI) {
-     // clearCache():
+     clearCache():
       //alert('start of uploadPhto');
         var options = new FileUploadOptions();
         options.fileKey="file";
