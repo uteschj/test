@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Home</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+    <script type="text/javascript" charset="utf-8" src="phonegap.js"></script>
+    <script type="text/javascript" charset="utf-8" src="plugins/org.apache.cordova.file/www/File.js"></script>
+<script type="text/javascript" charset="utf-8" src="plugins/org.apache.cordova.file-transfer/www/FileTransfer.js"></script>
+ <!--<link rel="stylesheet" href="jquery.mobile/jquery.mobile-1.4.5.min.css" type="text/css" charset="utf-8" />-->
+ <link rel="stylesheet" href="css/jquery.mobile.flatui.css" type="text/css" charset="utf-8" />
+ <!--<script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>-->
+ <script src="js/jquery.js"></script>
+ <!--<script src="jquery.mobile/jquery.mobile-1.4.5.min.js"></script>-->
+ <script src="js/jquery.mobile-1.4.0-rc.1.js"></script>
+ <script src="/js/jquery.lazyload.min.js" type="text/javascript"></script>
+<script>
+$(function() {
+    $("img.lazy").lazyload({
+    threshold : 200
+});
+});
+ 
+
+<script type="text/javascript" charset="utf-8" src="js/sha512.js"></script>
+ <!--<script type="text/javascript" charset="utf-8" src="js/main.js"></script>-->
+    <script type="text/javascript" charset="utf-8">
+    var pictureSource;   // picture source
+    var destinationType; // sets the format of returned value
+    // Wait for device API libraries to load
+    //
+    document.addEventListener("deviceready",onDeviceReady,false);
+    // device APIs are available
+    //
+    function onDeviceReady() {
+        pictureSource=navigator.camera.PictureSourceType;
+        destinationType=navigator.camera.DestinationType;
+        //$("#loginForm").on("submit",handleLogin);
+        //echoSessionID();
+        var jssearch = getUrlParameter('search');
+        var jspage = getUrlParameter('page');
+        if (jssearch != undefined) {
+          //alert(jssearch);
+          //alert(jspage);
+        pagination(jssearch, jspage);
+        }
+        
+    }
+    // Called when a photo is successfully retrieved
+    //
+ function getUrlParameter(sParam)
+{
+    var sPageURL = window.location.search.substring(1);
+    var sURLVariables = sPageURL.split('&');
+    for (var i = 0; i < sURLVariables.length; i++) 
+    {
+        var sParameterName = sURLVariables[i].split('=');
+        if (sParameterName[0] == sParam) 
+        {
+            return sParameterName[1];
+        }
+    }
+}  
+
+    function uploadPhoto(imageURI) {
+      alert('start of uploadPhto');
+        var options = new FileUploadOptions();
+        options.fileKey="file";
+        options.fileName=imageURI.substr(imageURI.lastIndexOf('/')+1);
+        options.mimeType="image/jpeg";
+        var params = new Object();
+        params.value1 = "test";
+        params.value2 = "param";
+        options.params = params;
+        options.chunkedMode = false;
+        var ft = new FileTransfer();
+        ft.upload(imageURI, "http://192.168.254.15/uploadtester.php", win, fail, options);
+    }
+    function win(r) {
+        console.log("Code = " + r.responseCode);
+        console.log("Response = " + r.response);
+        console.log("Sent = " + r.bytesSent);
+        alert(r.response);
+    }
+    function fail(error) {
+        alert("An error has occurred: Code = " = error.code);
+    }
+    
+    function checkPreAuth() {
+    var form = $("#loginForm");
+    if(window.localStorage["username"] != undefined && window.localStorage["password"] != undefined) {
+        $("#username", form).val(window.localStorage["username"]);
+        $("#password", form).val(window.localStorage["password"]);
+        handleLogin();
+    }
+}
+function handleSearch() {
+    var form = $("#searchForm");    
+    //alert('handleSearch');
+    //disable the button so we can't resubmit while we wait
+    $("#submitButton",form).attr("disabled","disabled");
+    var s = $("#search", form).val();
+    console.log("click");
+     var session = window.localStorage.getItem("webSessionID");
+     //alert(session);
+     console.log(session);
+      var formData = {sessionID:session,search:s}; //Array 
+ 
+$.ajax({
+    url : "https://totalsupply1.com/log_in/AppSearch.php",
+    type: "POST",
+    data : formData,
+    success: function(data, textStatus, jqXHR)
+    {
+        //alert(data);
+        $('#itemlist').html(data);
+        $("img.lazy").lazyload({
+    threshold : 200
+});
+    },
+    error: function (jqXHR, textStatus, errorThrown)
+    {
+ alert('Loggin FAILd');
+    }
+});
+    
+    return false;
+}
+function pagination(s, pagenumber) {
+  //alert(s + ' ' + pagenumber);
+     var session = window.localStorage.getItem("webSessionID");
+     console.log(session);
+      var formData = {sessionID:session,search:s,page:pagenumber}; //Array 
+$.ajax({
+    url : "https://totalsupply1.com/log_in/AppSearch.php",
+    type: "POST",
+    data : formData,
+    success: function(data, textStatus, jqXHR)
+    {
+      //alert(data);
+        $('#itemlist').html(data);
+        $("img.lazy").lazyload({
+    threshold : 200
+});
+    },
+    error: function (jqXHR, textStatus, errorThrown)
+    {
+ alert('Loggin FAILd');
+    }
+});
+    return false;
+}
+
+
+
+
+    </script>
+  </head>
+  <body onload="init()">
+
+<div data-role="page">
+
+    <div data-role="panel" id="panel" data-position="right" data-theme="a" data-display="push"></div>
+
+    <div data-role="header">
+      <a data-iconpos="notext" data-role="button" data-icon="home" title="Home" ontouchstart="window.location.replace('home.html');">Home</a>
+      <h1>Search</h1>
+      <a data-iconpos="notext" href="#panel" data-role="button" data-icon="flat-menu"></a>
+    </div>
+
+    <div data-role="content">    
+
+        <form id="searchForm">
+        <div data-role="fieldcontain" class="ui-hide-label">
+            <label for="search">search:</label>
+            <input type="text" name="search" id="search" value="" placeholder="search" />
+        </div>
+        <button ontouchstart="handleSearch(); return false;">Search</button>
+        </form>
+        
+        
+        
+        </div>
+        <div id="itemlist">
+        </div>
+        
+    
+    
+    </div>
+
+    <div data-role="footer">
+        <h4>&copy; Utesch Enterprises</h4>
+    </div>
+
+</div>
+
+<script>
+$("#loginPage").live("pageinit", function(e) {
+        checkPreAuth();
+    });
+</script>
+  </body>
+</html>

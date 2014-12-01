@@ -2,12 +2,14 @@
 <html>
   <head>
     <title>Capture Photo</title>
-
+<meta name="viewport" content="width=device-width, initial-scale=1">
     <script type="text/javascript" charset="utf-8" src="phonegap.js"></script>
     <script type="text/javascript" charset="utf-8" src="plugins/org.apache.cordova.file/www/File.js"></script>
 <script type="text/javascript" charset="utf-8" src="plugins/org.apache.cordova.file-transfer/www/FileTransfer.js"></script>
- <link rel="stylesheet" href="jquery.mobile/jquery.mobile-1.4.5.min.css" type="text/css" charset="utf-8" />
- <script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>
+ <!--<link rel="stylesheet" href="jquery.mobile/jquery.mobile-1.4.5.min.css" type="text/css" charset="utf-8" />-->
+ <link rel="stylesheet" href="css/jquery.mobile.flatui.css" type="text/css" charset="utf-8" />
+ <!--<script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>-->
+ <script src="js/jquery.js"></script>
  <!--<script src="jquery.mobile/jquery.mobile-1.4.5.min.js"></script>-->
  <script src="js/jquery.mobile-1.4.0-rc.1.js"></script>
  
@@ -26,7 +28,9 @@
         pictureSource=navigator.camera.PictureSourceType;
         destinationType=navigator.camera.DestinationType;
         //$("#loginForm").on("submit",handleLogin);
+        checkPreAuth();
     }
+    
     // Called when a photo is successfully retrieved
     //
     function onPhotoDataSuccess(imageData) {
@@ -139,13 +143,13 @@ alert('done with getimage');
 
 function handleLogin() {
     var form = $("#loginForm");    
-    alert('handlelogin');
+    //alert('handlelogin');
     //disable the button so we can't resubmit while we wait
     $("#submitButton",form).attr("disabled","disabled");
     var u = $("#username", form).val();
-    alert(u);
+    //alert(u);
     var pass = hex_sha512($("#password", form).val());
-    alert(pass);
+    //alert(pass);
     console.log("click");
     if(u != '' && pass!= '') {
       console.log("inside if u != ''");
@@ -164,6 +168,9 @@ $.ajax({
         //alert(jqXHR);
         //alert(data);
         window.localStorage.setItem("webSessionID", data);
+        window.localStorage.setItem("username", u);
+        window.localStorage.setItem("password", $("#password", form).val());
+        window.location.replace('home.html');
         //jsessionID = data;
     },
     error: function (jqXHR, textStatus, errorThrown)
@@ -206,10 +213,14 @@ function testSession() {
   </head>
   <body onload="init()">
 
-<div id="loginPage" data-role="page">
+<div data-role="page">
+
+    <div data-role="panel" id="panel" data-position="right" data-theme="a" data-display="push"></div>
 
     <div data-role="header">
-        <h1>Employee Login</h1>
+      <a data-iconpos="notext" data-role="button" data-icon="home" title="Home">Home</a>
+      <h1>Emloyee Login</h1>
+      <a data-iconpos="notext" href="#panel" data-role="button" data-icon="flat-menu"></a>
     </div>
 
     <div data-role="content">    
@@ -224,20 +235,21 @@ function testSession() {
             <label for="password">Password:</label>
             <input type="password" name="password" id="password" value="" placeholder="Password" />
         </div>
-
-        <input type="submit" value="Login" id="submitButton" onclick="handleLogin();">
+<label for="checkbox-a" class="ui-btn ui-corner-all ui-btn-c ui-btn-icon-left ui-checkbox-on ui-last-child">Stay Logged In</label>
+<input type="checkbox" name="checkbox-a" data-theme="c" id="checkbox-a" checked="checked">
+        <input type="submit" value="Login" id="submitButton" ontouchstart="handleLogin();">
         </form>
         
         
         
         </div>
         <div>
-        <button onclick="testSession();">test session</button> <br><br>
+        <!--<button onclick="window.location.replace('home.html');">test session</button> <br><br>-->
        <!-- <button onclick="capturePhoto();">Capture Photo</button> <br>
     <button onclick="capturePhotoEdit();">Capture Editable Photo</button> <br>
     <button onclick="getPhoto(pictureSource.PHOTOLIBRARY);">From Photo Library</button><br>
     <button onclick="getPhoto(pictureSource.SAVEDPHOTOALBUM);">From Photo Album</button><br><br> -->
-    <button onclick="getImage();">send photo</button><br>
+    <!--<button onclick="getImage();">send photo</button><br>-->
     <img style="display:none;width:60px;height:60px;" id="smallImage" src="" />
     <img style="display:none;" id="largeImage" src="" />
     
