@@ -32,6 +32,7 @@
     function onDeviceReady() {
         pictureSource=navigator.camera.PictureSourceType;
         destinationType=navigator.camera.DestinationType;
+        super.clearCache();
         //$("#loginForm").on("submit",handleLogin);
         checkPreAuth();
     }
