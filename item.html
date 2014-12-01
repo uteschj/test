@@ -116,15 +116,37 @@ function onFail(message) {
         
         
     }
+    var retries = 0;
     function uploadPhoto(imageURI) {
       //clearCache();
+      var vwin = function (r) {
+        //clearCache();
+        retries = 0;
+        alert('Done!');
+        getItem(jsitem);
+        
+    }
+ 
+    var vfail = function (error) {
+        if (retries == 0) {
+            retries ++
+            setTimeout(function() {
+                uploadPhoto(imageURI)
+            }, 1000)
+        } else {
+            retries = 0;
+            //clearCache();
+            alert('Ups. Something wrong happens!');
+        }
+    }
+    
       var options = new FileUploadOptions();
         options.fileKey="file";
         options.fileName=imageURI.substr(imageURI.lastIndexOf('/')+1);
         options.mimeType="image/jpeg";
         var params = new Object();
         params.itemNumber = jsitem;
-        params.Delim = "A";
+        params.Delim = "None";
         options.params = params;
         options.headers = {
             Connection: "close"
@@ -132,7 +154,7 @@ function onFail(message) {
         }
         options.chunkedMode = false;
         var ft = new FileTransfer();
-        ft.upload(imageURI, "http://192.168.254.15/uploadtester.php", win, fail, options);
+        ft.upload(imageURI, "http://192.168.254.15/uploadtester.php", vwin, vfail, options);
     
     
     }
