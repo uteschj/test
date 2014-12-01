@@ -54,6 +54,12 @@ $(function() {
     // Called when a photo is successfully retrieved
     //
  
+function clearCache() {
+    navigator.camera.cleanup();
+}
+function onFail(message) {
+    alert('Failed because: ' + message);
+}
 
     function getImage() {
         // Retrieve image file location from specified source
@@ -71,15 +77,11 @@ alert('done with getimage');
       alert('takepicture');
       if (picturecode == "zero")
       {
-        // Retrieve image file location from specified source
-        navigator.camera.getPicture(uploadPhoto, function(message) {
-        alert('get picture failed');
-        },{
+        
+        navigator.camera.getPicture(uploadPhoto, onFail, {
         quality: 100,
-        destinationType: navigator.camera.DestinationType.FILE_URI,
-        sourceType: navigator.camera.PictureSourceType.PHOTOLIBRARY
-        }
-        );
+        destinationType: destinationType.FILE_URI
+    });
       }
       else if (picturecode == "A") {
         // Retrieve image file location from specified source
@@ -141,17 +143,39 @@ alert('done with getimage');
     }
     function uploadPhoto(imageURI) {
       alert('start of uploadPhto');
-        var options = new FileUploadOptions();
-        options.fileKey="file";
-        options.fileName=imageURI.substr(imageURI.lastIndexOf('/')+1);
-        options.mimeType="image/jpeg";
-        var params = new Object();
+        
+         var win = function (r) {
+        clearCache();
+        retries = 0;
+        alert('Done!');
+    }
+ 
+    var fail = function (error) {
+        if (retries == 0) {
+            retries ++
+            setTimeout(function() {
+                onCapturePhoto(fileURI)
+            }, 1000)
+        } else {
+            retries = 0;
+            clearCache();
+            alert('Ups. Something wrong happens!');
+        }
+    }
+ 
+    var options = new FileUploadOptions();
+    options.fileKey = "file";
+    options.fileName = fileURI.substr(fileURI.lastIndexOf('/') + 1);
+    options.mimeType = "image/jpeg";
+    var params = new Object();
         params.itemNumber = jsitem.val();
         params.Delim = "";
         options.params = params;
         options.chunkedMode = false;
         var ft = new FileTransfer();
-        ft.upload(imageURI, "http://192.168.254.15/uploadtester.php", win, fail, options);
+    ft.upload(fileURI, encodeURI("http://192.168.254.15/uploadtester.php"), win, fail, options);
+    
+    
     }
     function uploadPhotoA(imageURI) {
       alert('start of uploadPhto');
