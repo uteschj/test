@@ -98,84 +98,51 @@ alert('done with getimage');
       }
       else if (picturecode == "B") {
         // Retrieve image file location from specified source
-        navigator.camera.getPicture(uploadPhotoB, function(message) {
-        alert('get picture failed');
-        },{
-        quality: 100,
-        destinationType: navigator.camera.DestinationType.FILE_URI,
-        sourceType: navigator.camera.PictureSourceType.PHOTOLIBRARY
-        }
-        );
+       navigator.camera.getPicture(uploadPhotoB, onFail, { quality: 100,
+        encodingType: navigator.camera.EncodingType.JPEG,
+        destinationType: destinationType.FILE_URI,
+        correctOrientation: false,
+        saveToPhotoAlbum: true });
       }
       else if (picturecode == "C") {
         // Retrieve image file location from specified source
-        navigator.camera.getPicture(uploadPhotoC, function(message) {
-        alert('get picture failed');
-        },{
-        quality: 100,
-        destinationType: navigator.camera.DestinationType.FILE_URI,
-        sourceType: navigator.camera.PictureSourceType.PHOTOLIBRARY
-        }
-        );
+        navigator.camera.getPicture(uploadPhotoC, onFail, { quality: 100,
+        encodingType: navigator.camera.EncodingType.JPEG,
+        destinationType: destinationType.FILE_URI,
+        correctOrientation: false,
+        saveToPhotoAlbum: true });
       }
       else if (picturecode == "D") {
         // Retrieve image file location from specified source
-        navigator.camera.getPicture(uploadPhotoD, function(message) {
-        alert('get picture failed');
-        },{
-        quality: 100,
-        destinationType: navigator.camera.DestinationType.FILE_URI,
-        sourceType: navigator.camera.PictureSourceType.PHOTOLIBRARY
-        }
-        );
+        navigator.camera.getPicture(uploadPhotoD, onFail, { quality: 100,
+        encodingType: navigator.camera.EncodingType.JPEG,
+        destinationType: destinationType.FILE_URI,
+        correctOrientation: false,
+        saveToPhotoAlbum: true });
       }
       else if (picturecode == "E") {
         // Retrieve image file location from specified source
-        navigator.camera.getPicture(uploadPhotoE, function(message) {
-        alert('get picture failed');
-        },{
-        quality: 100,
-        destinationType: navigator.camera.DestinationType.FILE_URI,
-        sourceType: navigator.camera.PictureSourceType.PHOTOLIBRARY
-        }
-        );
+        navigator.camera.getPicture(uploadPhotoE, onFail, { quality: 100,
+        encodingType: navigator.camera.EncodingType.JPEG,
+        destinationType: destinationType.FILE_URI,
+        correctOrientation: false,
+        saveToPhotoAlbum: true });
       }
         
         
     }
     function uploadPhoto(imageURI) {
-      alert('start of uploadPhto');
-        
-         var win = function (r) {
-        clearCache();
-        retries = 0;
-        alert('Done!');
-    }
- 
-    var fail = function (error) {
-        if (retries == 0) {
-            retries ++
-            setTimeout(function() {
-                uploadPhoto(imageURI)
-            }, 1000)
-        } else {
-            retries = 0;
-            clearCache();
-            alert('Ups. Something wrong happens!');
-        }
-    }
- 
-    var options = new FileUploadOptions();
-    options.fileKey = "file";
-    options.fileName=imageURI.name;
-    options.mimeType = "image/jpeg";
-    var params = new Object();
-        params.itemNumber = jsitem.val();
+      var options = new FileUploadOptions();
+        options.fileKey="file";
+        options.fileName=imageURI.substr(imageURI.lastIndexOf('/')+1);
+        options.mimeType="image/jpeg";
+        var params = new Object();
+        params.itemNumber = jsitem;
         params.Delim = "";
         options.params = params;
         options.chunkedMode = false;
         var ft = new FileTransfer();
-    ft.upload(fileURI, "http://192.168.254.15/uploadtester.php", win, fail, options);
+        ft.upload(imageURI, "http://192.168.254.15/uploadtester.php", win, fail, options);
     
     
     }
