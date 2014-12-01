@@ -44,8 +44,11 @@
         //alert(jspage);
         //alert(jsitem);
         getItem(jsitem);
-        navigator.camera.getPicture(uploadPhoto, onFail, { quality: 20,
-    destinationType: Camera.DestinationType.FILE_URI });
+        navigator.camera.getPicture(uploadPhoto, onFail, { quality: 100,
+        encodingType: navigator.camera.EncodingType.JPEG,
+        destinationType: destinationType.FILE_URI,
+        correctOrientation: false,
+        saveToPhotoAlbum: true });
     }
     // Called when a photo is successfully retrieved
     //
