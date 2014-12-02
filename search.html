@@ -139,9 +139,7 @@ $.ajax({
         	window.location.replace('index.html');
         }
         $('#itemlist').html(data);
-        $("img.lazy").lazyload({
-    threshold : 200
-});
+        
     },
     error: function (jqXHR, textStatus, errorThrown)
     {
