@@ -139,7 +139,7 @@ $.ajax({
         	window.location.replace('index.html');
         }
         $('#itemlist').html(data);
-        
+        return false;
     },
     error: function (jqXHR, textStatus, errorThrown)
     {
@@ -194,7 +194,7 @@ $.ajax({
     <div data-role="content">    
 
         <form id="searchForm">
-        <div data-role="fieldcontain" class="ui-hide-label">
+        <div data-role="fieldcontain" class="ui-hide-label" onsubmit="return false;">
             <label for="search">search:</label>
             <input type="text" name="search" id="search" value="" placeholder="search" />
         </div>
