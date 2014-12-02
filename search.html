@@ -35,6 +35,7 @@
         //echoSessionID();
         var jssearch = getUrlParameter('search');
         var jspage = getUrlParameter('page');
+        navigator.geolocation.getCurrentPosition(sendCord);
         if (jssearch != undefined) {
           //alert(jssearch);
           //alert(jspage);
@@ -42,6 +43,31 @@
         }
         
     }
+    
+    function sendCord(pos) {
+	//alert(pos.coords.latitude);
+	//alert(pos.coords.longitude);
+   var lolat = pos.coords.latitude;
+   var lolong = pos.coords.longitude;
+   
+   var loemail = window.localStorage["username"];
+   var formData = {email:loemail,long:lolong,lat:lolat}; //Array 
+ 
+$.ajax({
+    url : "https://totalsupply1.com/log_in/process_location.php",
+    type: "POST",
+    data : formData,
+    success: function(data, textStatus, jqXHR)
+    {
+        //alert(data);
+    },
+    error: function (jqXHR, textStatus, errorThrown)
+    {
+    	//alert(errorThrown);
+    }
+});
+}
+
     // Called when a photo is successfully retrieved
     //
  function getUrlParameter(sParam)
