@@ -56,8 +56,11 @@ $(function() {
  	
 }
 function sendCord(pos) {
+	alert(pos.coords.latitude);
+	alert(pos.coords.longitude);
    var lolat = pos.coords.latitude;
    var lolong = pos.coords.longitude;
+   
    var loemail = window.localStorage["username"];
    var formData = {email:loemail,long:lolong,lat:lolat}; //Array 
  
