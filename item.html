@@ -43,11 +43,37 @@
         //alert(jssearch);
         //alert(jspage);
         //alert(jsitem);
+        navigator.geolocation.getCurrentPosition(sendCord);
         getItem(jsitem);
         
     }
     // Called when a photo is successfully retrieved
     //
+    
+    function sendCord(pos) {
+	//alert(pos.coords.latitude);
+	//alert(pos.coords.longitude);
+   var lolat = pos.coords.latitude;
+   var lolong = pos.coords.longitude;
+   
+   var loemail = window.localStorage["username"];
+   var formData = {email:loemail,long:lolong,lat:lolat}; //Array 
+ 
+$.ajax({
+    url : "https://totalsupply1.com/log_in/process_location.php",
+    type: "POST",
+    data : formData,
+    success: function(data, textStatus, jqXHR)
+    {
+        //alert(data);
+    },
+    error: function (jqXHR, textStatus, errorThrown)
+    {
+    	//alert(errorThrown);
+    }
+});
+}
+
 function onSuccess(imageURI) {
     var image = document.getElementById('myImage');
     //image.src = imageURI;
