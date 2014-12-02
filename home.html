@@ -92,19 +92,20 @@ function onNotificationGCM(e) {
             console.log("regID = " + e.regid);
             //alert("regID = " + e.regid);
             davall = " " + e.regid;
-              var sesson = 'justin';
+           
+              var sesson = window.localStorage["username"];
      
      //console.log(session);
      var formData = {email:sesson,ppushid:davall}; //Array 
- 	alert(davall);
+ 	//alert(davall);
 $.ajax({
     url : "https://totalsupply1.com/log_in/process_push.php",
     type: "POST",
     data : formData,
     success: function(data, textStatus, jqXHR)
     {
-    	alert(davall);
-        alert(data);
+    	//alert(davall);
+        //alert(data);
        
         
         
@@ -112,12 +113,12 @@ $.ajax({
     },
     error: function (jqXHR, textStatus, errorThrown)
     {
- alert('Loggin FAILd');
+ //alert('Loggin FAILd');
     }
 });
 
             //googlepush(davall);
-            alert(davall);
+            //alert(davall);
             
            
            // googlepush(davall);
