@@ -143,7 +143,7 @@ function onFail(message) {
         
     }
     var retries = 0;
-    function uploadPhoto(imageURI) {
+ function uploadPhoto(imageURI) {
       //clearCache();
       var vwin = function (r) {
         //clearCache();
@@ -174,7 +174,8 @@ function onFail(message) {
         params.itemNumber = jsitem;
         params.Delim = "None";
          var session = window.localStorage.getItem("webSessionID");
-        params.sessionID = session;
+        params.email = window.localStorage["username"];
+        params.p = hex_sha512(window.localStorage["password"]);
       
         options.params = params;
         options.headers = {
@@ -201,7 +202,7 @@ function onFail(message) {
         if (retries == 0) {
             retries ++
             setTimeout(function() {
-                uploadPhoto(imageURI)
+                uploadPhotoA(imageURI)
             }, 1000)
         } else {
             retries = 0;
@@ -245,7 +246,7 @@ function onFail(message) {
         if (retries == 0) {
             retries ++
             setTimeout(function() {
-                uploadPhoto(imageURI)
+                uploadPhotoB(imageURI)
             }, 1000)
         } else {
             retries = 0;
@@ -262,7 +263,8 @@ function onFail(message) {
         params.itemNumber = jsitem;
         params.Delim = "B";
          var session = window.localStorage.getItem("webSessionID");
-        params.sessionID = session;
+        params.email = window.localStorage["username"];
+        params.p = hex_sha512(window.localStorage["password"]);
       
         options.params = params;
         options.headers = {
@@ -287,7 +289,7 @@ function onFail(message) {
         if (retries == 0) {
             retries ++
             setTimeout(function() {
-                uploadPhoto(imageURI)
+                uploadPhotoC(imageURI)
             }, 1000)
         } else {
             retries = 0;
@@ -304,7 +306,8 @@ function onFail(message) {
         params.itemNumber = jsitem;
         params.Delim = "C";
          var session = window.localStorage.getItem("webSessionID");
-        params.sessionID = session;
+        params.email = window.localStorage["username"];
+        params.p = hex_sha512(window.localStorage["password"]);
       
         options.params = params;
         options.headers = {
@@ -321,7 +324,7 @@ function onFail(message) {
         //clearCache();
         retries = 0;
         alert('Done!');
-        getItem(jsitem);
+        getItemD(jsitem);
         
     }
  
@@ -346,7 +349,8 @@ function onFail(message) {
         params.itemNumber = jsitem;
         params.Delim = "D";
          var session = window.localStorage.getItem("webSessionID");
-        params.sessionID = session;
+        params.email = window.localStorage["username"];
+        params.p = hex_sha512(window.localStorage["password"]);
       
         options.params = params;
         options.headers = {
@@ -371,7 +375,7 @@ function onFail(message) {
         if (retries == 0) {
             retries ++
             setTimeout(function() {
-                uploadPhoto(imageURI)
+                uploadPhotoE(imageURI)
             }, 1000)
         } else {
             retries = 0;
@@ -388,7 +392,8 @@ function onFail(message) {
         params.itemNumber = jsitem;
         params.Delim = "E";
          var session = window.localStorage.getItem("webSessionID");
-        params.sessionID = session;
+        params.email = window.localStorage["username"];
+        params.p = hex_sha512(window.localStorage["password"]);
       
         options.params = params;
         options.headers = {
