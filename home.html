@@ -92,11 +92,12 @@ function onNotificationGCM(e) {
             console.log("regID = " + e.regid);
             //alert("regID = " + e.regid);
             davall = " " + e.regid;
+            googlepush(davall);
             alert(davall);
-            daval = e.regid.val();
-            alert(daval);
-            googlepush(daval);
-            googlepush(e.regid);
+            
+           
+            googlepush(davall);
+           
         }
     break;
 
