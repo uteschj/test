@@ -78,7 +78,7 @@ function onFail(message) {
         navigator.camera.getPicture(uploadPhotoA, onFail, { quality: 100,
         encodingType: navigator.camera.EncodingType.JPEG,
         destinationType: destinationType.FILE_URI,
-        correctOrientation: false,
+        correctOrientation: true,
         saveToPhotoAlbum: true });
       }
       else if (picturecode == "B") {
