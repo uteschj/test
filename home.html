@@ -30,6 +30,8 @@ $(function() {
     var pictureSource;   // picture source
     var destinationType; // sets the format of returned value
     var pushNotification;
+    var daval;
+    var davall;
     // Wait for device API libraries to load
     //
     document.addEventListener("deviceready",onDeviceReady,false);
@@ -89,7 +91,9 @@ function onNotificationGCM(e) {
             // here is where you might want to send it the regID for later use.
             console.log("regID = " + e.regid);
             alert("regID = " + e.regid);
-            var daval = e.regid.val();
+            davall = e.regid;
+            lert(davall);
+            daval = e.regid.val();
             alert(daval);
             googlepush(daval);
             googlepush(e.regid);
