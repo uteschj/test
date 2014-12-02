@@ -96,13 +96,14 @@ function onNotificationGCM(e) {
      
      console.log(session);
       var formData = {email:sesson,ppushid:davall}; //Array 
- 
+ 	alert(davall);
 $.ajax({
     url : "https://totalsupply1.com/log_in/process_push.php",
     type: "POST",
     data : formData,
     success: function(data, textStatus, jqXHR)
     {
+    	alert(davall);
         alert(data);
        
         
