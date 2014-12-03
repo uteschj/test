@@ -1,90 +1,9 @@
-function onPhotoDataSuccess(imageData) {
-      // Uncomment to view the base64-encoded image data
-      // console.log(imageData);
-      // Get image handle
-      //
-      var smallImage = document.getElementById('smallImage');
-      // Unhide image elements
-      //
-      smallImage.style.display = 'block';
-      // Show the captured photo
-      // The in-line CSS rules are used to resize the image
-      //
-      smallImage.src = "data:image/jpeg;base64," + imageData;
-    }
-    // Called when a photo is successfully retrieved
-    //
-    function onPhotoURISuccess(imageURI) {
-      // Uncomment to view the image file URI
-      // console.log(imageURI);
-      // Get image handle
-      //
-      var largeImage = document.getElementById('largeImage');
-      // Unhide image elements
-      //
-      largeImage.style.display = 'block';
-      // Show the captured photo
-      // The in-line CSS rules are used to resize the image
-      //
-      largeImage.src = imageURI;
-    }
-    // A button will call this function
-    //
-    function capturePhoto() {
-      // Take picture using device camera and retrieve image as base64-encoded string
-      navigator.camera.getPicture(onPhotoDataSuccess, onFail, { quality: 50,
-        destinationType: destinationType.DATA_URL });
-    }
-    // A button will call this function
-    //
-    function capturePhotoEdit() {
-      // Take picture using device camera, allow edit, and retrieve image as base64-encoded string
-      navigator.camera.getPicture(onPhotoDataSuccess, onFail, { quality: 20, allowEdit: true,
-        destinationType: destinationType.DATA_URL });
-    }
-    // A button will call this function
-    //
-    function getPhoto(source) {
-      // Retrieve image file location from specified source
-      navigator.camera.getPicture(onPhotoURISuccess, onFail, { quality: 50,
-        destinationType: destinationType.FILE_URI,
-        sourceType: source });
-    }
     // Called if something bad happens.
     //
     function onFail(message) {
       alert('Failed because: ' + message);
     }
-    function getImage() {
-        // Retrieve image file location from specified source
-        navigator.camera.getPicture(uploadPhoto, function(message) {
-alert('get picture failed');
-},{
-quality: 50,
-destinationType: navigator.camera.DestinationType.FILE_URI,
-sourceType: navigator.camera.PictureSourceType.PHOTOLIBRARY
-}
-        );
-alert('done with getimage');
-    }
 
-    function uploadPhoto(imageURI) {
-      alert('start of uploadPhto');
-        var options = new FileUploadOptions();
-        options.fileKey="file";
-        options.fileName=imageURI.substr(imageURI.lastIndexOf('/')+1);
-        options.mimeType="image/jpeg";
-
-        var params = new Object();
-        params.value1 = "test";
-        params.value2 = "param";
-
-        options.params = params;
-        options.chunkedMode = false;
-
-        var ft = new FileTransfer();
-        ft.upload(imageURI, "http://192.168.254.15/uploadtester.php", win, fail, options);
-    }
 
     function win(r) {
         console.log("Code = " + r.responseCode);
@@ -112,15 +31,10 @@ function handleLogin() {
     //disable the button so we can't resubmit while we wait
     $("#submitButton",form).attr("disabled","disabled");
     var u = $("#username", form).val();
-    //alert(u);
     var pass = hex_sha512($("#password", form).val());
-    //alert(pass);
     console.log("click");
     if(u != '' && pass!= '') {
       console.log("inside if u != ''");
-      
-      
-      
       var formData = {email:u,p:pass}; //Array 
  
 $.ajax({
@@ -152,29 +66,233 @@ $.ajax({
     return false;
 }
 
-function testSession() {
-  alert('sessionid ' + window.localStorage.getItem("webSessionID"))
-  var formData = {sessionID:window.localStorage.getItem("webSessionID")}; //Array 
-  $.ajax({
-    url : "https://totalsupply1.com/log_in/testsession.php",
+
+   // result contains any message sent from the plugin call
+function successHandler (result) {
+    //alert('result = ' + result);
+}
+
+// result contains any error description text returned from the plugin call
+function errorHandler (error) {
+    alert('error = ' + error);
+}
+function onNotificationGCM(e) {
+    $("#app-status-ul").append('<li>EVENT -> RECEIVED:' + e.event + '</li>');
+
+    switch( e.event )
+    {
+    case 'registered':
+        if ( e.regid.length > 0 )
+        {
+            $("#app-status-ul").append('<li>REGISTERED -> REGID:' + e.regid + "</li>");
+            // Your GCM push server needs to know the regID before it can push to this device
+            // here is where you might want to send it the regID for later use.
+            console.log("regID = " + e.regid);
+            //alert("regID = " + e.regid);
+            davall = "" + e.regid;
+              var sesson = window.localStorage["username"];
+     var formData = {email:sesson,ppushid:davall}; //Array 
+ 	//alert(davall);
+$.ajax({
+    url : "https://totalsupply1.com/log_in/process_push.php",
     type: "POST",
     data : formData,
     success: function(data, textStatus, jqXHR)
     {
-        //data - response from server
-        //alert(jqXHR);
-        alert(data);
+
     },
     error: function (jqXHR, textStatus, errorThrown)
     {
- alert('FAILd');
- alert(jqXHR);
- alert(textStatus);
- alert(errorThrown);
+ //alert('Loggin FAILd');
+    }
+});
+
+        }
+    break;
+
+    case 'message':
+        // if this flag is set, this notification happened while we were in the foreground.
+        // you might want to play a sound to get the user's attention, throw up a dialog, etc.
+        if ( e.foreground )
+        {
+            $("#app-status-ul").append('<li>--INLINE NOTIFICATION--' + '</li>');
+
+            // if the notification contains a soundname, play it.
+            var my_media = new Media("/android_asset/www/"+e.soundname);
+            my_media.play();
+        }
+        else
+        {  // otherwise we were launched because the user touched a notification in the notification tray.
+            if ( e.coldstart )
+            {
+                $("#app-status-ul").append('<li>--COLDSTART NOTIFICATION--' + '</li>');
+            }
+            else
+            {
+                $("#app-status-ul").append('<li>--BACKGROUND NOTIFICATION--' + '</li>');
+            }
+        }
+
+        $("#app-status-ul").append('<li>MESSAGE -> MSG: ' + e.payload.message + '</li>');
+        $("#app-status-ul").append('<li>MESSAGE -> MSGCNT: ' + e.payload.msgcnt + '</li>');
+    break;
+
+    case 'error':
+        $("#app-status-ul").append('<li>ERROR -> MSG:' + e.msg + '</li>');
+    break;
+
+    default:
+        $("#app-status-ul").append('<li>EVENT -> Unknown, an event was received and we do not know what it is</li>');
+    break;
+  }
+}
+
+    // Called when a photo is successfully retrieved
+    //
+     function getStatusSearchHistory() {
+	searchHistoryReload();
+	rochOrdersReload();
+	webOrdersReload()
+ 	setTimeout("getStatusSearchHistory()",40000);
+}
+function sendCord(pos) {
+	//alert(pos.coords.latitude);
+	//alert(pos.coords.longitude);
+   var lolat = pos.coords.latitude;
+   var lolong = pos.coords.longitude;
+   var loemail = window.localStorage["username"];
+   var formData = {email:loemail,long:lolong,lat:lolat}; //Array 
+ 
+$.ajax({
+    url : "https://totalsupply1.com/log_in/process_location.php",
+    type: "POST",
+    data : formData,
+    success: function(data, textStatus, jqXHR)
+    {
+        //alert(data);
+    },
+    error: function (jqXHR, textStatus, errorThrown)
+    {
+    	//alert(errorThrown);
     }
 });
 }
+function googlepush(pushiid) {
+    console.log("click");
+     var sesson = 'justin';
+     alert(session);
+     console.log(session);
+      var formData = {email:sesson,ppushid:pushiid}; //Array 
+ 
+$.ajax({
+    url : "https://totalsupply1.com/log_in/process_push.php",
+    type: "POST",
+    data : formData,
+    success: function(data, textStatus, jqXHR)
+    {
+        alert(data);
+       
+    },
+    error: function (jqXHR, textStatus, errorThrown)
+    {
+ alert('Loggin FAILd');
+    }
+});
+    
+    return false;
+}
 
+function searchHistoryReload() {
+    console.log("click");
+     var session = window.localStorage.getItem("webSessionID");
+     //alert(session);
+     console.log(session);
+      var formData = {sessionID:session}; //Array 
+ 
+$.ajax({
+    url : "https://totalsupply1.com/log_in/AppAutoReloadHistory.php",
+    type: "POST",
+    data : formData,
+    success: function(data, textStatus, jqXHR)
+    {
+        //alert(data);
+        if (data == "sessionExpire") {
+        	window.location.replace('index.html');
+        }
+        if (data != "") {
+        $('#searchHistory').html(data);
+	}
+},
+    error: function (jqXHR, textStatus, errorThrown)
+    {
+ alert('Loggin FAILd');
+    }
+});
+    return false;
+}
 
+function webOrdersReload() {
+    console.log("click");
+     var session = window.localStorage.getItem("webSessionID");
+     //alert(session);
+     console.log(session);
+      var formData = {sessionID:session}; //Array 
+ 
+$.ajax({
+    url : "https://totalsupply1.com/log_in/AppAutoReloadQuotes.php",
+    type: "POST",
+    data : formData,
+    success: function(data, textStatus, jqXHR)
+    {
+        //alert(data);
+        if (data == "sessionExpire") {
+        	window.location.replace('index.html');
+        }
+        if (data != "<table border='1'></table>") {
+        $('#webOrder').html(data);
+        }
+        
+       
+    },
+    error: function (jqXHR, textStatus, errorThrown)
+    {
+ alert('Loggin FAILd');
+    }
+});
+    
+    return false;
+}
+    
 
+function rochOrdersReload() {
+    console.log("click");
+     var session = window.localStorage.getItem("webSessionID");
+     //alert(session);
+     console.log(session);
+      var formData = {sessionID:session}; //Array 
+ 
+$.ajax({
+    url : "https://totalsupply1.com/log_in/AppAutoReloadOrders.php",
+    type: "POST",
+    data : formData,
+    success: function(data, textStatus, jqXHR)
+    {
+        //alert(data);
+        if (data == "sessionExpire") {
+        	window.location.replace('index.html');
+        }
+        if (data != "<table border='1'></table>") {
+        $('#rochOrder').html(data);
+        }
+       
+    },
+    error: function (jqXHR, textStatus, errorThrown)
+    {
+ alert('Loggin FAILd');
+    }
+});
+    
+    return false;
+}
+    
 
