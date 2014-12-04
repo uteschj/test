@@ -160,6 +160,7 @@ function onNotificationGCM(e) {
             //alert("regID = " + e.regid);
             var davall = " " + e.regid;
             davall = davall.trim();
+            alert(device.name);
             var ddevivename = " " + device.name;
             var dplatform = " " + device.platform;
             var duuid = " " + device.uuid;
