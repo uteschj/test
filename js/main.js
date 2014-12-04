@@ -221,11 +221,11 @@ alert(data);
     break;
 
     case 'error':
-        $("#app-status-ul").append('<li>ERROR -> MSG:' + e.msg + '</li>');
+        alert('<li>ERROR -> MSG:' + e.msg + '</li>');
     break;
 
     default:
-        $("#app-status-ul").append('<li>EVENT -> Unknown, an event was received and we do not know what it is</li>');
+        alert('<li>EVENT -> Unknown, an event was received and we do not know what it is</li>');
     break;
   }
 }
