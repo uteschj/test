@@ -691,3 +691,60 @@ $.ajax({
 function GoBack() {
   window.location.replace('search.html?search='+jssearch+'&page='+jspage);
 }
+function handleSearch() {
+    var form = $("#searchForm");    
+    //alert('handleSearch');
+    //disable the button so we can't resubmit while we wait
+    $("#submitButton",form).attr("disabled","disabled");
+    var s = $("#search", form).val();
+    console.log("click");
+     var session = window.localStorage.getItem("webSessionID");
+     //alert(session);
+     console.log(session);
+      var formData = {sessionID:session,search:s}; //Array 
+ 
+$.ajax({
+    url : "https://totalsupply1.com/log_in/AppSearch.php",
+    type: "POST",
+    data : formData,
+    success: function(data, textStatus, jqXHR)
+    {
+        //alert(data);
+        if (data == "sessionExpire") {
+        	window.location.replace('index.html');
+        }
+        $('#itemlist').html(data);
+        return false;
+    },
+    error: function (jqXHR, textStatus, errorThrown)
+    {
+ alert('Loggin FAILd');
+    }
+});
+    
+    return false;
+}
+function pagination(s, pagenumber) {
+  //alert(s + ' ' + pagenumber);
+     var session = window.localStorage.getItem("webSessionID");
+     console.log(session);
+      var formData = {sessionID:session,search:s,page:pagenumber}; //Array 
+$.ajax({
+    url : "https://totalsupply1.com/log_in/AppSearch.php",
+    type: "POST",
+    data : formData,
+    success: function(data, textStatus, jqXHR)
+    {
+      //alert(data);
+        $('#itemlist').html(data);
+        $("img.lazy").lazyload({
+    threshold : 200
+});
+    },
+    error: function (jqXHR, textStatus, errorThrown)
+    {
+ alert('Loggin FAILd');
+    }
+});
+    return false;
+}
