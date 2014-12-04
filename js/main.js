@@ -327,4 +327,367 @@ $.ajax({
     return false;
 }
     
+function clearCache() {
+    navigator.camera.cleanup();
+}
 
+    function takepicture(picturecode) {
+      //alert('takepicture');
+      if (picturecode == "zero")
+      {
+
+        navigator.camera.getPicture(uploadPhoto, onFail, { quality: 100,
+        encodingType: navigator.camera.EncodingType.JPEG,
+        destinationType: destinationType.FILE_URI,
+        correctOrientation: true,
+        saveToPhotoAlbum: true });
+
+      }
+      else if (picturecode == "A") {
+        // Retrieve image file location from specified source
+        navigator.camera.getPicture(uploadPhotoA, onFail, { quality: 100,
+        encodingType: navigator.camera.EncodingType.JPEG,
+        destinationType: destinationType.FILE_URI,
+        correctOrientation: true,
+        saveToPhotoAlbum: true });
+      }
+      else if (picturecode == "B") {
+        // Retrieve image file location from specified source
+       navigator.camera.getPicture(uploadPhotoB, onFail, { quality: 100,
+        encodingType: navigator.camera.EncodingType.JPEG,
+        destinationType: destinationType.FILE_URI,
+        correctOrientation: true,
+        saveToPhotoAlbum: true });
+      }
+      else if (picturecode == "C") {
+        // Retrieve image file location from specified source
+        navigator.camera.getPicture(uploadPhotoC, onFail, { quality: 100,
+        encodingType: navigator.camera.EncodingType.JPEG,
+        destinationType: destinationType.FILE_URI,
+        correctOrientation: true,
+        saveToPhotoAlbum: true });
+      }
+      else if (picturecode == "D") {
+        // Retrieve image file location from specified source
+        navigator.camera.getPicture(uploadPhotoD, onFail, { quality: 100,
+        encodingType: navigator.camera.EncodingType.JPEG,
+        destinationType: destinationType.FILE_URI,
+        correctOrientation: true,
+        saveToPhotoAlbum: true });
+      }
+      else if (picturecode == "E") {
+        // Retrieve image file location from specified source
+        navigator.camera.getPicture(uploadPhotoE, onFail, { quality: 100,
+        encodingType: navigator.camera.EncodingType.JPEG,
+        destinationType: destinationType.FILE_URI,
+        correctOrientation: true,
+        saveToPhotoAlbum: true });
+      }
+        
+        
+    }
+    var retries = 0;
+ function uploadPhoto(imageURI) {
+      //clearCache();
+      var vwin = function (r) {
+        //clearCache();
+        retries = 0;
+        alert('Done!');
+        getItem(jsitem);
+        
+    }
+ 
+    var vfail = function (error) {
+        if (retries == 0) {
+            retries ++
+            setTimeout(function() {
+                uploadPhoto(imageURI)
+            }, 1000)
+        } else {
+            retries = 0;
+            //clearCache();
+            alert('Ups. Something wrong happens!');
+        }
+    }
+    
+      var options = new FileUploadOptions();
+        options.fileKey="file";
+        options.fileName=imageURI.substr(imageURI.lastIndexOf('/')+1);
+        options.mimeType="image/jpeg";
+        var params = new Object();
+        params.itemNumber = jsitem;
+        params.Delim = "None";
+         var session = window.localStorage.getItem("webSessionID");
+        params.email = window.localStorage["username"];
+        params.p = hex_sha512(window.localStorage["password"]);
+      
+        options.params = params;
+        options.headers = {
+            Connection: "close"
+            
+        }
+        options.chunkedMode = false;
+        var ft = new FileTransfer();
+        ft.upload(imageURI, "https://totalsupply1.com/log_in/AppItemupload.processor.php", vwin, vfail, options);
+    
+    
+    }
+    function uploadPhotoA(imageURI) {
+     //clearCache();
+      var vwin = function (r) {
+        //clearCache();
+        retries = 0;
+        alert("Done!");
+        getItem(jsitem);
+        
+    }
+ 
+    var vfail = function (error) {
+        if (retries == 0) {
+            retries ++
+            setTimeout(function() {
+                uploadPhotoA(imageURI)
+            }, 1000)
+        } else {
+            retries = 0;
+            //clearCache();
+            alert('Ups. Something wrong happens!');
+        }
+    }
+    
+      var options = new FileUploadOptions();
+        options.fileKey="file";
+        options.fileName=imageURI.substr(imageURI.lastIndexOf('/')+1);
+        options.mimeType="image/jpeg";
+        var params = new Object();
+        params.itemNumber = jsitem;
+        params.Delim = "A";
+         var session = window.localStorage.getItem("webSessionID");
+        params.email = window.localStorage["username"];
+        params.p = hex_sha512(window.localStorage["password"]);
+        
+      
+        options.params = params;
+        options.headers = {
+            Connection: "close"
+            
+        }
+        options.chunkedMode = false;
+        var ft = new FileTransfer();
+        ft.upload(imageURI, "https://totalsupply1.com/log_in/AppItemupload.processor.php", vwin, vfail, options);
+    }
+    function uploadPhotoB(imageURI) {
+      //clearCache();
+      var vwin = function (r) {
+        //clearCache();
+        retries = 0;
+        alert('Done!');
+        getItem(jsitem);
+        
+    }
+ 
+    var vfail = function (error) {
+        if (retries == 0) {
+            retries ++
+            setTimeout(function() {
+                uploadPhotoB(imageURI)
+            }, 1000)
+        } else {
+            retries = 0;
+            //clearCache();
+            alert('Ups. Something wrong happens!');
+        }
+    }
+    
+      var options = new FileUploadOptions();
+        options.fileKey="file";
+        options.fileName=imageURI.substr(imageURI.lastIndexOf('/')+1);
+        options.mimeType="image/jpeg";
+        var params = new Object();
+        params.itemNumber = jsitem;
+        params.Delim = "B";
+         var session = window.localStorage.getItem("webSessionID");
+        params.email = window.localStorage["username"];
+        params.p = hex_sha512(window.localStorage["password"]);
+      
+        options.params = params;
+        options.headers = {
+            Connection: "close"
+            
+        }
+        options.chunkedMode = false;
+        var ft = new FileTransfer();
+        ft.upload(imageURI, "https://totalsupply1.com/log_in/AppItemupload.processor.php", vwin, vfail, options);
+    }
+    function uploadPhotoC(imageURI) {
+      //clearCache();
+      var vwin = function (r) {
+        //clearCache();
+        retries = 0;
+        alert('Done!');
+        getItem(jsitem);
+        
+    }
+ 
+    var vfail = function (error) {
+        if (retries == 0) {
+            retries ++
+            setTimeout(function() {
+                uploadPhotoC(imageURI)
+            }, 1000)
+        } else {
+            retries = 0;
+            //clearCache();
+            alert('Ups. Something wrong happens!');
+        }
+    }
+    
+      var options = new FileUploadOptions();
+        options.fileKey="file";
+        options.fileName=imageURI.substr(imageURI.lastIndexOf('/')+1);
+        options.mimeType="image/jpeg";
+        var params = new Object();
+        params.itemNumber = jsitem;
+        params.Delim = "C";
+         var session = window.localStorage.getItem("webSessionID");
+        params.email = window.localStorage["username"];
+        params.p = hex_sha512(window.localStorage["password"]);
+      
+        options.params = params;
+        options.headers = {
+            Connection: "close"
+            
+        }
+        options.chunkedMode = false;
+        var ft = new FileTransfer();
+        ft.upload(imageURI, "https://totalsupply1.com/log_in/AppItemupload.processor.php", vwin, vfail, options);
+    }
+    function uploadPhotoD(imageURI) {
+      //clearCache();
+      var vwin = function (r) {
+        //clearCache();
+        retries = 0;
+        alert('Done!');
+        getItemD(jsitem);
+        
+    }
+ 
+    var vfail = function (error) {
+        if (retries == 0) {
+            retries ++
+            setTimeout(function() {
+                uploadPhoto(imageURI)
+            }, 1000)
+        } else {
+            retries = 0;
+            //clearCache();
+            alert('Ups. Something wrong happens!');
+        }
+    }
+    
+      var options = new FileUploadOptions();
+        options.fileKey="file";
+        options.fileName=imageURI.substr(imageURI.lastIndexOf('/')+1);
+        options.mimeType="image/jpeg";
+        var params = new Object();
+        params.itemNumber = jsitem;
+        params.Delim = "D";
+         var session = window.localStorage.getItem("webSessionID");
+        params.email = window.localStorage["username"];
+        params.p = hex_sha512(window.localStorage["password"]);
+      
+        options.params = params;
+        options.headers = {
+            Connection: "close"
+            
+        }
+        options.chunkedMode = false;
+        var ft = new FileTransfer();
+        ft.upload(imageURI, "https://totalsupply1.com/log_in/AppItemupload.processor.php", vwin, vfail, options);
+    }
+    function uploadPhotoE(imageURI) {
+      //clearCache();
+      var vwin = function (r) {
+        //clearCache();
+        retries = 0;
+        alert('Done!');
+        getItem(jsitem);
+        
+    }
+ 
+    var vfail = function (error) {
+        if (retries == 0) {
+            retries ++
+            setTimeout(function() {
+                uploadPhotoE(imageURI)
+            }, 1000)
+        } else {
+            retries = 0;
+            //clearCache();
+            alert('Ups. Something wrong happens!');
+        }
+    }
+    
+      var options = new FileUploadOptions();
+        options.fileKey="file";
+        options.fileName=imageURI.substr(imageURI.lastIndexOf('/')+1);
+        options.mimeType="image/jpeg";
+        var params = new Object();
+        params.itemNumber = jsitem;
+        params.Delim = "E";
+         var session = window.localStorage.getItem("webSessionID");
+        params.email = window.localStorage["username"];
+        params.p = hex_sha512(window.localStorage["password"]);
+      
+        options.params = params;
+        options.headers = {
+            Connection: "close"
+            
+        }
+        options.chunkedMode = false;
+        var ft = new FileTransfer();
+        ft.upload(imageURI, "https://totalsupply1.com/log_in/AppItemupload.processor.php", vwin, vfail, options);
+    }    
+    
+ function getUrlParameter(sParam)
+{
+    var sPageURL = window.location.search.substring(1);
+    var sURLVariables = sPageURL.split('&');
+    for (var i = 0; i < sURLVariables.length; i++) 
+    {
+        var sParameterName = sURLVariables[i].split('=');
+        if (sParameterName[0] == sParam) 
+        {
+            return sParameterName[1];
+        }
+    }
+}    
+
+function getItem(s) {
+  //alert(s + ' ' + pagenumber);
+     var session = window.localStorage.getItem("webSessionID");
+     console.log(session);
+      var formData = {sessionID:session,item:s}; //Array 
+$.ajax({
+    url : "https://totalsupply1.com/log_in/AppItem.php",
+    type: "POST",
+    data : formData,
+    success: function(data, textStatus, jqXHR)
+    {
+      //alert(data);
+      if (data == "sessionExpire") {
+        	window.location.replace('index.html');
+        }
+        $('#itemlist').html(data);
+            },
+    error: function (jqXHR, textStatus, errorThrown)
+    {
+ alert('Loggin FAILd');
+    }
+});
+    return false;
+}
+
+function GoBack() {
+  window.location.replace('search.html?search='+jssearch+'&page='+jspage);
+}
