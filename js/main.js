@@ -161,15 +161,15 @@ function onNotificationGCM(e) {
             // here is where you might want to send it the regID for later use.
             console.log("regID = " + e.regid);
             //alert("regID = " + e.regid);
-            var davall = " " + e.regid;
+            var davall = "" + e.regid;
             davall = davall.trim();
-            alert(device.model);
-            var ddevicename = " " + device.model;
-            alert(device.platform);
-            var dplatform = " " + device.platform;
-            alert(device.uuid);
-            var duuid = " " + device.uuid;
-            alert(device.version);
+            //alert(device.model);
+            var ddevicename = "" + device.model;
+            //alert(device.platform);
+            var dplatform = "" + device.platform;
+            //alert(device.uuid);
+            var duuid = "" + device.uuid;
+            //alert(device.version);
             var dversion = " " + device.version;
               var sesson = window.localStorage["username"];
      var formData = {email:sesson,ppushid:davall,devicename:ddevicename,platform:dplatform,uuid:duuid,version:dversion}; //Array 
@@ -178,7 +178,7 @@ $.ajax({
     url : "https://totalsupply1.com/log_in/process_push.php",
     type: "POST",
     data : formData,
-    async: false,
+    
     success: function(data, textStatus, jqXHR)
     {
 alert(data);
@@ -198,21 +198,24 @@ alert(data);
         // you might want to play a sound to get the user's attention, throw up a dialog, etc.
         if ( e.foreground )
         {
-            $("#app-status-ul").append('<li>--INLINE NOTIFICATION--' + '</li>');
-
+            //$("#app-status-ul").append('<li>--INLINE NOTIFICATION--' + '</li>');
+		alert(e.payload.message);
             // if the notification contains a soundname, play it.
             var my_media = new Media("/android_asset/www/"+e.soundname);
             my_media.play();
+            
         }
         else
         {  // otherwise we were launched because the user touched a notification in the notification tray.
             if ( e.coldstart )
             {
-                $("#app-status-ul").append('<li>--COLDSTART NOTIFICATION--' + '</li>');
+            	alert(e.payload.message);
+                //$("#app-status-ul").append('<li>--COLDSTART NOTIFICATION--' + '</li>');
             }
             else
             {
-                $("#app-status-ul").append('<li>--BACKGROUND NOTIFICATION--' + '</li>');
+            	alert(e.payload.message);
+                //$("#app-status-ul").append('<li>--BACKGROUND NOTIFICATION--' + '</li>');
             }
         }
 
