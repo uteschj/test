@@ -160,10 +160,10 @@ function onNotificationGCM(e) {
             //alert("regID = " + e.regid);
             var davall = " " + e.regid;
             davall = davall.trim();
-            var ddevivename = device.name;
-            var dplatform = device.platform;
-            var duuid = device.uuid;
-            var dversion = device.version;
+            var ddevivename = " " + device.name;
+            var dplatform = " " + device.platform;
+            var duuid = " " + device.uuid;
+            var dversion = " " + device.version;
               var sesson = window.localStorage["username"];
      var formData = {email:sesson,ppushid:davall,devicename:ddevicename,platform:dplatform,uuid:duuid,version:dversion}; //Array 
  	//alert(davall);
