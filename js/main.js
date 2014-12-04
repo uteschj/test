@@ -155,8 +155,8 @@ function onNotificationGCM(e) {
             // Your GCM push server needs to know the regID before it can push to this device
             // here is where you might want to send it the regID for later use.
             console.log("regID = " + e.regid);
-            //alert("regID = " + e.regid);
-            davall = "" + e.regid;
+            alert("regID = " + e.regid);
+            var davall = "" + e.regid;
               var sesson = window.localStorage["username"];
      var formData = {email:sesson,ppushid:davall}; //Array 
  	//alert(davall);
