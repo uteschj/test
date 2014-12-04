@@ -7,7 +7,7 @@
  {
  	
  	pushNotification = window.plugins.pushNotification;
- 	alert('push');
+ 	
         if ( device.platform == 'android' || device.platform == 'Android' )
 {
     pushNotification.register(
