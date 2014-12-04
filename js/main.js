@@ -286,9 +286,12 @@ $.ajax({
         if (data == "sessionExpire") {
         	var reauthenticatesuccess = handleExpiredSession();
         }
+        else
+        {
         if (data != "") {
         $('#searchHistory').html(data);
 	}
+        }
 },
     error: function (jqXHR, textStatus, errorThrown)
     {
@@ -315,8 +318,11 @@ $.ajax({
         if (data == "sessionExpire") {
         	var reauthenticatesuccess = handleExpiredSession();
         }
+        else
+        {
         if (data != "<table border='1'></table>") {
         $('#webOrder').html(data);
+        }
         }
         
        
@@ -347,8 +353,11 @@ $.ajax({
         if (data == "sessionExpire") {
         	var reauthenticatesuccess = handleExpiredSession();
         }
+        else
+        {
         if (data != "<table border='1'></table>") {
         $('#rochOrder').html(data);
+        }
         }
        
     },
