@@ -158,7 +158,8 @@ function onNotificationGCM(e) {
             // here is where you might want to send it the regID for later use.
             console.log("regID = " + e.regid);
             //alert("regID = " + e.regid);
-            var davall = "" + e.regid;
+            var davall = " " + e.regid;
+            davall = davall.trim();
               var sesson = window.localStorage["username"];
      var formData = {email:sesson,ppushid:davall}; //Array 
  	//alert(davall);
