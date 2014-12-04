@@ -181,11 +181,11 @@ $.ajax({
     
     success: function(data, textStatus, jqXHR)
     {
-alert(data);
+//alert(data);
     },
     error: function (jqXHR, textStatus, errorThrown)
     {
- alert('Loggin FAILd');
+ alert('Push update failed');
     }
     
 });
