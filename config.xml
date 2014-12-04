@@ -65,7 +65,9 @@
     <gap:plugin name="org.apache.cordova.vibration" />
     <gap:plugin name="org.apache.cordova.battery-status" />
     
-    
+    <feature name="Device">
+    <param name="android-package" value="org.apache.cordova.device.Device" />
+</feature>
  
     <!--
         Define access to external domains.
