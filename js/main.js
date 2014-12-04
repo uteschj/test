@@ -1,3 +1,29 @@
+ function pushRegistration()
+ {
+ 	
+ 	pushNotification = window.plugins.pushNotification;
+        if ( device.platform == 'android' || device.platform == 'Android' )
+{
+    pushNotification.register(
+        successHandler,
+        errorHandler, {
+            "senderID":"7160911895",
+            "ecb":"onNotificationGCM"
+        });
+}
+else
+{
+    pushNotification.register(
+        tokenHandler,
+        errorHandler, {
+            "badge":"true",
+            "sound":"true",
+            "alert":"true",
+            "ecb":"onNotificationAPN"
+        });
+}
+ }
+ 
     // Called if something bad happens.
     //
     function onFail(message) {
@@ -49,6 +75,7 @@ $.ajax({
         window.localStorage.setItem("webSessionID", data);
         window.localStorage.setItem("username", u);
         window.localStorage.setItem("password", $("#password", form).val());
+        pushRegistration();
         window.location.replace('home.html');
         //jsessionID = data;
     },
