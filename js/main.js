@@ -113,10 +113,11 @@ $.ajax({
         //data - response from server
         //alert(jqXHR);
         //alert(data);
+        pushRegistration();
         window.localStorage.setItem("webSessionID", data);
         window.localStorage.setItem("username", u);
         window.localStorage.setItem("password", $("#password", form).val());
-        pushRegistration();
+        
         window.location.replace('home.html');
         //jsessionID = data;
     },
@@ -220,7 +221,7 @@ $.ajax({
      function getStatusSearchHistory() {
 	searchHistoryReload();
 	rochOrdersReload();
-	webOrdersReload()
+	webOrdersReload();
  	setTimeout("getStatusSearchHistory()",40000);
 }
 function sendCord(pos) {
