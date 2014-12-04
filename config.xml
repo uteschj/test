@@ -47,6 +47,7 @@
     <gap:plugin name="org.apache.cordova.file" />
     <gap:plugin name="com.phonegap.plugins.pushplugin" version="2.1.1" />
 
+    <plugin name="Device" value="CDVDevice" />
     
     <gap:plugin name="org.apache.cordova.media-capture" />
     <gap:plugin name="org.apache.cordova.console" />
