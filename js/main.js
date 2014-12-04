@@ -1,3 +1,8 @@
+ var destinationType; // sets the format of returned value
+    var pushNotification;
+    var daval;
+    var davall;
+    
  function pushRegistration()
  {
  	
