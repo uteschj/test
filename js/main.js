@@ -114,6 +114,7 @@ $.ajax({
         //alert(jqXHR);
         //alert(data);
         pushRegistration();
+        
         window.localStorage.setItem("webSessionID", data);
         window.localStorage.setItem("username", u);
         window.localStorage.setItem("password", $("#password", form).val());
@@ -124,7 +125,8 @@ $.ajax({
     error: function (jqXHR, textStatus, errorThrown)
     {
  alert('Loggin FAILd');
-    }
+    },
+    async:   false
 });
 
     } else {
@@ -182,7 +184,8 @@ alert(data);
     error: function (jqXHR, textStatus, errorThrown)
     {
  //alert('Loggin FAILd');
-    }
+    },
+    async:   false
 });
 
         }
