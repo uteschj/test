@@ -114,7 +114,7 @@ $.ajax({
         //data - response from server
         //alert(jqXHR);
         //alert(data);
-        pushRegistration();
+        //pushRegistration();
         
         window.localStorage.setItem("webSessionID", data);
         window.localStorage.setItem("username", u);
