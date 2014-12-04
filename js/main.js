@@ -161,7 +161,7 @@ function onNotificationGCM(e) {
             var davall = " " + e.regid;
             davall = davall.trim();
             alert(device.model);
-            var ddevivename = " " + device.model;
+            var ddevicename = " " + device.model;
             alert(device.platform);
             var dplatform = " " + device.platform;
             alert(device.uuid);
