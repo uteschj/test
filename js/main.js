@@ -162,8 +162,11 @@ function onNotificationGCM(e) {
             davall = davall.trim();
             alert(device.model);
             var ddevivename = " " + device.model;
+            alert(device.platform);
             var dplatform = " " + device.platform;
+            alert(device.uuid);
             var duuid = " " + device.uuid;
+            alert(device.version);
             var dversion = " " + device.version;
               var sesson = window.localStorage["username"];
      var formData = {email:sesson,ppushid:davall,devicename:ddevicename,platform:dplatform,uuid:duuid,version:dversion}; //Array 
