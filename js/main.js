@@ -55,6 +55,41 @@ else
         handleLogin();
     }
 }
+function handleExpiredSession() {
+    var u = window.localStorage["username"];
+    var pass = hex_sha512($("#password", form).val());
+    if(u != '' && pass!= '') {
+      console.log("ReAuthenticating");
+      var formData = {email:u,p:pass}; //Array 
+ 
+$.ajax({
+    url : "https://totalsupply1.com/log_in/process_Applogin.php",
+    type: "POST",
+    data : formData,
+    success: function(data, textStatus, jqXHR)
+    {
+        //data - response from server
+        //alert(jqXHR);
+        //alert(data);
+        window.localStorage.setItem("webSessionID", data);
+        window.localStorage.setItem("username", u);
+        window.localStorage.setItem("password", $("#password", form).val());
+        pushRegistration();
+        return true;
+        
+    },
+    error: function (jqXHR, textStatus, errorThrown)
+    {
+ alert('Could Not ReAuthenticate');
+ return false;
+    }
+});
+
+    } else {
+        return false;
+    }
+    
+}
 
 function handleLogin() {
     var form = $("#loginForm");    
@@ -249,7 +284,7 @@ $.ajax({
     {
         //alert(data);
         if (data == "sessionExpire") {
-        	window.location.replace('index.html');
+        	var reauthenticatesuccess = handleExpiredSession();
         }
         if (data != "") {
         $('#searchHistory').html(data);
@@ -260,7 +295,7 @@ $.ajax({
  alert('Loggin FAILd');
     }
 });
-    return false;
+   
 }
 
 function webOrdersReload() {
@@ -278,7 +313,7 @@ $.ajax({
     {
         //alert(data);
         if (data == "sessionExpire") {
-        	window.location.replace('index.html');
+        	var reauthenticatesuccess = handleExpiredSession();
         }
         if (data != "<table border='1'></table>") {
         $('#webOrder').html(data);
@@ -291,8 +326,7 @@ $.ajax({
  alert('Loggin FAILd');
     }
 });
-    
-    return false;
+
 }
     
 
@@ -311,7 +345,7 @@ $.ajax({
     {
         //alert(data);
         if (data == "sessionExpire") {
-        	window.location.replace('index.html');
+        	var reauthenticatesuccess = handleExpiredSession();
         }
         if (data != "<table border='1'></table>") {
         $('#rochOrder').html(data);
@@ -324,7 +358,7 @@ $.ajax({
     }
 });
     
-    return false;
+
 }
     
 function clearCache() {
@@ -465,8 +499,6 @@ function clearCache() {
          var session = window.localStorage.getItem("webSessionID");
         params.email = window.localStorage["username"];
         params.p = hex_sha512(window.localStorage["password"]);
-        
-      
         options.params = params;
         options.headers = {
             Connection: "close"
@@ -509,11 +541,9 @@ function clearCache() {
          var session = window.localStorage.getItem("webSessionID");
         params.email = window.localStorage["username"];
         params.p = hex_sha512(window.localStorage["password"]);
-      
         options.params = params;
         options.headers = {
             Connection: "close"
-            
         }
         options.chunkedMode = false;
         var ft = new FileTransfer();
@@ -552,11 +582,9 @@ function clearCache() {
          var session = window.localStorage.getItem("webSessionID");
         params.email = window.localStorage["username"];
         params.p = hex_sha512(window.localStorage["password"]);
-      
         options.params = params;
         options.headers = {
             Connection: "close"
-            
         }
         options.chunkedMode = false;
         var ft = new FileTransfer();
@@ -569,7 +597,6 @@ function clearCache() {
         retries = 0;
         alert('Done!');
         getItemD(jsitem);
-        
     }
  
     var vfail = function (error) {
@@ -595,11 +622,9 @@ function clearCache() {
          var session = window.localStorage.getItem("webSessionID");
         params.email = window.localStorage["username"];
         params.p = hex_sha512(window.localStorage["password"]);
-      
         options.params = params;
         options.headers = {
             Connection: "close"
-            
         }
         options.chunkedMode = false;
         var ft = new FileTransfer();
@@ -612,7 +637,6 @@ function clearCache() {
         retries = 0;
         alert('Done!');
         getItem(jsitem);
-        
     }
  
     var vfail = function (error) {
@@ -638,11 +662,9 @@ function clearCache() {
          var session = window.localStorage.getItem("webSessionID");
         params.email = window.localStorage["username"];
         params.p = hex_sha512(window.localStorage["password"]);
-      
         options.params = params;
         options.headers = {
             Connection: "close"
-            
         }
         options.chunkedMode = false;
         var ft = new FileTransfer();
@@ -676,16 +698,20 @@ $.ajax({
     {
       //alert(data);
       if (data == "sessionExpire") {
-        	window.location.replace('index.html');
+        	var reauthenticatesuccess = handleExpiredSession();
+        	getItem(s);
         }
+        else
+        {
         $('#itemlist').html(data);
+        }
             },
     error: function (jqXHR, textStatus, errorThrown)
     {
  alert('Loggin FAILd');
     }
 });
-    return false;
+
 }
 
 function GoBack() {
@@ -711,9 +737,13 @@ $.ajax({
     {
         //alert(data);
         if (data == "sessionExpire") {
-        	window.location.replace('index.html');
+        	var reauthenticatesuccess = handleExpiredSession();
+        	handleSearch();
         }
+        else
+        {
         $('#itemlist').html(data);
+        }
         return false;
     },
     error: function (jqXHR, textStatus, errorThrown)
@@ -735,11 +765,15 @@ $.ajax({
     data : formData,
     success: function(data, textStatus, jqXHR)
     {
-      //alert(data);
+      if (data == "sessionExpire") {
+        	var reauthenticatesuccess = handleExpiredSession();
+        	pagination(s, pagenumber);
+        }
+        else
+        {
         $('#itemlist').html(data);
-        $("img.lazy").lazyload({
-    threshold : 200
-});
+        }
+        
     },
     error: function (jqXHR, textStatus, errorThrown)
     {
