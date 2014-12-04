@@ -126,7 +126,7 @@ $.ajax({
     error: function (jqXHR, textStatus, errorThrown)
     {
  alert('Loggin FAILd');
-    },
+    }
     
 });
 
@@ -185,8 +185,8 @@ alert(data);
     },
     error: function (jqXHR, textStatus, errorThrown)
     {
- //alert('Loggin FAILd');
-    },
+ alert('Loggin FAILd');
+    }
     
 });
 
