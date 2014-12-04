@@ -34,7 +34,11 @@
     function onDeviceReady() {
         navigator.geolocation.getCurrentPosition(sendCord);
 	getStatusSearchHistory();
+	var fromLoggin = getUrlParameter('loggedin');
+	if (fromLoggin === 'yes') {
 	pushRegistration();
+	}
+	
 	//alert(document.referrer);
     }
     
