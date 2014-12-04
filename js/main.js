@@ -108,6 +108,7 @@ $.ajax({
     url : "https://totalsupply1.com/log_in/process_Applogin.php",
     type: "POST",
     data : formData,
+    async: false,
     success: function(data, textStatus, jqXHR)
     {
         //data - response from server
@@ -126,7 +127,7 @@ $.ajax({
     {
  alert('Loggin FAILd');
     },
-    async:   false
+    
 });
 
     } else {
@@ -177,6 +178,7 @@ $.ajax({
     url : "https://totalsupply1.com/log_in/process_push.php",
     type: "POST",
     data : formData,
+    async: false,
     success: function(data, textStatus, jqXHR)
     {
 alert(data);
@@ -185,7 +187,7 @@ alert(data);
     {
  //alert('Loggin FAILd');
     },
-    async:   false
+    
 });
 
         }
