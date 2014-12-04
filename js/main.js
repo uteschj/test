@@ -59,7 +59,7 @@ else
 function handleExpiredSession() {
     var u = window.localStorage["username"];
     var pass = hex_sha512($("#password", form).val());
-    if(u != '' && pass!= '') {
+    if(u !== '' && pass !== '') {
       console.log("ReAuthenticating");
       var formData = {email:u,p:pass}; //Array 
  
@@ -89,7 +89,7 @@ $.ajax({
     } else {
         return false;
     }
-    
+    return false;
 }
 
 function handleLogin() {
@@ -100,7 +100,7 @@ function handleLogin() {
     var u = $("#username", form).val();
     var pass = hex_sha512($("#password", form).val());
     console.log("click");
-    if(u != '' && pass!= '') {
+    if(u !== '' && pass !== '') {
       console.log("inside if u != ''");
       var formData = {email:u,p:pass}; //Array 
  
