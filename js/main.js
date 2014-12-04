@@ -169,7 +169,7 @@ $.ajax({
     data : formData,
     success: function(data, textStatus, jqXHR)
     {
-alert('ok');
+alert(data);
     },
     error: function (jqXHR, textStatus, errorThrown)
     {
