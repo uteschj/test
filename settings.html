@@ -133,6 +133,51 @@ var timestring = hoursString + ":" + minutesString + ":" + secondsString;
     	
     }
     
+    
+    function savePushSettings() {
+    var u = window.localStorage["username"];
+    var pass = hex_sha512($("#password", form).val());
+    var amonday = $("#checkboxMonday").is(':checked');
+    var atuesday = $("#checkboxtuesday").is(':checked');
+    var awednesday = $("#checkboxwednesday").is(':checked');
+    var athursday = $("#checkboxthursday").is(':checked');
+    var afriday = $("#checkboxfriday").is(':checked');
+    var asaturday = $("#checkboxsaturday").is(':checked');
+    var asunday = $("#checkboxsunday").is(':checked');
+    
+    var astarttime = $("#StartnotifTime").val();
+    var aendtime = $("#EndnotifTime").val();
+   
+   window.localStorage.setItem("chatMonday", amonday);
+   window.localStorage.setItem("chatTuesday", atuesday);
+   window.localStorage.setItem("chatWednesday", awednesday);
+   window.localStorage.setItem("chatThursday", athursday);
+   window.localStorage.setItem("chatFriday", afriday);
+   window.localStorage.setItem("chatSaturday", asaturday);
+   window.localStorage.setItem("chatSunday", asunday);
+   
+   window.localStorage.setItem("chatStartTime", astarttime);
+   window.localStorage.setItem("chatEndTime", aendtime);
+   var session = window.localStorage.getItem("webSessionID");
+   var push = window.localStorage.getItem("pushID");
+
+      var formData = {sessionID:session,pushID:push,bmonday:amonday,btuesday:atuesday,bwednesday:awednesday,bthursday:athursday,bfriday:afriday,bsaturday:asaturday,bsunday:asunday,bstarttime:astarttime,bendtime:aendtime}; //Array 
+ 
+$.ajax({
+    url : "https://totalsupply1.com/log_in/process_pushSettings.php",
+    type: "POST",
+    data : formData,
+    success: function(data, textStatus, jqXHR)
+    {
+        alert(data);
+    },
+    error: function (jqXHR, textStatus, errorThrown)
+    {
+ alert('errpr');
+
+    }
+});
+    }
     </script>
   </head>
   <body onload="init()">
