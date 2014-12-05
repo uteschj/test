@@ -135,7 +135,7 @@ var timestring = hoursString + ":" + minutesString + ":" + secondsString;
     
     
     function savePushSettings() {
-    var u = window.localStorage["username"];
+
     var pass = hex_sha512($("#password", form).val());
     var amonday = $("#checkboxMonday").is(':checked');
     var atuesday = $("#checkboxtuesday").is(':checked');
