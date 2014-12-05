@@ -46,6 +46,19 @@
 	//alert(document.referrer);
     }
     
+    function thedatepicker()
+    {
+    	var options = {
+  date: new Date(),
+  mode: 'date'
+};
+
+datePicker.show(options, function(date){
+  alert("date result " + date);  
+});
+    	
+    }
+    
     </script>
   </head>
   <body onload="init()">
@@ -81,7 +94,7 @@
       
       <div class="ui-field-contain">
         <label for="StartnotifTime">Start Time:</label>
-		<input name="StartnotifTime" id="StartnotifTime" type="text" data-role="datebox" data-options='{"mode":"timebox", "useNewStyle":true, "overrideTimeFormat": 12, "themeButton": "a", "themeInput": "a", "theme": "a", "themeHeader": "a"}' />
+		<input name="StartnotifTime" id="StartnotifTime" type="text" data-role="datebox" ontouchstart="thedatepicker();" data-options='{"mode":"timebox", "useNewStyle":true, "overrideTimeFormat": 12, "themeButton": "a", "themeInput": "a", "theme": "a", "themeHeader": "a"}' />
         </div>
         
         <div class="ui-field-contain">
