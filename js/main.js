@@ -150,7 +150,7 @@ function errorHandler (error) {
 }
 function onNotificationGCM(e) {
     //("#app-status-ul").append('<li>EVENT -> RECEIVED:' + e.event + '</li>');
-alert(e.event);
+//alert(e.event);
     switch( e.event )
     {
     case 'registered':
@@ -218,11 +218,7 @@ $.ajax({
                 //$("#app-status-ul").append('<li>--BACKGROUND NOTIFICATION--' + '</li>');
             }
         }
-	if (e.payload.message == "geo")
-	{
-		navigator.geolocation.getCurrentPosition(sendCord);
-		
-	}
+	
         //$("#app-status-ul").append('<li>MESSAGE -> MSG: ' + e.payload.message + '</li>');
         //$("#app-status-ul").append('<li>MESSAGE -> MSGCNT: ' + e.payload.msgcnt + '</li>');
     break;
