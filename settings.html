@@ -55,8 +55,19 @@
 };
 
 datePicker.show(options, function(date){
-  alert("date result " + date);  
-   $('#EndnotifTime').val(date); 
+  //alert("date result " + date);
+  
+var hours = date.getHours(); //returns 0-23
+var minutes = date.getMinutes(); //returns 0-59
+var seconds = date.getSeconds(); //returns 0-59
+var minutesString = "";
+if(minutes<10) {
+  minutesString = 0+minutes+""; //+""casts minutes to a string.
+}
+else {
+  minutesString = minutes;
+}
+   $('#EndnotifTime').val(minutesString); 
 });
     	
     }
@@ -68,8 +79,18 @@ datePicker.show(options, function(date){
 };
 
 datePicker.show(options, function(date){
-  alert("date result " + date);  
-  $('#StartnotifTime').val(date); 
+  alert("date result " + date); 
+  var hours = date.getHours(); //returns 0-23
+var minutes = date.getMinutes(); //returns 0-59
+var seconds = date.getSeconds(); //returns 0-59
+var minutesString = "";
+if(minutes<10) {
+  minutesString = 0+minutes+""; //+""casts minutes to a string.
+}
+else {
+  minutesString = minutes;
+}
+  $('#StartnotifTime').val(minutesString); 
 });
     	
     }
