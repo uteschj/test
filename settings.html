@@ -47,11 +47,23 @@
 	//alert(document.referrer);
     }
     
-    function thedatepicker()
+    function theendTimepicker()
     {
     	var options = {
   date: new Date(),
-  mode: 'date'
+  mode: 'time'
+};
+
+datePicker.show(options, function(date){
+  alert("date result " + date);  
+});
+    	
+    }
+    function thestartTimepicker()
+    {
+    	var options = {
+  date: new Date(),
+  mode: 'time'
 };
 
 datePicker.show(options, function(date){
@@ -95,12 +107,12 @@ datePicker.show(options, function(date){
       
       <div class="ui-field-contain">
         <label for="StartnotifTime">Start Time:</label>
-		<button type="button" name="StartnotifTime" id="StartnotifTime" ontouchstart="thedatepicker();"  >startDate</button>
+		<input type="text" name="StartnotifTime" id="StartnotifTime" ontouchstart="thestartTimepicker();"  />
         </div>
         
         <div class="ui-field-contain">
         <label for="EndnotifTime">End Time:</label>
-		<input name="EndnotifTime" id="EndnotifTime" type="text" data-role="datebox"  data-options='{"mode":"timebox", "useNewStyle":true, "overrideTimeFormat": 12, "themeButton": "a", "themeInput": "a", "theme": "a", "themeHeader": "a"}' />
+		<input type="text" name="EndnotifTime" id="EndnotifTime"  ontouchstart="theendTimepicker();"  />
         </div>
         
         
