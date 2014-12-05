@@ -60,22 +60,25 @@ datePicker.show(options, function(date){
 var hours = date.getHours(); //returns 0-23
 var minutes = date.getMinutes(); //returns 0-59
 var seconds = date.getSeconds(); //returns 0-59
+hours = hours + "";
+minutes = minutes + "";
+seconds = seconds + "";
 var hoursString = "";
 var minutesString = "";
 var secondsString = "";
-if(hours<10) {
+if(hours.length <2) {
   hoursString = 0+hours+""; //+""casts minutes to a string.
 }
 else {
   hoursString = hours;
 }
-if(minutes<10) {
+if(minutes.length <2) {
   minutesString = 0+minutes+""; //+""casts minutes to a string.
 }
 else {
   minutesString = minutes;
 }
-if(seconds<10) {
+if(seconds.length <2) {
   secondsString = 0+seconds+""; //+""casts minutes to a string.
 }
 else {
@@ -86,7 +89,8 @@ var timestring = hoursString + ":" + minutesString + ":" + secondsString;
 });
     	
     }
-    function thestartTimepicker()
+    
+function thestartTimepicker()
     {
     	var options = {
   date: new Date(),
@@ -98,22 +102,25 @@ datePicker.show(options, function(date){
   var hours = date.getHours(); //returns 0-23
 var minutes = date.getMinutes(); //returns 0-59
 var seconds = date.getSeconds(); //returns 0-59
+hours = hours + "";
+minutes = minutes + "";
+seconds = seconds + "";
 var hoursString = "";
 var minutesString = "";
 var secondsString = "";
-if(hours<10) {
+if(hours.length <2) {
   hoursString = 0+hours+""; //+""casts minutes to a string.
 }
 else {
   hoursString = hours;
 }
-if(minutes<10) {
+if(minutes.length <2) {
   minutesString = 0+minutes+""; //+""casts minutes to a string.
 }
 else {
   minutesString = minutes;
 }
-if(seconds<10) {
+if(seconds.length <2) {
   secondsString = 0+seconds+""; //+""casts minutes to a string.
 }
 else {
