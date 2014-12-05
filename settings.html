@@ -60,14 +60,29 @@ datePicker.show(options, function(date){
 var hours = date.getHours(); //returns 0-23
 var minutes = date.getMinutes(); //returns 0-59
 var seconds = date.getSeconds(); //returns 0-59
+var hoursString = "";
 var minutesString = "";
+var secondsString = "";
+if(hours<10) {
+  hoursString = 0+hours+""; //+""casts minutes to a string.
+}
+else {
+  hoursString = hours;
+}
 if(minutes<10) {
   minutesString = 0+minutes+""; //+""casts minutes to a string.
 }
 else {
   minutesString = minutes;
 }
-   $('#EndnotifTime').val(minutesString); 
+if(seconds<10) {
+  secondsString = 0+seconds+""; //+""casts minutes to a string.
+}
+else {
+  secondsString = seconds;
+}
+var timestring = hoursString + ":" + minutesString + ":" + secondsString;
+   $('#EndnotifTime').val(timestring); 
 });
     	
     }
@@ -83,14 +98,30 @@ datePicker.show(options, function(date){
   var hours = date.getHours(); //returns 0-23
 var minutes = date.getMinutes(); //returns 0-59
 var seconds = date.getSeconds(); //returns 0-59
+var hoursString = "";
 var minutesString = "";
+var secondsString = "";
+if(hours<10) {
+  hoursString = 0+hours+""; //+""casts minutes to a string.
+}
+else {
+  hoursString = hours;
+}
 if(minutes<10) {
   minutesString = 0+minutes+""; //+""casts minutes to a string.
 }
 else {
   minutesString = minutes;
 }
-  $('#StartnotifTime').val(minutesString); 
+if(seconds<10) {
+  secondsString = 0+seconds+""; //+""casts minutes to a string.
+}
+else {
+  secondsString = seconds;
+}
+var timestring = hoursString + ":" + minutesString + ":" + secondsString;
+
+  $('#StartnotifTime').val(timestring); 
 });
     	
     }
