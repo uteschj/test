@@ -149,8 +149,8 @@ function errorHandler (error) {
     alert('error = ' + error);
 }
 function onNotificationGCM(e) {
-    $("#app-status-ul").append('<li>EVENT -> RECEIVED:' + e.event + '</li>');
-
+    //("#app-status-ul").append('<li>EVENT -> RECEIVED:' + e.event + '</li>');
+alert(e.event);
     switch( e.event )
     {
     case 'registered':
