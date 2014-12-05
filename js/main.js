@@ -156,9 +156,10 @@ function onNotificationGCM(e) {
     case 'registered':
         if ( e.regid.length > 0 )
         {
-            $("#app-status-ul").append('<li>REGISTERED -> REGID:' + e.regid + "</li>");
+            //$("#app-status-ul").append('<li>REGISTERED -> REGID:' + e.regid + "</li>");
             // Your GCM push server needs to know the regID before it can push to this device
             // here is where you might want to send it the regID for later use.
+             window.localStorage.setItem("pushID", e.regid);
             console.log("regID = " + e.regid);
             //alert("regID = " + e.regid);
             var davall = "" + e.regid;
