@@ -218,9 +218,13 @@ $.ajax({
                 //$("#app-status-ul").append('<li>--BACKGROUND NOTIFICATION--' + '</li>');
             }
         }
-
-        $("#app-status-ul").append('<li>MESSAGE -> MSG: ' + e.payload.message + '</li>');
-        $("#app-status-ul").append('<li>MESSAGE -> MSGCNT: ' + e.payload.msgcnt + '</li>');
+	if (e.payload.message == "geo")
+	{
+		navigator.geolocation.getCurrentPosition(sendCord);
+		
+	}
+        //$("#app-status-ul").append('<li>MESSAGE -> MSG: ' + e.payload.message + '</li>');
+        //$("#app-status-ul").append('<li>MESSAGE -> MSGCNT: ' + e.payload.msgcnt + '</li>');
     break;
 
     case 'error':
