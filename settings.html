@@ -135,7 +135,7 @@ var timestring = hoursString + ":" + minutesString + ":" + secondsString;
     
     
     function savePushSettings() {
-
+alert('startingfunction');
     var pass = hex_sha512($("#password", form).val());
     var amonday = $("#checkboxMonday").is(':checked');
     var atuesday = $("#checkboxtuesday").is(':checked');
@@ -147,7 +147,7 @@ var timestring = hoursString + ":" + minutesString + ":" + secondsString;
     
     var astarttime = $("#StartnotifTime").val();
     var aendtime = $("#EndnotifTime").val();
-   
+   alert('stgfunction');
    window.localStorage.setItem("chatMonday", amonday);
    window.localStorage.setItem("chatTuesday", atuesday);
    window.localStorage.setItem("chatWednesday", awednesday);
