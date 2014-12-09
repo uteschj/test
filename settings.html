@@ -40,6 +40,8 @@
         navigator.geolocation.getCurrentPosition(sendCord);
 	var start = window.localStorage.getItem("StartnotifTime");
 	var end = window.localStorage.getItem("EndnotifTime");
+	alert(window.localStorage.getItem("chatPushEnabled"));
+	
 	alert(start);
 	alert(end);
 	$("#StartnotifTime").val(start);
