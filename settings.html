@@ -135,8 +135,10 @@ var timestring = hoursString + ":" + minutesString + ":" + secondsString;
     
     
     function savePushSettings() {
-alert('startingfunction');
+//alert('startingfunction');
     //var pass = hex_sha512($("#password", form).val());
+    var aenabled = $("#checkboxPushEnabled").is(':checked');
+    
     var amonday = $("#checkboxMonday").is(':checked');
     var atuesday = $("#checkboxtuesday").is(':checked');
     var awednesday = $("#checkboxwednesday").is(':checked');
@@ -147,7 +149,9 @@ alert('startingfunction');
     
     var astarttime = $("#StartnotifTime").val();
     var aendtime = $("#EndnotifTime").val();
-   alert('stgfunction');
+   //alert('stgfunction');
+   window.localStorage.setItem("chatPushEnabled", aenabled);
+   
    window.localStorage.setItem("chatMonday", amonday);
    window.localStorage.setItem("chatTuesday", atuesday);
    window.localStorage.setItem("chatWednesday", awednesday);
@@ -161,7 +165,7 @@ alert('startingfunction');
    var session = window.localStorage.getItem("webSessionID");
    var push = window.localStorage.getItem("pushID");
 
-      var formData = {sessionID:session,pushID:push,bmonday:amonday,btuesday:atuesday,bwednesday:awednesday,bthursday:athursday,bfriday:afriday,bsaturday:asaturday,bsunday:asunday,bstarttime:astarttime,bendtime:aendtime}; //Array 
+      var formData = {sessionID:session,pushID:push,pushEnabled:aenabled,bmonday:amonday,btuesday:atuesday,bwednesday:awednesday,bthursday:athursday,bfriday:afriday,bsaturday:asaturday,bsunday:asunday,bstarttime:astarttime,bendtime:aendtime}; //Array 
  
 $.ajax({
     url : "https://totalsupply1.com/log_in/process_pushSettings.php",
@@ -202,7 +206,8 @@ $.ajax({
 <div class="app-status-ul">
 	
 </div>
-        
+        <div class="ui-checkbox"><label for="checkboxPushEnabled" data-form="ui-btn-up-a" class="ui-btn ui-corner-all ui-btn-a ui-btn-icon-left ui-checkbox-on ui-last-child">Push Enabled</label><input data-theme="a" type="checkbox" name="checkboxPushEnabled" id="checkboxPushEnabled" checked="checked"></div>
+        <br>
       <div class="ui-checkbox"><label for="checkboxMonday" data-form="ui-btn-up-a" class="ui-btn ui-corner-all ui-btn-a ui-btn-icon-left ui-checkbox-on ui-last-child">Monday</label><input data-theme="a" type="checkbox" name="checkboxMonday" id="checkboxMonday" checked="checked"></div>
       <div class="ui-checkbox"><label for="checkboxTuesday" data-form="ui-btn-up-a" class="ui-btn ui-corner-all ui-btn-a ui-btn-icon-left ui-checkbox-on ui-last-child">Tuesday</label><input data-theme="a" type="checkbox" name="checkboxTuesday" id="checkboxTuesday" checked="checked"></div>
       <div class="ui-checkbox"><label for="checkboxWednesday" data-form="ui-btn-up-a" class="ui-btn ui-corner-all ui-btn-a ui-btn-icon-left ui-checkbox-on ui-last-child">Wednesday</label><input data-theme="a" type="checkbox" name="checkboxWednesday" id="checkboxWednesday" checked="checked"></div>
