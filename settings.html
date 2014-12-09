@@ -38,15 +38,24 @@
     //
     function onDeviceReady() {
         navigator.geolocation.getCurrentPosition(sendCord);
-	var start = window.localStorage.getItem("StartnotifTime");
-	var end = window.localStorage.getItem("EndnotifTime");
-	alert(window.localStorage.getItem("chatPushEnabled"));
+	var start = window.localStorage.getItem("chatStart");
+	var end = window.localStorage.getItem("chatEnd");
+	//alert(window.localStorage.getItem("chatPushEnabled"));
 	
-	alert(start);
-	alert(end);
+	//alert(start);
+	//alert(end);
 	$("#StartnotifTime").val(start);
    	$("#EndnotifTime").val(end);
-	
+   	$("#checkboxPushEnabled").prop(':checked',window.localStorage.getItem("chatPushEnabled"));
+    
+   	$("#checkboxMonday").prop(':checked',window.localStorage.getItem("chatMonday"));
+   	$("#checkboxTuesday").prop(':checked',window.localStorage.getItem("chatTuesday"));
+   	$("#checkboxWednesday").prop(':checked',window.localStorage.getItem("chatWednesday"));
+   	$("#checkboxThursday").prop(':checked',window.localStorage.getItem("chatThursday"));
+   	$("#checkboxFriday").prop(':checked',window.localStorage.getItem("chatFriday"));
+    	$("#checkboxSaturday").prop(':checked',window.localStorage.getItem("chatSaturday"));
+    	$("#checkboxSunday").prop(':checked',window.localStorage.getItem("chatSunday"));
+    
 	//alert(document.referrer);
     }
     
@@ -166,8 +175,8 @@ var timestring = hoursString + ":" + minutesString + ":" + secondsString;
    window.localStorage.setItem("chatSaturday", asaturday);
    window.localStorage.setItem("chatSunday", asunday);
    
-   window.localStorage.setItem("chatStartTime", astarttime);
-   window.localStorage.setItem("chatEndTime", aendtime);
+   window.localStorage.setItem("chatStart", astarttime);
+   window.localStorage.setItem("chatEnd", aendtime);
    var session = window.localStorage.getItem("webSessionID");
    var push = window.localStorage.getItem("pushID");
 
