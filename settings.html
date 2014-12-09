@@ -46,7 +46,7 @@
 	//alert(end);
 	$("#StartnotifTime").val(start);
    	$("#EndnotifTime").val(end);
-   	alert(window.localStorage.getItem("chatPushEnabled"));
+   	//alert(window.localStorage.getItem("chatPushEnabled"));
    	if (window.localStorage.getItem("chatPushEnabled") == 'true') {
    	//$("#checkboxPushEnabled").prop('checked',true);
    	}
@@ -57,53 +57,53 @@
    	}
     
     	if (window.localStorage.getItem("chatMonday") == 'true') {
-   	$("#checkboxMonday").prop('checked',true);
+   	//$("#checkboxMonday").prop('checked',true);
     	}
     	else
     	{
-    	$("#checkboxMonday").prop('checked',false);	
+    	$("#checkboxMonday").prop('checked',false).checkboxradio('refresh');	
     	}
     	if (window.localStorage.getItem("chatTuesday") == 'true') {
-    	$("#checkboxTuesday").prop('checked',true);	
+    	//$("#checkboxTuesday").prop('checked',true);	
     	}
     	else
     	{
-    	$("#checkboxTuesday").prop('checked',false);	
+    	$("#checkboxTuesday").prop('checked',false).checkboxradio('refresh');	
     	}
    	if (window.localStorage.getItem("chatWednesday") == 'true') {
-   	$("#checkboxWednesday").prop('checked',true);	
+   	//$("#checkboxWednesday").prop('checked',true);	
    	}
    	else
    	{
-   	$("#checkboxWednesday").prop('checked',false);	
+   	$("#checkboxWednesday").prop('checked',false).checkboxradio('refresh');	
    	}
    	if (window.localStorage.getItem("chatThursday") == 'true') {
-   	$("#checkboxThursday").prop('checked',true);
+   	//$("#checkboxThursday").prop('checked',true);
    	}
    	else
    	{
-   	$("#checkboxThursday").prop('checked',false);
+   	$("#checkboxThursday").prop('checked',false).checkboxradio('refresh');
    	}
    	if (window.localStorage.getItem("chatFriday") == 'true') {
-   	$("#checkboxFriday").prop('checked',true);	
+   	//$("#checkboxFriday").prop('checked',true);	
    	}
    	else 
    	{
-   	$("#checkboxFriday").prop('checked',false);
+   	$("#checkboxFriday").prop('checked',false).checkboxradio('refresh');
    	}
    	if (window.localStorage.getItem("chatSaturday") == 'true') {
-   	$("#checkboxSaturday").prop('checked',true);	
+   	//$("#checkboxSaturday").prop('checked',true);	
    	}
    	else
    	{
-   	$("#checkboxSaturday").prop('checked',false);
+   	$("#checkboxSaturday").prop('checked',false).checkboxradio('refresh');
    	}
     	if (window.localStorage.getItem("chatSunday") == 'true') {
-    	$("#checkboxSunday").prop('checked',true);	
+    	//$("#checkboxSunday").prop('checked',true);	
     	}
     	else
     	{
-    	$("#checkboxSunday").prop('checked',false);
+    	$("#checkboxSunday").prop('checked',false).checkboxradio('refresh');
     	}
     	
     
