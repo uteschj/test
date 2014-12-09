@@ -46,7 +46,7 @@
 	//alert(end);
 	$("#StartnotifTime").val(start);
    	$("#EndnotifTime").val(end);
-   	
+   	alert(window.localStorage.getItem("chatPushEnabled"));
    	if (window.localStorage.getItem("chatPushEnabled") == 'true') {
    	$("#checkboxPushEnabled").prop(':checked',true);
    	}
