@@ -218,12 +218,12 @@ $.ajax({
       
       <div class="ui-field-contain">
         <label for="StartnotifTime">Start Time:</label>
-		<input type="text" name="StartnotifTime" id="StartnotifTime" ontouchstart="thestartTimepicker();"  />
+		<input type="text" name="StartnotifTime" id="StartnotifTime" value='window.localStorage.getItem("chatStartTime");' ontouchstart="thestartTimepicker();"  />
         </div>
         
         <div class="ui-field-contain">
         <label for="EndnotifTime">End Time:</label>
-		<input type="text" name="EndnotifTime" id="EndnotifTime"  ontouchstart="theendTimepicker();"  />
+		<input type="text" name="EndnotifTime" id="EndnotifTime"  value='window.localStorage.getItem("chatEndTime");' ontouchstart="theendTimepicker();"  />
         </div>
         
         
