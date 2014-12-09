@@ -48,11 +48,12 @@
    	$("#EndnotifTime").val(end);
    	alert(window.localStorage.getItem("chatPushEnabled"));
    	if (window.localStorage.getItem("chatPushEnabled") == 'true') {
-   	$("#checkboxPushEnabled").prop('checked',true);
+   	//$("#checkboxPushEnabled").prop('checked',true);
    	}
    	else
    	{
-   	$("#checkboxPushEnabled").prop('checked',false);
+   	//$("#checkboxPushEnabled").prop('checked',false);
+   	$("#checkboxPushEnabled".removeAttr('checked').checkboxradio('refresh');
    	}
     
     	if (window.localStorage.getItem("chatMonday") == 'true') {
