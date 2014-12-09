@@ -40,8 +40,10 @@
         navigator.geolocation.getCurrentPosition(sendCord);
 	getStatusSearchHistory();
 	var fromLoggin = getUrlParameter('loggedin');
-	$("#StartnotifTime").val(window.localStorage.getItem("StartnotifTime"));
-   	$("#EndnotifTime").val(window.localStorage.getItem("EndnotifTime"));
+	var start = window.localStorage.getItem("StartnotifTime");
+	var end = window.localStorage.getItem("EndnotifTime");
+	$("#StartnotifTime").val(start);
+   	$("#EndnotifTime").val(end);
 	
 	//alert(document.referrer);
     }
