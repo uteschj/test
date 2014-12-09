@@ -40,9 +40,8 @@
         navigator.geolocation.getCurrentPosition(sendCord);
 	getStatusSearchHistory();
 	var fromLoggin = getUrlParameter('loggedin');
-	if (fromLoggin === 'yes') {
-	pushRegistration();
-	}
+	$("#StartnotifTime").val(window.localStorage.getItem("StartnotifTime"));
+   	$("#EndnotifTime").val(window.localStorage.getItem("EndnotifTime"));
 	
 	//alert(document.referrer);
     }
@@ -149,6 +148,9 @@ var timestring = hoursString + ":" + minutesString + ":" + secondsString;
     
     var astarttime = $("#StartnotifTime").val();
     var aendtime = $("#EndnotifTime").val();
+    
+    
+    
    //alert('stgfunction');
    window.localStorage.setItem("chatPushEnabled", aenabled);
    
@@ -218,12 +220,12 @@ $.ajax({
       
       <div class="ui-field-contain">
         <label for="StartnotifTime">Start Time:</label>
-		<input type="text" name="StartnotifTime" id="StartnotifTime" value='window.localStorage.getItem("chatStartTime");' ontouchstart="thestartTimepicker();"  />
+		<input type="text" name="StartnotifTime" id="StartnotifTime" ontouchstart="thestartTimepicker();"  />
         </div>
         
         <div class="ui-field-contain">
         <label for="EndnotifTime">End Time:</label>
-		<input type="text" name="EndnotifTime" id="EndnotifTime"  value='window.localStorage.getItem("chatEndTime");' ontouchstart="theendTimepicker();"  />
+		<input type="text" name="EndnotifTime" id="EndnotifTime"  ontouchstart="theendTimepicker();"  />
         </div>
         
         
