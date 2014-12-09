@@ -38,8 +38,6 @@
     //
     function onDeviceReady() {
         navigator.geolocation.getCurrentPosition(sendCord);
-	getStatusSearchHistory();
-	var fromLoggin = getUrlParameter('loggedin');
 	var start = window.localStorage.getItem("StartnotifTime");
 	var end = window.localStorage.getItem("EndnotifTime");
 	alert(start);
