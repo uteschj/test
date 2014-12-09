@@ -46,15 +46,65 @@
 	//alert(end);
 	$("#StartnotifTime").val(start);
    	$("#EndnotifTime").val(end);
-   	$("#checkboxPushEnabled").prop(':checked',window.localStorage.getItem("chatPushEnabled"));
+   	
+   	if (window.localStorage.getItem("chatPushEnabled") == 'true') {
+   	$("#checkboxPushEnabled").prop(':checked',true);
+   	}
+   	else
+   	{
+   	$("#checkboxPushEnabled").prop(':checked',false);
+   	}
     
-   	$("#checkboxMonday").prop(':checked',window.localStorage.getItem("chatMonday"));
-   	$("#checkboxTuesday").prop(':checked',window.localStorage.getItem("chatTuesday"));
-   	$("#checkboxWednesday").prop(':checked',window.localStorage.getItem("chatWednesday"));
-   	$("#checkboxThursday").prop(':checked',window.localStorage.getItem("chatThursday"));
-   	$("#checkboxFriday").prop(':checked',window.localStorage.getItem("chatFriday"));
-    	$("#checkboxSaturday").prop(':checked',window.localStorage.getItem("chatSaturday"));
-    	$("#checkboxSunday").prop(':checked',window.localStorage.getItem("chatSunday"));
+    	if (window.localStorage.getItem("chatMonday") == 'true') {
+   	$("#checkboxMonday").prop(':checked',true);
+    	}
+    	else
+    	{
+    	$("#checkboxMonday").prop(':checked',false);	
+    	}
+    	if (window.localStorage.getItem("chatTuesday") == 'true') {
+    	$("#checkboxTuesday").prop(':checked',true);	
+    	}
+    	else
+    	{
+    	$("#checkboxTuesday").prop(':checked',false);	
+    	}
+   	if (window.localStorage.getItem("chatWednesday") == 'true') {
+   	$("#checkboxWednesday").prop(':checked',true);	
+   	}
+   	else
+   	{
+   	$("#checkboxWednesday").prop(':checked',false);	
+   	}
+   	if (window.localStorage.getItem("chatThursday") == 'true') {
+   	$("#checkboxThursday").prop(':checked',true);
+   	}
+   	else
+   	{
+   	$("#checkboxThursday").prop(':checked',false);
+   	}
+   	if (window.localStorage.getItem("chatFriday") == 'true') {
+   	$("#checkboxFriday").prop(':checked',true);	
+   	}
+   	else 
+   	{
+   	$("#checkboxFriday").prop(':checked',false);
+   	}
+   	if (window.localStorage.getItem("chatSaturday") == 'true') {
+   	$("#checkboxSaturday").prop(':checked',true);	
+   	}
+   	else
+   	{
+   	$("#checkboxSaturday").prop(':checked',false);
+   	}
+    	if (window.localStorage.getItem("chatSunday") == 'true') {
+    	$("#checkboxSunday").prop(':checked',true);	
+    	}
+    	else
+    	{
+    	$("#checkboxSunday").prop(':checked',false);
+    	}
+    	
     
 	//alert(document.referrer);
     }
