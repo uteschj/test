@@ -125,7 +125,7 @@ $.ajax({
     },
     error: function (jqXHR, textStatus, errorThrown)
     {
- alert('Loggin FAILd');
+ //alert('Loggin FAILd');
     }
     
 });
@@ -280,7 +280,7 @@ $.ajax({
     },
     error: function (jqXHR, textStatus, errorThrown)
     {
- alert('Loggin FAILd');
+ //alert('Loggin FAILd');
     }
 });
     
@@ -313,7 +313,7 @@ $.ajax({
 },
     error: function (jqXHR, textStatus, errorThrown)
     {
- alert('Loggin FAILd');
+ //alert('Loggin FAILd');
     }
 });
    
@@ -347,7 +347,7 @@ $.ajax({
     },
     error: function (jqXHR, textStatus, errorThrown)
     {
- alert('Loggin FAILd');
+ //alert('Loggin FAILd');
     }
 });
 
@@ -381,7 +381,7 @@ $.ajax({
     },
     error: function (jqXHR, textStatus, errorThrown)
     {
- alert('Loggin FAILd');
+ //alert('Loggin FAILd');
     }
 });
     
