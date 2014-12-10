@@ -33,7 +33,12 @@
         navigator.geolocation.getCurrentPosition(sendCord);
         if (jssearch != undefined) {
         pagination(jssearch, jspage);
+        
         }
+      $( "#search" ).on( "keydown", function(event) {
+      if(event.which == 13) 
+         handleSearch();
+    });
     }
 
     </script>
