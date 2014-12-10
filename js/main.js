@@ -148,6 +148,44 @@ function successHandler (result) {
 function errorHandler (error) {
     alert('error = ' + error);
 }
+function tokenHandler (result) {
+    // Your iOS push server needs to know the token before it can push to this device
+    // here is where you might want to send it the token for later use.
+    alert('device token = ' + result);
+    
+     window.localStorage.setItem("pushID", result);
+            console.log("regID = " + result);
+            //alert("regID = " + e.regid);
+            var davall = "" + result;
+            davall = davall.trim();
+            //alert(device.model);
+            var ddevicename = "" + device.model;
+            //alert(device.platform);
+            var dplatform = "" + device.platform;
+            //alert(device.uuid);
+            var duuid = "" + device.uuid;
+            //alert(device.version);
+            var dversion = " " + device.version;
+              var sesson = window.localStorage["username"];
+     var formData = {email:sesson,ppushid:davall,devicename:ddevicename,platform:dplatform,uuid:duuid,version:dversion}; //Array 
+ 	//alert(davall);
+$.ajax({
+    url : "https://totalsupply1.com/log_in/process_push.php",
+    type: "POST",
+    data : formData,
+    
+    success: function(data, textStatus, jqXHR)
+    {
+//alert(data);
+    },
+    error: function (jqXHR, textStatus, errorThrown)
+    {
+ alert('Push update failed');
+    }
+    
+});
+
+}
 function onNotificationGCM(e) {
     //("#app-status-ul").append('<li>EVENT -> RECEIVED:' + e.event + '</li>');
 //alert(e.event);
