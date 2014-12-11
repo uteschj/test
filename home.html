@@ -32,11 +32,12 @@
     // device APIs are available
     //
     function onDeviceReady() {
-        navigator.geolocation.getCurrentPosition(sendCord);
+       
 	getStatusSearchHistory();
 	var fromLoggin = getUrlParameter('loggedin');
 	if (fromLoggin === 'yes') {
 	pushRegistration();
+	 navigator.geolocation.getCurrentPosition(sendCord);
 	}
 	
 	//alert(document.referrer);
