@@ -115,7 +115,7 @@ $.ajax({
         //alert(jqXHR);
         //alert(data);
         //pushRegistration();
-        if (!data == 'login failed') {
+        if (data != 'login failed') {
         window.localStorage.setItem("webSessionID", data);
         window.localStorage.setItem("username", u);
         window.localStorage.setItem("password", $("#password", form).val());
