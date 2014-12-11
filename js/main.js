@@ -119,7 +119,7 @@ $.ajax({
         window.localStorage.setItem("webSessionID", data);
         window.localStorage.setItem("username", u);
         window.localStorage.setItem("password", $("#password", form).val());
-        
+        alert(data);
         window.location.replace('home.html?loggedin=yes');
         //jsessionID = data;
     },
