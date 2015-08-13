@@ -130,7 +130,9 @@ $.ajax({
         window.localStorage.setItem("webSessionID", data);
         window.localStorage.setItem("username", u);
         window.localStorage.setItem("password", $("#password", form).val());
-        
+        if ($('#checkbox-a').is(':checked')) {
+	window.localStorage.setItem("autoLogin", 'checked');	
+	}
         window.location.replace('home.html?loggedin=yes');
        }
        else
