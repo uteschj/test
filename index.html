@@ -27,8 +27,8 @@
     <script type="text/javascript" charset="utf-8">
 
 
-    var pictureSource;   // picture source
-    var destinationType; // sets the format of returned value
+    //var pictureSource;   // picture source
+    //var destinationType; // sets the format of returned value
     // Wait for device API libraries to load
     //
     document.addEventListener("deviceready",onDeviceReady,false);
@@ -36,10 +36,20 @@
     //
     function onDeviceReady() {
       StatusBar.overlaysWebView(false);
-        pictureSource=navigator.camera.PictureSourceType;
-        destinationType=navigator.camera.DestinationType;
+        //pictureSource=navigator.camera.PictureSourceType;
+        //destinationType=navigator.camera.DestinationType;
         //super.clearCache();
         //$("#loginForm").on("submit",handleLogin);
+        
+        if (window.localStorage["autoLogin"] == 'checked')
+        {
+          $("#checkbox-a").prop( "checked", true );
+        }
+        else
+        {
+          
+        }
+        }
         checkPreAuth();
     }
     
@@ -70,7 +80,7 @@
             <input type="password" name="password" id="password" value="" placeholder="Password" />
         </div>
 <label for="checkbox-a" class="ui-btn ui-corner-all ui-btn-c ui-btn-icon-left ui-checkbox-on ui-last-child">Stay Logged In</label>
-<input type="checkbox" name="checkbox-a" data-theme="c" id="checkbox-a" checked="checked" ontouchstart="stayloggedin();">
+<input type="checkbox" name="checkbox-a" data-theme="c" id="checkbox-a" checked="" ontouchstart="stayloggedin();">
         <input type="submit" value="Login" id="submitButton" ontouchstart="handleLogin();">
         </form>
         </div>
