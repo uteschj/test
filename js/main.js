@@ -59,10 +59,11 @@ else
 }
 function stayloggedin() {
 	if ($('#checkbox-a').is(':checked')) {
-		
+		window.localStorage.setItem("autoLogin", 'checked');
 	}
 	else
 	{
+	window.localStorage.setItem("autoLogin", '');
 	window.localStorage.setItem("username", null);
 	window.localStorage.setItem("password", null);
 	}
