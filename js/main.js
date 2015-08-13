@@ -124,7 +124,7 @@ $.ajax({
        }
        else
        {
-       	alert('Login Failed');
+       	//alert('Login Failed');
        	$('#smModal').modal(show)
        	
        }
