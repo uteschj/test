@@ -43,13 +43,7 @@
     </script>
   </head>
   <body onload="init()">
-<div class="modal fade bs-example-modal-sm" id="smModal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
-  <div class="modal-dialog modal-sm">
-    <div class="modal-content">
-      ...
-    </div>
-  </div>
-</div>
+
 <div data-role="page">
 
     <div data-role="panel" id="panel" data-position="right" data-theme="a" data-display="push"></div>
@@ -61,7 +55,13 @@
     </div>
 
     <div data-role="content">    
-
+<div class="modal fade bs-example-modal-sm" id="smModal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      Login Incorrect
+    </div>
+  </div>
+</div>
         <form id="loginForm">
         <div data-role="fieldcontain" class="ui-hide-label">
             <label for="username">Username:</label>
