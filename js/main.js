@@ -925,6 +925,8 @@ $.ajax({
             },
     error: function (jqXHR, textStatus, errorThrown)
     {
+    	alert(textStatus);
+    	alert(errorThrown);
  alert('Loggin FAILd');
     }
 });
