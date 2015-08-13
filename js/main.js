@@ -58,15 +58,15 @@ else
     }
 }
 function stayloggedin() {
-	alert('starting');
+	//alert('starting');
 	if ($('#checkbox-a').is(':checked')) {
 		window.localStorage.setItem("autoLogin", 'checked');
-		alert('ischecked');
+		//alert('ischecked');
 	}
 	else
 	{
 	window.localStorage.setItem("autoLogin", '');
-	alert('Notchecked');
+	//alert('Notchecked');
 	}
 }
 function handleExpiredSession() {
