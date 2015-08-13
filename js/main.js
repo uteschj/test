@@ -115,13 +115,18 @@ $.ajax({
         //alert(jqXHR);
         //alert(data);
         //pushRegistration();
-       
+       if (data !== 'login failed'){
         window.localStorage.setItem("webSessionID", data);
         window.localStorage.setItem("username", u);
         window.localStorage.setItem("password", $("#password", form).val());
         
         window.location.replace('home.html?loggedin=yes');
-       
+       }
+       else
+       {
+       	alert('Login Failed');
+       	
+       }
         //jsessionID = data;
     },
     error: function (jqXHR, textStatus, errorThrown)
