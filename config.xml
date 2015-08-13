@@ -45,9 +45,7 @@
 
 <preference name="StatusBarOverlaysWebView" value="false" />
     <!-- Plugins -->
-<feature name="StatusBar">
-            <param name="ios-package" value="CDVStatusBar" onload="false" />
-        </feature>
+
     <!-- Core plugins -->
     <gap:plugin name="org.apache.cordova.camera" />
     <gap:plugin name="org.apache.cordova.file" />
