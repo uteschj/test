@@ -58,6 +58,7 @@ else
     }
 }
 function stayloggedin() {
+	alert('starting');
 	if ($('#checkbox-a').is(':checked')) {
 		window.localStorage.setItem("autoLogin", 'checked');
 		alert('ischecked');
