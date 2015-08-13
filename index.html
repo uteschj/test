@@ -41,7 +41,7 @@
         //super.clearCache();
         //$("#loginForm").on("submit",handleLogin);
         
-        if (window.localStorage["autoLogin"] == 'checked')
+        if (window.localStorage["autoLogin"] != undefined && window.localStorage["autoLogin"] == 'checked')
         {
           $("#checkbox-a").prop( "checked", true );
         }
