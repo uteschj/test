@@ -125,7 +125,7 @@ $.ajax({
        else
        {
        	//alert('Login Failed');
-       	$('#smModal').modal(show)
+       	$('#smModal').modal()
        	
        }
         //jsessionID = data;
