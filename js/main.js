@@ -56,6 +56,16 @@ else
         handleLogin();
     }
 }
+function stayloggedin() {
+	if ($('#checkbox-a').is(':checked')) {
+		
+	}
+	else
+	{
+	window.localStorage.setItem("username", null);
+	window.localStorage.setItem("password", null);
+	}
+}
 function handleExpiredSession() {
     var u = window.localStorage["username"];
     var pass = hex_sha512($("#password", form).val());
@@ -125,8 +135,13 @@ $.ajax({
        else
        {
        	//alert('Login Failed');
-       	$toast('Login Failed');
-       	
+       	//$toast('Login Failed');
+       	navigator.notification.alert(
+    "Login Failed",
+    callBackFunctionB, // Specify a function to be called 
+    'Alert',
+    "OK"
+);
        }
         //jsessionID = data;
     },
@@ -877,4 +892,7 @@ function toast(message) {
 
     $toast.appendTo($.mobile.pageContainer).delay(2000);
     $toast.fadeOut(400, removeToast);
+}
+function callBackFunctionB(){
+    console.log('ok');
 }
