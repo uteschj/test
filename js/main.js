@@ -50,7 +50,8 @@ else
     
     function checkPreAuth() {
     var form = $("#loginForm");
-    if(window.localStorage["username"] != undefined && window.localStorage["password"] != undefined) {
+    
+    if(window.localStorage["username"] != undefined && window.localStorage["password"] != undefined && $('#checkbox-a').is(':checked')) {
         $("#username", form).val(window.localStorage["username"]);
         $("#password", form).val(window.localStorage["password"]);
         handleLogin();
