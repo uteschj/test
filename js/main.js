@@ -901,3 +901,32 @@ function toast(message) {
 function callBackFunctionB(){
     console.log('ok');
 }
+
+function getRorder(s) {
+  //alert(s + ' ' + pagenumber);
+     var session = window.localStorage.getItem("webSessionID");
+     console.log(session);
+      var formData = {sessionID:session,cartid:s}; //Array 
+$.ajax({
+    url : "https://totalsupply1.com/log_in/AppROrder.php",
+    type: "POST",
+    data : formData,
+    success: function(data, textStatus, jqXHR)
+    {
+      //alert(data);
+      if (data == "sessionExpire") {
+        	var reauthenticatesuccess = handleExpiredSession();
+        	getRorder(s);
+        }
+        else
+        {
+        $('#itemlist').html(data);
+        }
+            },
+    error: function (jqXHR, textStatus, errorThrown)
+    {
+ alert('Loggin FAILd');
+    }
+});
+
+}
