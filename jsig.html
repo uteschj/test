@@ -68,8 +68,12 @@
 <div class="app-status-ul">
 	
 </div>
+        <form id="searchForm" onsubmit="return false;">
+       <div data-role="fieldcontain" class="ui-hide-label" >
+            <label for="search">search:</label>
+            <input type="text" name="search" id="search" value="" />
         
-       
+        
 	<script src="js/jsig/jSignature.min.js"></script>
 	<div id="signature"></div>
 	<script>
@@ -77,7 +81,9 @@
 	        $("#signature").jSignature()
 	    })
 	</script>
-        
+        </div>
+        <button type="button" ontouchstart="handleSearch(); return false;">Search</button>
+        </form>
         
         </div>
         
