@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Home</title>
+    <title>Signature</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
     <script type="text/javascript" charset="utf-8" src="phonegap.js"></script>
     <script type="text/javascript" charset="utf-8" src="plugins/org.apache.cordova.file/www/File.js"></script>
@@ -60,7 +60,7 @@
 
     <div data-role="header">
       <a data-iconpos="notext" data-role="button" data-icon="home" title="Home" ontouchstart="window.location.replace('home.html');">Home</a>
-      <h1>Home</h1>
+      <h1>Signature</h1>
       <a data-iconpos="notext" href="#panel" data-role="button" data-icon="grid"></a>
     </div>
 
@@ -84,7 +84,8 @@
         </div>
         <button type="button" ontouchstart="handleSearch(); return false;">Save</button>
         </form>
-        
+        <br><br><br><br><br><br>
+        <button type="button" ontouchstart="$('#signature').jSignature('reset'); return false;">Reset</button>
         </div>
         
     
