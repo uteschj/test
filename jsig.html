@@ -70,8 +70,8 @@
 </div>
         <form id="searchForm" onsubmit="return false;">
        <div data-role="fieldcontain" class="ui-hide-label" >
-            <label for="search">Doc Number:</label>
-            <input type="text" name="search" id="search" value="" />
+            <label for="doc">Doc Number:</label>
+            Doc: <input type="text" name="doc" id="doc" value="" />
         
         
 	<script src="jsig/jSignature.min.js"></script>
@@ -81,8 +81,10 @@
 	        $("#signature").jSignature()
 	    })
 	</script>
+	<label for="name">Doc Number:</label>
+            Name: <input type="text" name="name" id="name" value="" />
         </div>
-        <button type="button" ontouchstart="handleSearch(); return false;">Save</button>
+        <button type="button" ontouchstart="return false;">Save</button>
         </form>
         <br><br><br><br><br><br>
         <button type="button" ontouchstart="$('#signature').jSignature('reset'); return false;">Reset</button>
