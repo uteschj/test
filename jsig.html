@@ -65,8 +65,9 @@
 	});
     }
     function getsig(){
+    	alert("getting doc");
     	db.transaction(function(tx) {
-        tx.executeSql("select doc_num from customer_sig;", [], function(tx, res) {
+        tx.executeSql("select doc_num from customer_sig LIMIT 1;", [], function(tx, res) {
           
           alert("res.rows.item(0).doc_num: " + res.rows.item(0).doc_num);
         });
