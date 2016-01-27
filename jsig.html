@@ -31,42 +31,17 @@
     document.addEventListener("deviceready",onDeviceReady,false);
     // device APIs are available
     //
-    //var db;
+    var db;
     function onDeviceReady() {
        StatusBar.overlaysWebView(false);
-       var db = window.sqlitePlugin.openDatabase({name: "my.db"});
-
-  db.transaction(function(tx) {
-    tx.executeSql('DROP TABLE IF EXISTS test_table');
-    tx.executeSql('CREATE TABLE IF NOT EXISTS test_table (id integer primary key, data text, data_num integer)');
-
-    // demonstrate PRAGMA:
-    db.executeSql("pragma table_info (test_table);", [], function(res) {
-      alert("PRAGMA res: " + JSON.stringify(res));
-    });
-
-    tx.executeSql("INSERT INTO test_table (data, data_num) VALUES (?,?)", ["test", 100], function(tx, res) {
-      alert("insertId: " + res.insertId + " -- probably 1");
-      alert("rowsAffected: " + res.rowsAffected + " -- should be 1");
-
-      db.transaction(function(tx) {
-        tx.executeSql("select count(id) as cnt from test_table;", [], function(tx, res) {
-          alert("res.rows.length: " + res.rows.length + " -- should be 1");
-          alert("res.rows.item(0).cnt: " + res.rows.item(0).cnt + " -- should be 1");
-        });
-      });
-
-    }, function(e) {
-      alert("ERROR: " + e.message);
-    });
-  });
-       /*
+       
+       
 	db = window.sqlitePlugin.openDatabase({name: "TRS_Portal.db", location: 1});
 	
 	db.transaction(function(tx) {
 	tx.executeSql('CREATE TABLE IF NOT EXISTS customer_sig (id integer primary key, sig_data text, doc_num text, note text, gps_cord text, Timestamp DATETIME DEFAULT CURRENT_TIMESTAMP)');
-	}
-	*/
+	});
+	
 	
 	var fromLoggin = getUrlParameter('loggedin');
 	if (fromLoggin === 'yes') {
@@ -76,7 +51,7 @@
 	
 	//alert(document.referrer);
     }
-    /*
+    
     function recordsig(){
     	var datapair = $("#signature").jSignature("getData", "svgbase64");
     	var datapairstring = datapair[0] + "," + datapair[1];
@@ -87,9 +62,9 @@
     tx.executeSql("INSERT INTO customer_sig (sig_data, doc_num, note, gps_cord) VALUES (?,?,?,?)", [datapairstring, doc, note, "11"]);
 
 
-	}
+	});
     }
-    */
+    
     
     </script>
   </head>
