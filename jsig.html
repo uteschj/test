@@ -59,8 +59,21 @@
     	var note = $("#note", form).val();
     	db.transaction(function(tx) {
    
-    tx.executeSql("INSERT INTO customer_sig (sig_data, doc_num, note, gps_cord) VALUES (?,?,?,?)", [datapairstring, doc, note, "11"]);
+   
+tx.executeSql("INSERT INTO customer_sig (sig_data, doc_num, note, gps_cord) VALUES (?,?,?,?)", [datapairstring, doc, note, "11"], function(tx, res) {
+      alert("insertId: " + res.insertId + " -- probably 1");
+      alert("rowsAffected: " + res.rowsAffected + " -- should be 1");
 
+      db.transaction(function(tx) {
+        tx.executeSql("select count(id) as cnt from customer_sig;", [], function(tx, res) {
+          alert("res.rows.length: " + res.rows.length + " -- should be 1");
+          alert("res.rows.item(0).cnt: " + res.rows.item(0).cnt + " -- should be 1");
+        });
+      });
+
+    }, function(e) {
+      alert("ERROR: " + e.message);
+    });
 
 	});
     }
@@ -74,6 +87,9 @@
     });
     }
     
+    
+
+
     </script>
   </head>
   <body onload="init()">
