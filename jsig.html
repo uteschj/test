@@ -58,8 +58,8 @@
     }
     
     function recordsig(){
-    	//var datapair = $("#signature").jSignature("getData", "svgbase64");
-    	//var datapairstring = datapair[0].val() + "," + datapair[1].val();
+    	var datapair = $("#signature").jSignature("getData", "svgbase64");
+    	var datapairstring = datapair[0] + "," + datapair[1];
     	var doc = $("#doc").val();
     	var note = $("#note").val();
     	alert(doc);
@@ -86,6 +86,7 @@ tx.executeSql("INSERT INTO customer_sig (sig_data, doc_num, note, gps_cord) VALU
     }
     function getsig(){
     	alert("getting doc");
+    	db = window.sqlitePlugin.openDatabase({name: "TRS_Portal.db", location: 1});
     	db.transaction(function(tx) {
         tx.executeSql("select doc_num from customer_sig LIMIT 1;", [], function(tx, res) {
           
