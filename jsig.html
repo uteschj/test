@@ -59,9 +59,9 @@
     
     function recordsig(){
     	var datapair = $("#signature").jSignature("getData", "svgbase64");
-    	var datapairstring = datapair[0] + "," + datapair[1];
-    	var doc = $("#doc", form).val();
-    	var note = $("#note", form).val();
+    	var datapairstring = datapair[0].val() + "," + datapair[1].val();
+    	var doc = $("#doc").val();
+    	var note = $("#note").val();
     	alert(doc);
     	db = window.sqlitePlugin.openDatabase({name: "TRS_Portal.db", location: 1});
     	db.transaction(function(tx) {
