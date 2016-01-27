@@ -40,6 +40,11 @@
 	
 	db.transaction(function(tx) {
 	tx.executeSql('CREATE TABLE IF NOT EXISTS customer_sig (id integer primary key, sig_data text, doc_num text, note text, gps_cord text, Timestamp DATETIME DEFAULT CURRENT_TIMESTAMP)');
+	
+	db.executeSql("pragma table_info (customer_sig);", [], function(res) {
+      alert("PRAGMA res: " + JSON.stringify(res));
+    });
+		
 	});
 	
 	
@@ -57,6 +62,7 @@
     	var datapairstring = datapair[0] + "," + datapair[1];
     	var doc = $("#doc", form).val();
     	var note = $("#note", form).val();
+    	alert(doc);
     	db.transaction(function(tx) {
    
    
