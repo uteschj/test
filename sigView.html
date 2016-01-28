@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Signature</title>
+    <title>Signature View</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
     <script type="text/javascript" charset="utf-8" src="phonegap.js"></script>
     <script type="text/javascript" charset="utf-8" src="plugins/org.apache.cordova.file/www/File.js"></script>
@@ -35,10 +35,10 @@
     var jsigID;
     function onDeviceReady() {
        StatusBar.overlaysWebView(false);
-       //alert('device ready');
+       alert('device ready');
        
 	db = window.sqlitePlugin.openDatabase({name: "TRS_Portal.db", location: 1});
-	//alert('db opened');
+	alert('db opened');
 	db.transaction(function(tx) {
 	tx.executeSql('CREATE TABLE IF NOT EXISTS customer_sig (id integer primary key, sig_data text, doc_num text, note text, gps_cord text, Timestamp DATETIME DEFAULT CURRENT_TIMESTAMP)');
 	
