@@ -62,19 +62,22 @@
     	var datapairstring = datapair[0] + "," + datapair[1];
     	var doc = $("#doc").val();
     	var note = $("#note").val();
-    	alert(doc);
+    	//alert(doc);
     	db = window.sqlitePlugin.openDatabase({name: "TRS_Portal.db", location: 1});
     	db.transaction(function(tx) {
    
    
 tx.executeSql("INSERT INTO customer_sig (sig_data, doc_num, note, gps_cord) VALUES (?,?,?,?);", [datapairstring, doc, note, "11"], function(tx, res) {
-      alert("insertId: " + res.insertId + " -- probably 1");
-      alert("rowsAffected: " + res.rowsAffected + " -- should be 1");
+      //alert("insertId: " + res.insertId + " -- probably 1");
+      if (res.rowsAffected == 1) {
+      	resetForm();
+      }
+      //alert("rowsAffected: " + res.rowsAffected + " -- should be 1");
 
       db.transaction(function(tx) {
         tx.executeSql("select count(id) as cnt from customer_sig;", [], function(tx, res) {
-          alert("res.rows.length: " + res.rows.length + " -- should be 1");
-          alert("res.rows.item(0).cnt: " + res.rows.item(0).cnt + " -- should be 1");
+          //alert("res.rows.length: " + res.rows.length + " -- should be 1");
+          //alert("res.rows.item(0).cnt: " + res.rows.item(0).cnt + " -- should be 1");
         });
       });
 
@@ -84,16 +87,7 @@ tx.executeSql("INSERT INTO customer_sig (sig_data, doc_num, note, gps_cord) VALU
 
 	});
     }
-    function getsig(){
-    	alert("getting doc");
-    	db = window.sqlitePlugin.openDatabase({name: "TRS_Portal.db", location: 1});
-    	db.transaction(function(tx) {
-        tx.executeSql("select doc_num from customer_sig LIMIT 1;", [], function(tx, res) {
-          
-          alert("res.rows.item(0).doc_num: " + res.rows.item(0).doc_num);
-        });
-    });
-    }
+    
     
     function resetForm(){
     	$('#signature').jSignature('reset');
