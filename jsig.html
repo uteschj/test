@@ -34,15 +34,15 @@
     var db;
     function onDeviceReady() {
        StatusBar.overlaysWebView(false);
-       alert('device ready');
+       //alert('device ready');
        
 	db = window.sqlitePlugin.openDatabase({name: "TRS_Portal.db", location: 1});
-	alert('db opened');
+	//alert('db opened');
 	db.transaction(function(tx) {
 	tx.executeSql('CREATE TABLE IF NOT EXISTS customer_sig (id integer primary key, sig_data text, doc_num text, note text, gps_cord text, Timestamp DATETIME DEFAULT CURRENT_TIMESTAMP)');
 	
 	db.executeSql("pragma table_info (customer_sig);", [], function(res) {
-      alert("PRAGMA res: " + JSON.stringify(res));
+      //alert("PRAGMA res: " + JSON.stringify(res));
     });
 		
 	});
