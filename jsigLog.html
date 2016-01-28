@@ -97,12 +97,60 @@ row.Timestamp + '</a></li>').listview('refresh');
     
     }
     
-    function resetForm(){
-    	$('#signature').jSignature('reset');
-    	$("#doc").val('');
-    	$("#note").val('');
-    	return false;
+    
+    function loopsyncSig() {
+    	var u = window.localStorage["username"];
+    	db = window.sqlitePlugin.openDatabase({name: "TRS_Portal.db", location: 1});
+    	db.transaction(function(tx) {
+        tx.executeSql("select id, doc_num, sig_data, note, gps_cord, Timestamp from customer_sig ORDER BY id DESC;", [], function(tx, res) {
+         
+          if (res != null && res.rows != null) {
+        for (var i = 0; i < res.rows.length; i++) {
+          var row = res.rows.item(i);
+          
+          $('#siglist').append('<li data-icon="false"><a href="#" ontouchstart="window.location.replace(\'sigView.html?id=' + row.id + '\');">' + row.doc_num + '<br>' +
+row.Timestamp + '</a></li>').listview('refresh');
+syncSig(u, row.sig_data, row.doc_num, row.note, row.gps_cord, row.Timestamp);
+        }
+      }
+          //alert("res.rows.item(0).doc_num: " + res.rows.item(0).doc_num);
+        });
+    });
+    	
     }
+    function syncSig(user1, sig_data1, doc_num1, note1, gps_cord1, captureTime1) {
+    
+    var u = window.localStorage["username"];
+    
+    //alert("click");
+    if(u !== '' && pass !== '') {
+      //alert("inside if u != ''");
+      var formData = {user:user1,sig_data:sig_data1,doc_num:doc_num1,note:note1,gps_cord:gps_cord1,captureTime:captureTime1}; //Array 
+ 
+$.ajax({
+    url : "http://192.168.254.107/saveSig.php",
+    type: "POST",
+    data : formData,
+    async: false,
+    success: function(data, textStatus, jqXHR)
+    {
+       
+        //jsessionID = data;
+    },
+    error: function (jqXHR, textStatus, errorThrown)
+    {
+ //alert('Loggin FAILd');
+    }
+    
+});
+
+    } else {
+        //Thanks Igor!
+        navigator.notification.alert("You must enter a username and password", function() {});
+        $("#submitButton").removeAttr("disabled");
+    }
+    
+}
     </script>
   </head>
   <body onload="init()">
@@ -131,7 +179,7 @@ row.Timestamp + '</a></li>').listview('refresh');
         
        <div data-role="fieldcontain" class="ui-hide-label" >
             
-        
+        <button ontouchstart="loopsyncSig();">Sync With Server</button>
         
 	<ul data-role="listview" id="siglist" data-inset="true" data-theme="c" >
     <li data-icon="custom" id="skull"><a href="#">custom-icon</a></li>
