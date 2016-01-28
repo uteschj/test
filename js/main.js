@@ -112,9 +112,9 @@ function handleLogin() {
     $("#submitButton",form).attr("disabled","disabled");
     var u = $("#username", form).val();
     var pass = hex_sha512($("#password", form).val());
-    console.log("click");
+    alert("click");
     if(u !== '' && pass !== '') {
-      console.log("inside if u != ''");
+      alert("inside if u != ''");
       var formData = {email:u,p:pass}; //Array 
  
 $.ajax({
