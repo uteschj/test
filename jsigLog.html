@@ -108,8 +108,7 @@ row.Timestamp + '</a></li>').listview('refresh');
         for (var i = 0; i < res.rows.length; i++) {
           var row = res.rows.item(i);
           
-          $('#siglist').append('<li data-icon="false"><a href="#" ontouchstart="window.location.replace(\'sigView.html?id=' + row.id + '\');">' + row.doc_num + '<br>' +
-row.Timestamp + '</a></li>').listview('refresh');
+          
 syncSig(u, row.sig_data, row.doc_num, row.note, row.gps_cord, row.Timestamp);
         }
       }
@@ -122,9 +121,9 @@ syncSig(u, row.sig_data, row.doc_num, row.note, row.gps_cord, row.Timestamp);
     
     var u = window.localStorage["username"];
     
-    //alert("click");
+    //alert(doc_num1);
     
-      //alert("inside if u != ''");
+      alert(doc_num1);
       var formData = {user:user1,sig_data:sig_data1,doc_num:doc_num1,note:note1,gps_cord:gps_cord1,captureTime:captureTime1}; //Array 
  
 $.ajax({
@@ -139,7 +138,8 @@ $.ajax({
     },
     error: function (jqXHR, textStatus, errorThrown)
     {
- //alert('Loggin FAILd');
+ alert(doc_num1 + 'failed');
+ alert(textStatus);
     }
     
 });
