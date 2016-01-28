@@ -35,10 +35,10 @@
     var jsigID;
     function onDeviceReady() {
        StatusBar.overlaysWebView(false);
-       alert('device ready');
+       //alert('device ready');
        
 	db = window.sqlitePlugin.openDatabase({name: "TRS_Portal.db", location: 1});
-	alert('db opened');
+	//alert('db opened');
 	db.transaction(function(tx) {
 	tx.executeSql('CREATE TABLE IF NOT EXISTS customer_sig (id integer primary key, sig_data text, doc_num text, note text, gps_cord text, Timestamp DATETIME DEFAULT CURRENT_TIMESTAMP)');
 	
@@ -50,7 +50,7 @@
 	
 	
 	jsigID = getUrlParameter('id');
-	alert("sigid " + jsigID);
+	//alert("sigid " + jsigID);
 	getsig();
 	
     }
@@ -65,12 +65,12 @@
         for (var i = 0; i < res.rows.length; i++) {
           var row = res.rows.item(i);
           
-          $('#sigDoc').append(row.doc_num + '<br>' + row.Timestamp);
-alert(row.doc_num);
+          $('#sigDoc').append('Doc Number: <b>' + row.doc_num + '</b><br>' + row.Timestamp);
+//alert(row.doc_num);
           var i = new Image();
 	        i.src = "data: " + row.sig_data;
 	        $(i).appendTo($("#sigBox")); // append the image (SVG) to DOM.
-	        $('#sigNote').append(row.note);
+	        $('#sigNote').append('Note: ' + row.note);
 	        
         }
       }
@@ -114,7 +114,7 @@ alert(row.doc_num);
         
        <div data-role="fieldcontain" class="ui-hide-label" >
             
-        
+        <button ontouchstart="window.location.replace('jsigLog.html');">Back to Log</button>
         
 	<div id="sigDoc">
 	</div>
