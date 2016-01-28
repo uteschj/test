@@ -126,7 +126,7 @@ $.ajax({
     {
         //data - response from server
         //alert(jqXHR);
-        //alert(data);
+        alert(data);
         //pushRegistration();
        if (data !== 'login failed'){
         window.localStorage.setItem("webSessionID", data);
@@ -139,7 +139,7 @@ $.ajax({
        }
        else
        {
-       	//alert('Login Failed');
+       	alert('Login Failed');
        	//$toast('Login Failed');
        	navigator.notification.alert(
     "Login Failed",
