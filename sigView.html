@@ -34,22 +34,58 @@
     var db;
     var jsigID;
     function onDeviceReady() {
-       //StatusBar.overlaysWebView(false);
+       StatusBar.overlaysWebView(false);
        alert('device ready');
        
+	db = window.sqlitePlugin.openDatabase({name: "TRS_Portal.db", location: 1});
+	alert('db opened');
+	db.transaction(function(tx) {
+	tx.executeSql('CREATE TABLE IF NOT EXISTS customer_sig (id integer primary key, sig_data text, doc_num text, note text, gps_cord text, Timestamp DATETIME DEFAULT CURRENT_TIMESTAMP)');
+	
+	db.executeSql("pragma table_info (customer_sig);", [], function(res) {
+      //alert("PRAGMA res: " + JSON.stringify(res));
+    });
+		
+	});
 	
 	
-	
-	//jsigID = getUrlParameter('id');
+	jsigID = getUrlParameter('id');
 	alert("sigid " + jsigID);
-	//getsig();
+	getsig();
 	
     }
     
-
-
+    function getsig(){
+    	alert("getting sig " + jsigID);
+    	db = window.sqlitePlugin.openDatabase({name: "TRS_Portal.db", location: 1});
+    	db.transaction(function(tx) {
+        tx.executeSql("select id, doc_num, sig_data, note, Timestamp from customer_sig WHERE id = ?;", [jsigID], function(tx, res) {
+         
+          if (res != null && res.rows != null) {
+        for (var i = 0; i < res.rows.length; i++) {
+          var row = res.rows.item(i);
+          
+          $('#sigDoc').append(row.doc_num + '<br>' + row.Timestamp);
+alert(row.doc_num);
+          var i = new Image();
+	        i.src = "data: " + row.sig_data;
+	        $(i).appendTo($("#sigBox")); // append the image (SVG) to DOM.
+	        $('#sigNote').append(row.note);
+	        
+        }
+      }
+          //alert("res.rows.item(0).doc_num: " + res.rows.item(0).doc_num);
+        });
+    });
     
-
+    }
+    
+    function resetForm(){
+    	$('#signature').jSignature('reset');
+    	$("#doc").val('');
+    	$("#note").val('');
+    	return false;
+    }
     </script>
   </head>
   <body onload="init()">
