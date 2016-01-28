@@ -112,9 +112,9 @@ function handleLogin() {
     $("#submitButton",form).attr("disabled","disabled");
     var u = $("#username", form).val();
     var pass = hex_sha512($("#password", form).val());
-    alert("click");
+    //alert("click");
     if(u !== '' && pass !== '') {
-      alert("inside if u != ''");
+      //alert("inside if u != ''");
       var formData = {email:u,p:pass}; //Array 
  
 $.ajax({
@@ -126,7 +126,7 @@ $.ajax({
     {
         //data - response from server
         //alert(jqXHR);
-        alert(data);
+        //alert(data);
         //pushRegistration();
        if (data !== 'login failed'){
         window.localStorage.setItem("webSessionID", data);
@@ -139,7 +139,7 @@ $.ajax({
        }
        else
        {
-       	alert('Login Failed');
+       	//alert('Login Failed');
        	//$toast('Login Failed');
        	navigator.notification.alert(
     "Login Failed",
