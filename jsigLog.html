@@ -58,7 +58,7 @@
     	var datapairstring = datapair[0] + "," + datapair[1];
     	var doc = $("#doc").val();
     	var note = $("#note").val();
-    	alert(doc);
+    	//alert(doc);
     	db = window.sqlitePlugin.openDatabase({name: "TRS_Portal.db", location: 1});
     	db.transaction(function(tx) {
    
@@ -123,7 +123,7 @@ syncSig(u, row.sig_data, row.doc_num, row.note, row.gps_cord, row.Timestamp);
     
     //alert(doc_num1);
     
-      alert(doc_num1);
+      //alert(doc_num1);
       var formData = {user:user1,sig_data:sig_data1,doc_num:doc_num1,note:note1,gps_cord:gps_cord1,captureTime:captureTime1}; //Array 
  
 $.ajax({
@@ -139,7 +139,7 @@ $.ajax({
     error: function (jqXHR, textStatus, errorThrown)
     {
  alert(doc_num1 + ' failed');
- alert(errorThrown);
+ //alert(errorThrown);
     }
     
 });
