@@ -56,7 +56,7 @@
     }
     
     function getsig(){
-    	alert("getting sig " + jsigID);
+    	//alert("getting sig " + jsigID);
     	db = window.sqlitePlugin.openDatabase({name: "TRS_Portal.db", location: 1});
     	db.transaction(function(tx) {
         tx.executeSql("select id, doc_num, sig_data, note, Timestamp from customer_sig WHERE id = ?;", [jsigID], function(tx, res) {
