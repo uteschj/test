@@ -49,7 +49,13 @@
     <!-- Core plugins -->
     <gap:plugin name="org.apache.cordova.camera" />
     <gap:plugin name="org.apache.cordova.file" />
-    <gap:plugin name="com.phonegap.plugins.pushplugin" />
+    <!--<gap:plugin name="com.phonegap.plugins.pushplugin" />-->
+    
+    <preference name="android-build-tool" value="gradle" />
+<plugin name="phonegap-plugin-push" source="npm">
+    <param name="SENDER_ID" value="<Your Sender ID>" />
+</plugin>
+
     <gap:plugin name="com.sharinglabs.cordova.plugin.datepicker" />
     
     <gap:plugin name="org.apache.cordova.statusbar" />
