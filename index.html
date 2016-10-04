@@ -36,24 +36,24 @@
     //
     function onDeviceReady() {
       
-      StatusBar.overlaysWebView(false);
-        pictureSource=navigator.camera.PictureSourceType;
-        destinationType=navigator.camera.DestinationType;
+      //StatusBar.overlaysWebView(false);
+      //  pictureSource=navigator.camera.PictureSourceType;
+      //  destinationType=navigator.camera.DestinationType;
         //super.clearCache();
         //$("#loginForm").on("submit",handleLogin);
-         $("#checkbox-a").change(function(){
-        stayloggedin();
-    });
-        if (window.localStorage["autoLogin"] != undefined && window.localStorage["autoLogin"] == 'checked')
-        {
-          $("#checkbox-a").prop( "checked", true );
-        }
-        else
-        {
+    //     $("#checkbox-a").change(function(){
+    //    stayloggedin();
+    //});
+     //   if (window.localStorage["autoLogin"] != undefined && window.localStorage["autoLogin"] == 'checked')
+     //   {
+      //    $("#checkbox-a").prop( "checked", true );
+      //  }
+      //  else
+      //  {
           
-        }
+     //   }
         
-        checkPreAuth();
+      //  checkPreAuth();
         //alert('device ready');
     }
     
@@ -103,9 +103,9 @@
 </div>
 
 <script>
-$("#loginPage").live("pageinit", function(e) {
-        checkPreAuth();
-    });
+//$("#loginPage").live("pageinit", function(e) {
+//        checkPreAuth();
+//    });
     
    
   
