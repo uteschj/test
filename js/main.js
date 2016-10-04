@@ -945,7 +945,7 @@ function scan() {
                 "text: " + result.text + "\n" +
                 "format: " + result.format + "\n" +
                 "cancelled: " + result.cancelled + "\n");
-            $("#doc").val("" + result.text);
+            $("#doc").val("" + result.text.replace("9S", ""));
             console.log(result);
             /*
             if (args.format == "QR_CODE") {
