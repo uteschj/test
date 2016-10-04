@@ -51,6 +51,8 @@
     <!--<gap:plugin name="com.phonegap.plugins.pushplugin" />-->
     
     <preference name="android-build-tool" value="gradle" />
+        
+    <gap:plugin name="com.phonegap.plugins.barcodescanner"/>
 
 
     <gap:plugin name="com.sharinglabs.cordova.plugin.datepicker" />
