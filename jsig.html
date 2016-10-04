@@ -124,6 +124,7 @@ tx.executeSql("INSERT INTO customer_sig (sig_data, doc_num, note, gps_cord) VALU
 </div>
         <form id="searchForm" onsubmit="return false;">
        <div data-role="fieldcontain" class="ui-hide-label" >
+	   <button type="button" ontouchstart="scan(); return false;">Scan</button>
             <label for="doc">Doc Number:</label>
             Doc: <input type="text" name="doc" id="doc" value="" />
         
