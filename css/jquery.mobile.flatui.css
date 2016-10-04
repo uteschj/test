@@ -617,6 +617,7 @@ div.ui-mobile-viewport {
 	height: 1.75em;
 	text-indent: -9999px;
 	white-space: nowrap !important;
+	padding-top: 8px;
 }
 .ui-mini {
 	font-size: 12.5px;
