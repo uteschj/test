@@ -32,6 +32,9 @@
     // device APIs are available
     //
     var db;
+	    
+    var gpscordssig;
+
     function onDeviceReady() {
        StatusBar.overlaysWebView(true);
        //alert('device ready');
@@ -48,26 +51,38 @@
 	});
 	
 	
-	var fromLoggin = getUrlParameter('loggedin');
-	if (fromLoggin === 'yes') {
-	pushRegistration();
-	 navigator.geolocation.getCurrentPosition(sendCord);
-	}
+	//var fromLoggin = getUrlParameter('loggedin');
+	//if (fromLoggin === 'yes') {
+	//pushRegistration();
+	// navigator.geolocation.getCurrentPosition(sendCord);
+	//}
 	
 	//alert(document.referrer);
     }
-    
+    function jsigcordget(pos) {
+	//alert(pos.coords.latitude);
+	//alert(pos.coords.longitude);
+   var latitude = pos.coords.latitude;
+   var longitude = pos.coords.longitude;
+	    gpscordssig = latitude + ', " + longitude;
+   var loemail = window.localStorage["username"];
+   var formData = {email:loemail,long:lolong,lat:lolat}; //Array 
+ 
+
+}
     function recordsig(){
     	var datapair = $("#signature").jSignature("getData", "svgbase64");
     	var datapairstring = datapair[0] + "," + datapair[1];
     	var doc = $("#doc").val();
     	var note = $("#note").val();
+	gpscordssig = ",";
+	    navigator.geolocation.getCurrentPosition(jsigcordget);
     	//alert(doc);
     	db = window.sqlitePlugin.openDatabase({name: "TRS_Portal.db", location: 1});
     	db.transaction(function(tx) {
    
    
-tx.executeSql("INSERT INTO customer_sig (sig_data, doc_num, note, gps_cord) VALUES (?,?,?,?);", [datapairstring, doc, note, "11"], function(tx, res) {
+tx.executeSql("INSERT INTO customer_sig (sig_data, doc_num, note, gps_cord) VALUES (?,?,?,?);", [datapairstring, doc, note, gpscordssig], function(tx, res) {
       //alert("insertId: " + res.insertId + " -- probably 1");
       if (res.rowsAffected == 1) {
       	resetForm();
