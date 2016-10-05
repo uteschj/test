@@ -118,7 +118,7 @@ syncSig(u, row.sig_data, row.doc_num, row.note, row.gps_cord, row.Timestamp, row
     	getsiglist();
     }
 function deleteSig(sigid) {
-	alert(sigid);
+	//alert(sigid);
     	var u = window.localStorage["username"];
     	db = window.sqlitePlugin.openDatabase({name: "TRS_Portal.db", location: 1});
     	db.transaction(function(tx) {
