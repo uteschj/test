@@ -65,8 +65,7 @@
    var latitude = pos.coords.latitude;
    var longitude = pos.coords.longitude;
 	    gpscordssig = latitude + ', " + longitude;
-   var loemail = window.localStorage["username"];
-   var formData = {email:loemail,long:lolong,lat:lolat}; //Array 
+
  
 
 }
@@ -77,7 +76,7 @@
     	var note = $("#note").val();
 	gpscordssig = ",";
 	    navigator.geolocation.getCurrentPosition(jsigcordget);
-    	//alert(doc);
+    	alert(gpscordssig);
     	db = window.sqlitePlugin.openDatabase({name: "TRS_Portal.db", location: 1});
     	db.transaction(function(tx) {
    
