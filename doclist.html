@@ -63,7 +63,7 @@
     	db.transaction(function(tx) {
    
    
-tx.executeSql("INSERT INTO docHeader (docnum, description, amount) VALUES (?,?,?);", [docnum, description, amount], function(tx, res) {
+tx.executeSql("INSERT INTO docHeader (docnum, description, amount) VALUES (?,?,?);", ['4444', 'description', '99'], function(tx, res) {
       alert("insertId: " + res.insertId + " -- probably 1");
       if (res.rowsAffected == 1) {
       	
