@@ -39,11 +39,11 @@
 	db = window.sqlitePlugin.openDatabase({name: "TRS_Portal.db", location: 1});
 	//alert('db opened');
 	db.transaction(function(tx) {
-		tx.executeSql('DROP TABLE docHeader');
+
 	tx.executeSql('CREATE TABLE IF NOT EXISTS docHeader (docnum text primary key, description text, amount text)');
 	
 	db.executeSql("pragma table_info (docHeader);", [], function(res) {
-      alert("PRAGMA res: " + JSON.stringify(res));
+      //alert("PRAGMA res: " + JSON.stringify(res));
     });
 		
 	});
