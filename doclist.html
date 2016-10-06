@@ -78,7 +78,7 @@ row.docnum + ' ---- $' + row.amount + '</a></li>').listview('refresh');
 	});
      
     }
-    function getsiglist(){
+	    function getsiglist(){
     	//alert("getting doc");
     	db = window.sqlitePlugin.openDatabase({name: "TRS_Portal.db", location: 1});
     	db.transaction(function(tx) {
@@ -95,8 +95,10 @@ row.docnum + '</a></li>').listview('refresh');
         }
       }
           //alert("res.rows.item(0).doc_num: " + res.rows.item(0).doc_num);
-        });
+        }, function(e) {
+      alert("ERROR: " + e.message);
     });
+	});
     
     }
     
