@@ -72,7 +72,7 @@ row.docnum + ' ---- $' + row.amount + '</a></li>').listview('refresh');
         });
       });
     }, function(e) {
-      //alert("ERROR: " + e.message);
+      alert("ERROR: " + e.message);
     });
 	});
     }
@@ -156,9 +156,9 @@ $.ajax({
     
 }
 	    
-function getDocs(s) {
+function getDocs() {
   //alert(s + ' ' + pagenumber);
-    
+    var s = $("#doc").val();
       var formData = {docs:s}; //Array 
 $.ajax({
     url : "http://192.168.1.10/appGetDocs.php",
@@ -166,12 +166,12 @@ $.ajax({
     data : formData,
     success: function(data, textStatus, jqXHR)
     {
-      alert(data);
+      //alert(data);
       var json_obj = $.parseJSON(data);//parse JSON
        for (var i in json_obj) 
             {
 		    addDocstoSQL(json_obj[i].docnum, json_obj[i].description, json_obj[i].amount);
-                alert(json_obj[i].docnum);
+                //alert(json_obj[i].docnum);
             }
         
             },
@@ -208,8 +208,8 @@ $.ajax({
 <div class="app-status-ul">
 	<button type="button" ontouchstart="scan(); return false;">Scan Doc QR</button>
             <label for="doc">Doc Number:</label>
-            Doc: <input type="text" name="doc" id="doc" value="" />
-	<button type="button" ontouchstart="getDocs('1'); return false;">Get Docs</button>
+            <input type="text" name="doc" id="doc" value="" />
+	<button type="button" ontouchstart="getDocs(); return false;">Get Docs</button>
 </div>
         
        <div data-role="fieldcontain" class="ui-hide-label" >
