@@ -41,7 +41,7 @@
 	db.transaction(function(tx) {
 
 	tx.executeSql('CREATE TABLE IF NOT EXISTS docHeader (docnum text primary key, description text, amount text)');
-	
+	tx.executeSql("INSERT INTO docHeader (docnum, description, amount) VALUES (?,?,?);", ['4444', 'description', '99']);
 	db.executeSql("SELECT count(*) AS mycount FROM docHeader;", [], function(res) {
       alert("PRAGMA res: " + JSON.stringify(res));
 		for (var i = 0; i < res.rows.length; i++) {
