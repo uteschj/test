@@ -79,11 +79,11 @@ row.docnum + ' ---- $' + row.amount + '</a></li>').listview('refresh');
      
     }
 	    function getsiglist(){
-    	//alert("getting doc");
+    	alert("getting doc");
     	db = window.sqlitePlugin.openDatabase({name: "TRS_Portal.db", location: 1});
     	db.transaction(function(tx) {
         tx.executeSql("select docnum, description, amount from docHeader;", [], function(tx, res) {
-         
+         alert("here");
           if (res != null && res.rows != null) {
         for (var i = 0; i < res.rows.length; i++) {
           var row = res.rows.item(i);
