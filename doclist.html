@@ -80,12 +80,12 @@ function getsiglist(){
 		if (row.sigid == null)
 		{
           $('#siglist').append('<li data-icon="custom"><a href="#" ontouchstart="window.location.replace(\'jsig.html?id=' + row.docnum + '&desc=' + escapeHtml(row.description) + '&amt=' + row.amount + '\');">' + row.description + '<br>' +
-row.docnum + '</a></li>').listview('refresh');
+row.docnum + ' ---------- $' + row.amount + '</a></li>').listview('refresh');
 		}
 		else
 		{
 			$('#siglist').append('<li data-icon="info"><a href="#" ontouchstart="window.location.replace(\'sigView.html?id=' + row.sigid + '\');">' + row.description + '<br>' +
-row.docnum + '</a></li>').listview('refresh');
+row.docnum + ' ---------- $' + row.amount + '</a></li>').listview('refresh');
 		}
 
         }
