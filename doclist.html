@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Signature</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+    <script type="text/javascript" charset="utf-8" src="phonegap.js"></script>
+    <script type="text/javascript" charset="utf-8" src="plugins/org.apache.cordova.file/www/File.js"></script>
+<script type="text/javascript" charset="utf-8" src="plugins/org.apache.cordova.file-transfer/www/FileTransfer.js"></script>
+ <!--<link rel="stylesheet" href="jquery.mobile/jquery.mobile-1.4.5.min.css" type="text/css" charset="utf-8" />-->
+ <link rel="stylesheet" href="css/jquery.mobile.flatui.css" type="text/css" charset="utf-8" />
+  <!--<link rel="stylesheet" href="themes/my-custom-theme.css" />-->
+  <link rel="stylesheet" href="themes/jquery.mobile.icons.min.css" />
+ <!--<script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>-->
+ <!--<script src="js/jquery.js"></script>
+ <script src="jquery.mobile/jquery.mobile-1.4.5.min.js"></script>-->
+ <!--<script src="js/jquery.mobile-1.4.0-rc.1.js"></script>-->
+ 
+ <link rel="stylesheet" href="js/jquery.mobile.structure-1.4.5.min.css" /> 
+  <script src="js/jquery-1.11.1.min.js"></script> 
+  <script src="js/jquery.mobile-1.4.5.min.js"></script> 
+ <script src="js/jquery.lazyload.min.js" type="text/javascript"></script>
+
+<script type="text/javascript" charset="utf-8" src="js/sha512.js"></script>
+ <script type="text/javascript" charset="utf-8" src="js/main.js"></script>
+ <!--<script type="text/javascript" charset="utf-8" src="js/main.js"></script>-->
+    <script type="text/javascript" charset="utf-8">
+    var pictureSource;   // picture source
+    
+    // Wait for device API libraries to load
+    //
+    document.addEventListener("deviceready",onDeviceReady,false);
+    // device APIs are available
+    //
+    var db;
+    function onDeviceReady() {
+       //StatusBar.overlaysWebView(false);
+       //alert('device ready');
+       
+	db = window.sqlitePlugin.openDatabase({name: "TRS_Portal.db", location: 1});
+	//alert('db opened');
+	db.transaction(function(tx) {
+	tx.executeSql('CREATE TABLE IF NOT EXISTS customer_sig (id integer primary key, sig_data text, doc_num text, note text, gps_cord text, Timestamp DATETIME DEFAULT CURRENT_TIMESTAMP)');
+	
+	db.executeSql("pragma table_info (customer_sig);", [], function(res) {
+      //alert("PRAGMA res: " + JSON.stringify(res));
+    });
+		
+	});
+	
+	
+	getsiglist();
+	
+	//alert(document.referrer);
+    }
+    
+    function recordsig(){
+    	var datapair = $("#signature").jSignature("getData", "svgbase64");
+    	var datapairstring = datapair[0] + "," + datapair[1];
+    	var doc = $("#doc").val();
+    	var note = $("#note").val();
+    	//alert(doc);
+    	db = window.sqlitePlugin.openDatabase({name: "TRS_Portal.db", location: 1});
+    	db.transaction(function(tx) {
+   
+   
+tx.executeSql("INSERT INTO customer_sig (sig_data, doc_num, note, gps_cord) VALUES (?,?,?,?);", [datapairstring, doc, note, "11"], function(tx, res) {
+      alert("insertId: " + res.insertId + " -- probably 1");
+      alert("rowsAffected: " + res.rowsAffected + " -- should be 1");
+      db.transaction(function(tx) {
+        tx.executeSql("select count(id) as cnt from customer_sig;", [], function(tx, res) {
+          alert("res.rows.length: " + res.rows.length + " -- should be 1");
+          alert("res.rows.item(0).cnt: " + res.rows.item(0).cnt + " -- should be 1");
+        });
+      });
+    }, function(e) {
+      alert("ERROR: " + e.message);
+    });
+	});
+    }
+    function getsiglist(){
+    	//alert("getting doc");
+    	db = window.sqlitePlugin.openDatabase({name: "TRS_Portal.db", location: 1});
+    	db.transaction(function(tx) {
+        tx.executeSql("select id, doc_num, Timestamp from customer_sig ORDER BY id DESC;", [], function(tx, res) {
+         
+          if (res != null && res.rows != null) {
+        for (var i = 0; i < res.rows.length; i++) {
+          var row = res.rows.item(i);
+          
+          $('#siglist').append('<li data-icon="false"><a href="#" ontouchstart="window.location.replace(\'sigView.html?id=' + row.id + '\');">' + row.doc_num + '<br>' +
+row.Timestamp + '</a></li>').listview('refresh');
+        }
+      }
+          //alert("res.rows.item(0).doc_num: " + res.rows.item(0).doc_num);
+        });
+    });
+    
+    }
+    
+    
+    function loopsyncSig() {
+    	var u = window.localStorage["username"];
+    	db = window.sqlitePlugin.openDatabase({name: "TRS_Portal.db", location: 1});
+    	db.transaction(function(tx) {
+        tx.executeSql("select id, doc_num, sig_data, note, gps_cord, Timestamp from customer_sig ORDER BY id DESC;", [], function(tx, res) {
+         
+          if (res != null && res.rows != null) {
+        for (var i = 0; i < res.rows.length; i++) {
+          var row = res.rows.item(i);
+          
+          
+syncSig(u, row.sig_data, row.doc_num, row.note, row.gps_cord, row.Timestamp, row.id);
+        }
+      }
+          //alert("res.rows.item(0).doc_num: " + res.rows.item(0).doc_num);
+        });
+    });
+    	getsiglist();
+    }
+function deleteSig(sigid) {
+	//alert(sigid);
+    	var u = window.localStorage["username"];
+    	db = window.sqlitePlugin.openDatabase({name: "TRS_Portal.db", location: 1});
+    	db.transaction(function(tx) {
+        tx.executeSql("DELETE FROM customer_sig WHERE id = ?;", [sigid], function(tx, res) {
+        });
+    });
+    	
+    }
+    function syncSig(user1, sig_data1, doc_num1, note1, gps_cord1, captureTime1, sigid) {
+    
+    var u = window.localStorage["username"];
+    
+    //alert(doc_num1);
+    
+      //alert(doc_num1);
+      var formData = {user:user1,sig_data:sig_data1,doc_num:doc_num1,note:note1,gps_cord:gps_cord1,captureTime:captureTime1}; //Array 
+ 
+$.ajax({
+    url : "http://192.168.254.107/saveSig.php",
+    type: "POST",
+    data : formData,
+    async: false,
+    success: function(data, textStatus, jqXHR)
+    {
+       deleteSig(sigid);
+        //jsessionID = data;
+    },
+    error: function (jqXHR, textStatus, errorThrown)
+    {
+ alert(doc_num1 + ' failed');
+ //alert(errorThrown);
+    }
+    
+});
+    
+    
+}
+    </script>
+  </head>
+  <body onload="init()">
+
+<div data-role="page">
+
+    <div data-role="panel" id="panel" data-position="right" data-theme="a" data-display="push"><ul data-role="listview" data-inset="true" class="ui-listview ui-listview-inset ui-corner-all ui-shadow">
+            <!--<li data-role="list-divider" data-theme="a" data-swatch="a" data-form="ui-bar-a" role="heading" class="ui-li-divider ui-bar-a ui-first-child">List Header</li>
+            <li data-form="ui-body-a" data-swatch="a" data-theme="a" class="ui-li-static ui-body-a">Read-only list item</li>-->
+            <li class="ui-last-child"><a class="ui-btn-a ui-btn ui-btn-icon-right ui-icon-carat-r" data-form="ui-btn-up-a" data-swatch="a" data-theme="a" href="#" ontouchstart="window.location.replace('settings.html');">App Settings</a></li>
+	    <li class="ui-last-child"><a class="ui-btn-a ui-btn ui-btn-icon-right ui-icon-carat-r" data-form="ui-btn-up-a" data-swatch="a" data-theme="a" href="#" ontouchstart="window.location.replace('jsig.html');">Signature</a></li>
+	    <li class="ui-last-child"><a class="ui-btn-a ui-btn ui-btn-icon-right ui-icon-carat-r" data-form="ui-btn-up-a" data-swatch="a" data-theme="a" href="#">Shopping Cart</a></li>
+			
+		</ul></div>
+
+    <div data-role="header">
+      <a data-iconpos="notext" data-role="button" data-icon="home" title="Home" ontouchstart="window.location.replace('home.html');">Home</a>
+      <h1>Signature</h1>
+      <a data-iconpos="notext" href="#panel" data-role="button" data-icon="grid"></a>
+    </div>
+
+    <div data-role="content">    
+<div class="app-status-ul">
+	
+</div>
+        
+       <div data-role="fieldcontain" class="ui-hide-label" >
+            
+        <button ontouchstart="loopsyncSig();">Sync With Server</button>
+        
+	<ul data-role="listview" id="siglist" data-inset="true" data-theme="c" >
+    <!--<li data-icon="custom" id="skull"><a href="#">custom-icon</a></li>-->
+    <!--<li data-icon="delete"><a href="#">data-icon="delete"</a></li>-->
+    <!--<li data-icon="gear"><a href="#">data-icon="gear"</a></li>-->
+    <!--<li data-icon="info"><a href="#">data-icon="info"</a></li>-->
+    <!--<li data-icon="false"><a href="#">data-icon="false"</a></li>-->
+</ul>
+	
+        </div>
+        
+        </div>
+        
+    
+    
+    </div>
+
+    <div data-role="footer">
+        <h4>&copy; Utesch Enterprises</h4>
+    </div>
+
+</div>
+
+<script>
+$("#loginPage").live("pageinit", function(e) {
+        checkPreAuth();
+    });
+</script>
+  </body>
+</html>
