@@ -47,6 +47,7 @@
 	
 	
 	getsiglist();
+	    $('#siglist').focus();
 
 	//alert(document.referrer);
     }
@@ -220,7 +221,7 @@ $.ajax({
             
         <button ontouchstart="loopsyncSig();">Sync With Server</button>
         
-	<ul data-role="listview" id="siglist" data-inset="true" data-theme="c" >
+	<ul data-role="listview" name="siglist" id="siglist" data-inset="true" data-theme="c" >
     <!--<li data-icon="custom" id="skull"><a href="#">custom-icon</a></li>-->
     <!--<li data-icon="delete"><a href="#">data-icon="delete"</a></li>-->
     <!--<li data-icon="gear"><a href="#">data-icon="gear"</a></li>-->
