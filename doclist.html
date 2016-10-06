@@ -82,7 +82,7 @@ row.docnum + ' ---- $' + row.amount + '</a></li>').listview('refresh');
     	//alert("getting doc");
     	db = window.sqlitePlugin.openDatabase({name: "TRS_Portal.db", location: 1});
     	db.transaction(function(tx) {
-        tx.executeSql("select docnum, description, amount, id from docHeader LEFT JOIN customer_sig ON docnum = doc_num;", [], function(tx, res) {
+        tx.executeSql("select docnum, description, amount from docHeader;", [], function(tx, res) {
          
           if (res != null && res.rows != null) {
         for (var i = 0; i < res.rows.length; i++) {
