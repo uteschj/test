@@ -123,7 +123,18 @@ function deleteSig(sigid) {
     	var u = window.localStorage["username"];
     	db = window.sqlitePlugin.openDatabase({name: "TRS_Portal.db", location: 1});
     	db.transaction(function(tx) {
-        tx.executeSql("DELETE FROM customer_sig WHERE id = ?;", [sigid], function(tx, res) {
+		tx.executeSql(SELECT doc_num FROM customer_sig WHERE id = ?;", [sigid], function(tx, res) {
+		if (res != null && res.rows != null) {
+       			 for (var i = 0; i < res.rows.length; i++) {
+        		  var row = res.rows.item(i);
+				 tx.executeSql("DELETE FROM docHeader WHERE docnum = ?;", [row.doc_num], function(tx, res1) {
+
+        });
+				 
+			 }
+		}
+       	 });
+        tx.executeSql("DELETE FROM customer_sig WHERE id = ?;", [sigid], function(tx, res2) {
 
         });
     });
