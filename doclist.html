@@ -39,6 +39,7 @@
 	db = window.sqlitePlugin.openDatabase({name: "TRS_Portal.db", location: 1});
 	//alert('db opened');
 	db.transaction(function(tx) {
+		tx.executeSql('DROP TABLE docHeader');
 
 	tx.executeSql('CREATE TABLE IF NOT EXISTS docHeader (docnum text primary key, description text, amount text)');
 	db.executeSql("SELECT count(*) AS mycount FROM docHeader;", [], function(res) {
@@ -65,8 +66,7 @@ tx.executeSql("INSERT INTO docHeader (docnum, description, amount) VALUES (?,?,?
       alert("insertId: " + res.insertId + " -- probably 1");
       if (res.rowsAffected == 1) {
       	
-	      $('#siglist').append('<li data-icon="info"><a href="#" ontouchstart="window.location.replace(\'sigView.html?id=' + vdocnum + '\');">' + vdescription + '<br>' +
-vdocnum + ' ---- $' + vamount + '</a></li>').listview('refresh');
+	  
       }
       
     }, function(e) {
@@ -76,22 +76,25 @@ vdocnum + ' ---- $' + vamount + '</a></li>').listview('refresh');
      
     }
 	    function getsiglist(){
-    	alert("getting doc");
     	db = window.sqlitePlugin.openDatabase({name: "TRS_Portal.db", location: 1});
     	db.transaction(function(tx) {
-        tx.executeSql("select docnum, description, amount from docHeader;", [], function(tx, res) {
-         alert("here");
+        tx.executeSql("select docnum, description, amount, doc_num from docHeader LEFT JOIN customer_sig ON docnum = doc_num;", [], function(tx, res) {
 		 
           if (res != null && res.rows != null) {
-		  alert("here1");
-		  alert(res.rows.length);
         for (var i = 0; i < res.rows.length; i++) {
           var row = res.rows.item(i);
           alert(row.docnum);
-		
-          $('#siglist').append('<li data-icon="false"><a href="#" ontouchstart="window.location.replace(\'sigView.html?id=' + row.docnum + '\');">' + row.description + '<br>' +
+		if (row.docnum == null)
+		{
+          $('#siglist').append('<li data-icon="delete"><a href="#" ontouchstart="window.location.replace(\'sigView.html?id=' + row.docnum + '\');">' + row.description + '<br>' +
 row.docnum + '</a></li>').listview('refresh');
-		alert(row.description);
+		}
+		else
+		{
+			$('#siglist').append('<li data-icon="false"><a href="#" ontouchstart="window.location.replace(\'sigView.html?id=' + row.docnum + '\');">' + row.description + '<br>' +
+row.docnum + '</a></li>').listview('refresh');
+		}
+
         }
       }
           //alert("res.rows.item(0).doc_num: " + res.rows.item(0).doc_num);
@@ -179,7 +182,7 @@ $.ajax({
 		    addDocstoSQL(json_obj[i].docnum, json_obj[i].description, json_obj[i].amount);
                 //alert(json_obj[i].docnum);
             }
-        
+        getsiglist();
             },
 	
     error: function (jqXHR, textStatus, errorThrown)
@@ -223,10 +226,10 @@ $.ajax({
         <button ontouchstart="loopsyncSig();">Sync With Server</button>
         
 	<ul data-role="listview" id="siglist" data-inset="true" data-theme="c" >
-    <!--<li data-icon="custom" id="skull"><a href="#">custom-icon</a></li>-->
-    <!--<li data-icon="delete"><a href="#">data-icon="delete"</a></li>-->
-    <!--<li data-icon="gear"><a href="#">data-icon="gear"</a></li>-->
-    <!--<li data-icon="info"><a href="#">data-icon="info"</a></li>-->
+    <li data-icon="custom" id="skull"><a href="#">custom-icon</a></li>
+    <li data-icon="delete"><a href="#">data-icon="delete"</a></li>
+    <li data-icon="gear"><a href="#">data-icon="gear"</a></li>
+    <li data-icon="info"><a href="#">data-icon="info"</a></li>
     <!--<li data-icon="false"><a href="#">data-icon="false"</a></li>-->
 </ul>
 	
