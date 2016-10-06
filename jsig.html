@@ -58,7 +58,7 @@
 	//}
 	
 	//alert(document.referrer);
-	    if (getUrlParameter('id') != '')
+	    if (getUrlParameter('id') != null)
 	    {
 	 $('#doc').val(getUrlParameter('id'));   
 	 $("#doc").attr("disabled", "disabled");  
