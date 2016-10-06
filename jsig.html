@@ -135,8 +135,9 @@ tx.executeSql("INSERT INTO customer_sig (sig_data, doc_num, note, gps_cord) VALU
             <!--<li data-role="list-divider" data-theme="a" data-swatch="a" data-form="ui-bar-a" role="heading" class="ui-li-divider ui-bar-a ui-first-child">List Header</li>
             <li data-form="ui-body-a" data-swatch="a" data-theme="a" class="ui-li-static ui-body-a">Read-only list item</li>-->
             <li class="ui-last-child"><a class="ui-btn-a ui-btn ui-btn-icon-right ui-icon-carat-r" data-form="ui-btn-up-a" data-swatch="a" data-theme="a" href="#" ontouchstart="window.location.replace('settings.html');">App Settings</a></li>
+	    <li class="ui-last-child"><a class="ui-btn-a ui-btn ui-btn-icon-right ui-icon-carat-r" data-form="ui-btn-up-a" data-swatch="a" data-theme="a" href="#" ontouchstart="window.location.replace('doclist.html');">Delivery List</a></li>
 	    <li class="ui-last-child"><a class="ui-btn-a ui-btn ui-btn-icon-right ui-icon-carat-r" data-form="ui-btn-up-a" data-swatch="a" data-theme="a" href="#" ontouchstart="window.location.replace('jsig.html');">Signature</a></li>
-	    <li class="ui-last-child"><a class="ui-btn-a ui-btn ui-btn-icon-right ui-icon-carat-r" data-form="ui-btn-up-a" data-swatch="a" data-theme="a" href="#">Shopping Cart</a></li>
+	    <li class="ui-last-child"><a class="ui-btn-a ui-btn ui-btn-icon-right ui-icon-carat-r" data-form="ui-btn-up-a" data-swatch="a" data-theme="a" href="#" ontouchstart="window.location.replace('jsigLog.html');">Signature Log</a></li>
 			
 		</ul></div>
 
@@ -170,9 +171,10 @@ tx.executeSql("INSERT INTO customer_sig (sig_data, doc_num, note, gps_cord) VALU
         <button type="button" ontouchstart="recordsig(); return false;">Save</button>
         </form>
         <br><br><br><br><br><br>
+	    <div style="width:30px;">
         <button type="button" ontouchstart="resetForm(); return false;">Reset</button>
-        <br><br><br>
-        <button ontouchstart="window.location.replace('jsigLog.html');">Log</button>
+	    </div>
+        
         </div>
         
     
