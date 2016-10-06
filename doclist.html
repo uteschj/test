@@ -87,10 +87,11 @@ row.docnum + ' ---- $' + row.amount + '</a></li>').listview('refresh');
           if (res != null && res.rows != null) {
         for (var i = 0; i < res.rows.length; i++) {
           var row = res.rows.item(i);
-          
+          alert(row.docnum);
 		
           $('#siglist').append('<li data-icon="false"><a href="#" ontouchstart="window.location.replace(\'sigView.html?id=' + row.docnum + '\');">' + row.description + '<br>' +
 row.docnum + '</a></li>').listview('refresh');
+		alert(row.description);
         }
       }
           //alert("res.rows.item(0).doc_num: " + res.rows.item(0).doc_num);
