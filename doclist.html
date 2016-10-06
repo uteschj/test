@@ -166,19 +166,19 @@ $.ajax({
     data : formData,
     success: function(data, textStatus, jqXHR)
     {
-      //alert(data);
+      alert(data);
       var json_obj = $.parseJSON(data);//parse JSON
        for (var i in json_obj) 
             {
 		    addDocstoSQL(json_obj[i].docnum, json_obj[i].description, json_obj[i].amount);
-                
+                alert(json_obj[i].docnum);
             }
         
             },
 	
     error: function (jqXHR, textStatus, errorThrown)
     {
- alert(errorThrown);
+ alert(textStatus);
     }
 });
 
