@@ -69,6 +69,7 @@ tx.executeSql("INSERT INTO docHeader (docnum, description, amount) VALUES (?,?,?
      
     }
 function getsiglist(){
+	$('#siglist').empty()
     	db = window.sqlitePlugin.openDatabase({name: "TRS_Portal.db", location: 1});
     	db.transaction(function(tx) {
         tx.executeSql("select docnum, description, amount, id as sigid from docHeader LEFT JOIN customer_sig ON docnum = doc_num;", [], function(tx, res) {
