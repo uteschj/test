@@ -84,7 +84,10 @@ row.docnum + ' ---- $' + row.amount + '</a></li>').listview('refresh');
     	db.transaction(function(tx) {
         tx.executeSql("select docnum, description, amount from docHeader;", [], function(tx, res) {
          alert("here");
+		 
           if (res != null && res.rows != null) {
+		  alert("here1");
+		  alert(res.rows.length);
         for (var i = 0; i < res.rows.length; i++) {
           var row = res.rows.item(i);
           alert(row.docnum);
