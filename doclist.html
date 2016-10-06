@@ -80,7 +80,7 @@ function getsiglist(){
           //alert(row.docnum);
 		if (row.sigid == null)
 		{
-          $('#siglist').append('<li data-icon="custom"><a href="#" ontouchstart="window.location.replace(\'jsig.html?id=' + row.docnum + '&desc=' + escapeHtml(row.description) + '&amt=' + row.amount + '\');">' + row.description + '<br>' +
+          $('#siglist').append('<li data-icon="custom"><a href="#" ontouchstart="window.location.replace(\'jsig.html?id=' + row.docnum + '&desc=&amt=' + row.amount + '\');">' + row.description + '<br>' +
 row.docnum + ' ---------- $' + row.amount + '</a></li>').listview('refresh');
 		}
 		else
