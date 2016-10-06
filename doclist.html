@@ -39,9 +39,9 @@
 	db = window.sqlitePlugin.openDatabase({name: "TRS_Portal.db", location: 1});
 	//alert('db opened');
 	db.transaction(function(tx) {
-	tx.executeSql('CREATE TABLE IF NOT EXISTS customer_sig (id integer primary key, sig_data text, doc_num text, note text, gps_cord text, Timestamp DATETIME DEFAULT CURRENT_TIMESTAMP)');
+	tx.executeSql('CREATE TABLE IF NOT EXISTS docHeader (docnum integer primary key, description text, amount text)');
 	
-	db.executeSql("pragma table_info (customer_sig);", [], function(res) {
+	db.executeSql("pragma table_info (docHeader);", [], function(res) {
       //alert("PRAGMA res: " + JSON.stringify(res));
     });
 		
@@ -53,27 +53,26 @@
 	//alert(document.referrer);
     }
     
-    function recordsig(){
-    	var datapair = $("#signature").jSignature("getData", "svgbase64");
-    	var datapairstring = datapair[0] + "," + datapair[1];
-    	var doc = $("#doc").val();
-    	var note = $("#note").val();
-    	//alert(doc);
-    	db = window.sqlitePlugin.openDatabase({name: "TRS_Portal.db", location: 1});
+    function addDocstoSQL(docnum, description, amount){
+	db = window.sqlitePlugin.openDatabase({name: "TRS_Portal.db", location: 1});
     	db.transaction(function(tx) {
    
    
-tx.executeSql("INSERT INTO customer_sig (sig_data, doc_num, note, gps_cord) VALUES (?,?,?,?);", [datapairstring, doc, note, "11"], function(tx, res) {
-      alert("insertId: " + res.insertId + " -- probably 1");
-      alert("rowsAffected: " + res.rowsAffected + " -- should be 1");
+tx.executeSql("INSERT INTO docHeader (docnum, description, amount) VALUES (?,?,?);", [docnum, description, amount], function(tx, res) {
+      //alert("insertId: " + res.insertId + " -- probably 1");
+      if (res.rowsAffected == 1) {
+      	$('#siglist').append('<li data-icon="info"><a href="#" ontouchstart="window.location.replace(\'sigView.html?id=' + row.docnum + '\');">' + row.description + '<br>' +
+row.docnum + ' ---- $' + row.amount + '</a></li>').listview('refresh');
+      }
+      //alert("rowsAffected: " + res.rowsAffected + " -- should be 1");
       db.transaction(function(tx) {
-        tx.executeSql("select count(id) as cnt from customer_sig;", [], function(tx, res) {
-          alert("res.rows.length: " + res.rows.length + " -- should be 1");
-          alert("res.rows.item(0).cnt: " + res.rows.item(0).cnt + " -- should be 1");
+        tx.executeSql("select count(docnum) as cnt from docHeader;", [], function(tx, res) {
+          //alert("res.rows.length: " + res.rows.length + " -- should be 1");
+          //alert("res.rows.item(0).cnt: " + res.rows.item(0).cnt + " -- should be 1");
         });
       });
     }, function(e) {
-      alert("ERROR: " + e.message);
+      //alert("ERROR: " + e.message);
     });
 	});
     }
@@ -81,14 +80,14 @@ tx.executeSql("INSERT INTO customer_sig (sig_data, doc_num, note, gps_cord) VALU
     	//alert("getting doc");
     	db = window.sqlitePlugin.openDatabase({name: "TRS_Portal.db", location: 1});
     	db.transaction(function(tx) {
-        tx.executeSql("select id, doc_num, Timestamp from customer_sig ORDER BY id DESC;", [], function(tx, res) {
+        tx.executeSql("select docnum, description, amount, id from docheader LEFT JOIN customer_sig ON docnum = doc_num;", [], function(tx, res) {
          
           if (res != null && res.rows != null) {
         for (var i = 0; i < res.rows.length; i++) {
           var row = res.rows.item(i);
           
-          $('#siglist').append('<li data-icon="false"><a href="#" ontouchstart="window.location.replace(\'sigView.html?id=' + row.id + '\');">' + row.doc_num + '<br>' +
-row.Timestamp + '</a></li>').listview('refresh');
+          $('#siglist').append('<li data-icon="info"><a href="#" ontouchstart="window.location.replace(\'sigView.html?id=' + row.docnum + '\');">' + row.description + '<br>' +
+row.docnum + ' ---- $' + row.amount + '</a></li>').listview('refresh');
         }
       }
           //alert("res.rows.item(0).doc_num: " + res.rows.item(0).doc_num);
@@ -156,6 +155,35 @@ $.ajax({
     
     
 }
+	    
+function getDocs(s) {
+  //alert(s + ' ' + pagenumber);
+    
+      var formData = {docs:s}; //Array 
+$.ajax({
+    url : "http://192.168.1.10/appGetDocs.php",
+    type: "POST",
+    data : formData,
+    dataType: "json",
+    success: function(data, textStatus, jqXHR)
+    {
+      //alert(data);
+      var json_obj = $.parseJSON(data);//parse JSON
+       for (var i in json_obj) 
+            {
+		    addDocstoSQL(json_obj[i].docnum, json_obj[i].description, json_obj[i].amount);
+                
+            }
+        
+            },
+	
+    error: function (jqXHR, textStatus, errorThrown)
+    {
+ alert('Loggin FAILd');
+    }
+});
+
+}
     </script>
   </head>
   <body onload="init()">
@@ -179,7 +207,10 @@ $.ajax({
 
     <div data-role="content">    
 <div class="app-status-ul">
-	
+	<button type="button" ontouchstart="scan(); return false;">Scan Doc QR</button>
+            <label for="doc">Doc Number:</label>
+            Doc: <input type="text" name="doc" id="doc" value="" />
+	<button type="button" ontouchstart="getDocs('1'); return false;">Get Docs</button>
 </div>
         
        <div data-role="fieldcontain" class="ui-hide-label" >
