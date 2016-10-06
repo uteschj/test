@@ -163,6 +163,8 @@ $.ajax({
 function getDocs() {
   //alert(s + ' ' + pagenumber);
     var s = $("#doc").val();
+	if (s != "delete")
+	{
       var formData = {docs:s}; //Array 
 $.ajax({
     url : "http://192.168.1.10/appGetDocs.php",
@@ -185,6 +187,21 @@ $.ajax({
  alert(textStatus);
     }
 });
+	}
+	else
+		
+	{
+	//drop the docHeader table
+		db = window.sqlitePlugin.openDatabase({name: "TRS_Portal.db", location: 1});
+	//alert('db opened');
+	db.transaction(function(tx) {
+		
+	tx.executeSql('DROP TABLE docHeader');
+
+		
+	});
+		
+	}
 
 }
     </script>
