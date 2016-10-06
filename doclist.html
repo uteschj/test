@@ -68,8 +68,8 @@ row.docnum + ' ---- $' + row.amount + '</a></li>').listview('refresh');
       //alert("rowsAffected: " + res.rowsAffected + " -- should be 1");
       db.transaction(function(tx) {
         tx.executeSql("select count(docnum) as cnt from docHeader;", [], function(tx, res) {
-          //alert("res.rows.length: " + res.rows.length + " -- should be 1");
-          //alert("res.rows.item(0).cnt: " + res.rows.item(0).cnt + " -- should be 1");
+          alert("res.rows.length: " + res.rows.length + " -- should be 1");
+          alert("res.rows.item(0).cnt: " + res.rows.item(0).cnt + " -- should be 1");
         });
       });
     }, function(e) {
