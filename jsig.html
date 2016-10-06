@@ -33,7 +33,7 @@
     //
     var db;
 	    
-   
+   var ret = '';
 
     function onDeviceReady() {
        StatusBar.overlaysWebView(true);
@@ -58,6 +58,14 @@
 	//}
 	
 	//alert(document.referrer);
+	    if (getUrlParameter('id') != '')
+	    {
+	 $('#doc').val(getUrlParameter('id'));   
+	 $("#doc").attr("disabled", "disabled");  
+		    $("#scan").attr("disabled", "disabled"); 
+		ret = doclist;    
+	    }
+	    
     }
     function jsigcordget(pos) {
 	//alert(pos.coords.latitude);
@@ -80,6 +88,7 @@ tx.executeSql("INSERT INTO customer_sig (sig_data, doc_num, note, gps_cord) VALU
       //alert("insertId: " + res.insertId + " -- probably 1");
       if (res.rowsAffected == 1) {
       	resetForm();
+	window.location.replace('doclist.html');
       }
       //alert("rowsAffected: " + res.rowsAffected + " -- should be 1");
 
@@ -105,9 +114,13 @@ tx.executeSql("INSERT INTO customer_sig (sig_data, doc_num, note, gps_cord) VALU
     
     
     function resetForm(){
-    	$('#signature').jSignature('reset');
-    	$("#doc").val('');
+	if (ret = '')
+	{
+	$("#doc").val('');
     	$("#note").val('');
+	}
+    	$('#signature').jSignature('reset');
+    	
     	return false;
     }
 
@@ -139,7 +152,7 @@ tx.executeSql("INSERT INTO customer_sig (sig_data, doc_num, note, gps_cord) VALU
 </div>
         <form id="searchForm" onsubmit="return false;">
        <div data-role="fieldcontain" class="ui-hide-label" >
-	   <button type="button" ontouchstart="scan(); return false;">Scan</button>
+	   <button type="button" name="scan" id="scan" ontouchstart="scan(); return false;">Scan</button>
             <label for="doc">Doc Number:</label>
             Doc: <input type="text" name="doc" id="doc" value="" />
         
