@@ -113,9 +113,10 @@ syncSig(u, row.sig_data, row.doc_num, row.note, row.gps_cord, row.Timestamp, row
         }
       }
           //alert("res.rows.item(0).doc_num: " + res.rows.item(0).doc_num);
+		getsiglist();
         });
     });
-    	getsiglist();
+    	
     }
 function deleteSig(sigid) {
 	//alert(sigid);
