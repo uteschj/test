@@ -41,7 +41,6 @@
 	db.transaction(function(tx) {
 
 	tx.executeSql('CREATE TABLE IF NOT EXISTS docHeader (docnum text primary key, description text, amount text)');
-	tx.executeSql("INSERT INTO docHeader (docnum, description, amount) VALUES (?,?,?);", ['4444', 'description', '99']);
 	db.executeSql("SELECT count(*) AS mycount FROM docHeader;", [], function(res) {
       alert("PRAGMA res: " + JSON.stringify(res));
 		for (var i = 0; i < res.rows.length; i++) {
@@ -58,26 +57,18 @@
 	//alert(document.referrer);
     }
     
-    function addDocstoSQL(docnum, description, amount){
+    function addDocstoSQL(vdocnum, vdescription, vamount){
 	db = window.sqlitePlugin.openDatabase({name: "TRS_Portal.db", location: 1});
     	db.transaction(function(tx) {
-   
-   
-tx.executeSql("INSERT INTO docHeader (docnum, description, amount) VALUES (?,?,?);", ['4444', 'description', '99'], function(tx, res) {
+
+tx.executeSql("INSERT INTO docHeader (docnum, description, amount) VALUES (?,?,?);", [vdocnum, vdescription, vamount], function(tx, res) {
       alert("insertId: " + res.insertId + " -- probably 1");
       if (res.rowsAffected == 1) {
       	
-	      $('#siglist').append('<li data-icon="info"><a href="#" ontouchstart="window.location.replace(\'sigView.html?id=' + row.docnum + '\');">' + row.description + '<br>' +
-row.docnum + ' ---- $' + row.amount + '</a></li>').listview('refresh');
+	      $('#siglist').append('<li data-icon="info"><a href="#" ontouchstart="window.location.replace(\'sigView.html?id=' + vdocnum + '\');">' + vdescription + '<br>' +
+vdocnum + ' ---- $' + vamount + '</a></li>').listview('refresh');
       }
-      //alert("rowsAffected: " + res.rowsAffected + " -- should be 1");
-      db.transaction(function(tx) {
-        tx.executeSql("select count(docnum) as cnt from docHeader;", [], function(tx, res) {
-          alert("res.rows.length: " + res.rows.length + " -- should be 1");
-          alert("res.rows.item(0).cnt: " + res.rows.item(0).cnt + " -- should be 1");
-		getsiglist();
-        });
-      });
+      
     }, function(e) {
       alert("ERROR: " + e.message);
     });
