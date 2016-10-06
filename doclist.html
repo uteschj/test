@@ -42,8 +42,8 @@
 
 	tx.executeSql('CREATE TABLE IF NOT EXISTS docHeader (docnum text primary key, description text, amount text)');
 	
-	db.executeSql("pragma table_info (docHeader);", [], function(res) {
-      //alert("PRAGMA res: " + JSON.stringify(res));
+	db.executeSql("SELECT count(*) AS mycount FROM docHeader);", [], function(res) {
+      alert("PRAGMA res: " + JSON.stringify(res));
     });
 		
 	});
