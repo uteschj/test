@@ -44,6 +44,10 @@
 	
 	db.executeSql("SELECT count(*) AS mycount FROM docHeader;", [], function(res) {
       alert("PRAGMA res: " + JSON.stringify(res));
+		for (var i = 0; i < res.rows.length; i++) {
+          var row = res.rows.item(i);
+          alert(row.mycount);
+		}
     });
 		
 	});
