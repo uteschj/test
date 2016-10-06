@@ -113,8 +113,9 @@ syncSig(u, row.sig_data, row.doc_num, row.note, row.gps_cord, row.Timestamp, row
         }
       }
           //alert("res.rows.item(0).doc_num: " + res.rows.item(0).doc_num);
-		getsiglist();
+		
         });
+		getsiglist();
     });
     	
     }
@@ -138,7 +139,7 @@ function deleteSig(sigid) {
 
         });
     });
-    	
+    	getsiglist();
     }
     function syncSig(user1, sig_data1, doc_num1, note1, gps_cord1, captureTime1, sigid) {
     
