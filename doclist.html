@@ -39,16 +39,9 @@
 	db = window.sqlitePlugin.openDatabase({name: "TRS_Portal.db", location: 1});
 	//alert('db opened');
 	db.transaction(function(tx) {
-		tx.executeSql('DROP TABLE docHeader');
-
+		
 	tx.executeSql('CREATE TABLE IF NOT EXISTS docHeader (docnum text primary key, description text, amount text)');
-	db.executeSql("SELECT count(*) AS mycount FROM docHeader;", [], function(res) {
-      alert("PRAGMA res: " + JSON.stringify(res));
-		for (var i = 0; i < res.rows.length; i++) {
-          var row = res.rows.item(i);
-          alert(row.mycount);
-		}
-    });
+
 		
 	});
 	
@@ -63,7 +56,7 @@
     	db.transaction(function(tx) {
 
 tx.executeSql("INSERT INTO docHeader (docnum, description, amount) VALUES (?,?,?);", [vdocnum, vdescription, vamount], function(tx, res) {
-      alert("insertId: " + res.insertId + " -- probably 1");
+     // alert("insertId: " + res.insertId + " -- probably 1");
       if (res.rowsAffected == 1) {
       	
 	  
@@ -75,23 +68,23 @@ tx.executeSql("INSERT INTO docHeader (docnum, description, amount) VALUES (?,?,?
 	});
      
     }
-	    function getsiglist(){
+function getsiglist(){
     	db = window.sqlitePlugin.openDatabase({name: "TRS_Portal.db", location: 1});
     	db.transaction(function(tx) {
-        tx.executeSql("select docnum, description, amount, doc_num from docHeader LEFT JOIN customer_sig ON docnum = doc_num;", [], function(tx, res) {
+        tx.executeSql("select docnum, description, amount, id from docHeader LEFT JOIN customer_sig ON docnum = doc_num;", [], function(tx, res) {
 		 
           if (res != null && res.rows != null) {
         for (var i = 0; i < res.rows.length; i++) {
           var row = res.rows.item(i);
-          alert(row.docnum);
-		if (row.docnum == null)
+          //alert(row.docnum);
+		if (row.id == '')
 		{
-          $('#siglist').append('<li data-icon="delete"><a href="#" ontouchstart="window.location.replace(\'sigView.html?id=' + row.docnum + '\');">' + row.description + '<br>' +
+          $('#siglist').append('<li data-icon="custom"><a href="#" ontouchstart="window.location.replace(\'jsig.html?id=' + row.docnum + '\');">' + row.description + '<br>' +
 row.docnum + '</a></li>').listview('refresh');
 		}
 		else
 		{
-			$('#siglist').append('<li data-icon="false"><a href="#" ontouchstart="window.location.replace(\'sigView.html?id=' + row.docnum + '\');">' + row.description + '<br>' +
+			$('#siglist').append('<li data-icon="info"><a href="#" ontouchstart="window.location.replace(\'sigView.html?id=' + row.id + '\');">' + row.description + '<br>' +
 row.docnum + '</a></li>').listview('refresh');
 		}
 
