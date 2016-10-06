@@ -71,20 +71,20 @@ tx.executeSql("INSERT INTO docHeader (docnum, description, amount) VALUES (?,?,?
 function getsiglist(){
     	db = window.sqlitePlugin.openDatabase({name: "TRS_Portal.db", location: 1});
     	db.transaction(function(tx) {
-        tx.executeSql("select docnum, description, amount, id from docHeader LEFT JOIN customer_sig ON docnum = doc_num;", [], function(tx, res) {
+        tx.executeSql("select docnum, description, amount, id as sigid from docHeader LEFT JOIN customer_sig ON docnum = doc_num;", [], function(tx, res) {
 		 
           if (res != null && res.rows != null) {
         for (var i = 0; i < res.rows.length; i++) {
           var row = res.rows.item(i);
           //alert(row.docnum);
-		if (row.id == '')
+		if (row.sigid == null)
 		{
           $('#siglist').append('<li data-icon="custom"><a href="#" ontouchstart="window.location.replace(\'jsig.html?id=' + row.docnum + '\');">' + row.description + '<br>' +
 row.docnum + '</a></li>').listview('refresh');
 		}
 		else
 		{
-			$('#siglist').append('<li data-icon="info"><a href="#" ontouchstart="window.location.replace(\'sigView.html?id=' + row.id + '\');">' + row.description + '<br>' +
+			$('#siglist').append('<li data-icon="gear"><a href="#" ontouchstart="window.location.replace(\'sigView.html?id=' + row.sigid + '\');">' + row.description + '<br>' +
 row.docnum + '</a></li>').listview('refresh');
 		}
 
@@ -92,7 +92,7 @@ row.docnum + '</a></li>').listview('refresh');
       }
           //alert("res.rows.item(0).doc_num: " + res.rows.item(0).doc_num);
         }, function(e) {
-      alert("ERROR: " + e.message);
+      alert("ERROR: 95 " + e.message);
     });
 	});
     
@@ -219,10 +219,10 @@ $.ajax({
         <button ontouchstart="loopsyncSig();">Sync With Server</button>
         
 	<ul data-role="listview" id="siglist" data-inset="true" data-theme="c" >
-    <li data-icon="custom" id="skull"><a href="#">custom-icon</a></li>
-    <li data-icon="delete"><a href="#">data-icon="delete"</a></li>
-    <li data-icon="gear"><a href="#">data-icon="gear"</a></li>
-    <li data-icon="info"><a href="#">data-icon="info"</a></li>
+    <!--<li data-icon="custom" id="skull"><a href="#">custom-icon</a></li>-->
+    <!--<li data-icon="delete"><a href="#">data-icon="delete"</a></li>-->
+    <!--<li data-icon="gear"><a href="#">data-icon="gear"</a></li>-->
+    <!--<li data-icon="info"><a href="#">data-icon="info"</a></li>-->
     <!--<li data-icon="false"><a href="#">data-icon="false"</a></li>-->
 </ul>
 	
