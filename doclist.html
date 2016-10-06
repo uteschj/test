@@ -42,14 +42,14 @@
 	tx.executeSql('CREATE TABLE IF NOT EXISTS docHeader (docnum integer primary key, description text, amount text)');
 	
 	db.executeSql("pragma table_info (docHeader);", [], function(res) {
-      //alert("PRAGMA res: " + JSON.stringify(res));
+      alert("PRAGMA res: " + JSON.stringify(res));
     });
 		
 	});
 	
 	
 	getsiglist();
-	
+
 	//alert(document.referrer);
     }
     
@@ -59,9 +59,10 @@
    
    
 tx.executeSql("INSERT INTO docHeader (docnum, description, amount) VALUES (?,?,?);", [docnum, description, amount], function(tx, res) {
-      //alert("insertId: " + res.insertId + " -- probably 1");
+      alert("insertId: " + res.insertId + " -- probably 1");
       if (res.rowsAffected == 1) {
-      	$('#siglist').append('<li data-icon="info"><a href="#" ontouchstart="window.location.replace(\'sigView.html?id=' + row.docnum + '\');">' + row.description + '<br>' +
+      	
+	      $('#siglist').append('<li data-icon="info"><a href="#" ontouchstart="window.location.replace(\'sigView.html?id=' + row.docnum + '\');">' + row.description + '<br>' +
 row.docnum + ' ---- $' + row.amount + '</a></li>').listview('refresh');
       }
       //alert("rowsAffected: " + res.rowsAffected + " -- should be 1");
@@ -75,6 +76,7 @@ row.docnum + ' ---- $' + row.amount + '</a></li>').listview('refresh');
       alert("ERROR: " + e.message);
     });
 	});
+     
     }
     function getsiglist(){
     	//alert("getting doc");
