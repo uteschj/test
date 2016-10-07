@@ -55,7 +55,7 @@
     function addDocstoSQL(vdocnum, vdescription, vamount){
 	db = window.sqlitePlugin.openDatabase({name: "TRS_Portal.db", location: 1});
     	db.transaction(function(tx) {
-alert(vdocnum);
+//alert(vdocnum);
 tx.executeSql("INSERT INTO docHeader (docnum, description, amount) VALUES (?,?,?);", [vdocnum, vdescription, vamount], function(tx, res) {
      // alert("insertId: " + res.insertId + " -- probably 1");
       if (res.rowsAffected == 1) {
