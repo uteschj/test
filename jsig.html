@@ -88,7 +88,11 @@ tx.executeSql("INSERT INTO customer_sig (sig_data, doc_num, note, gps_cord) VALU
       //alert("insertId: " + res.insertId + " -- probably 1");
       if (res.rowsAffected == 1) {
       	resetForm();
+	      if (ret != '')
+	{
 	window.location.replace('doclist.html');
+	}
+	
       }
       //alert("rowsAffected: " + res.rowsAffected + " -- should be 1");
 
