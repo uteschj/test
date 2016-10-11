@@ -160,6 +160,8 @@ $.ajax({
     success: function(data, textStatus, jqXHR)
     {
 	    alert(data);
+	    alert(textStatus);
+	    alert(jqXHR);
        deleteSig(sigid);
         //jsessionID = data;
     },
