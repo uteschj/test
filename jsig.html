@@ -63,7 +63,7 @@
 	 $('#doc').val(getUrlParameter('id'));   
 	 $("#doc").attr("disabled", "disabled");  
 		    $("#scan").attr("disabled", "disabled"); 
-		ret = doclist;    
+		ret = "doclist";    
 	    }
 	    
     }
@@ -118,11 +118,10 @@ tx.executeSql("INSERT INTO customer_sig (sig_data, doc_num, note, gps_cord) VALU
     
     
     function resetForm(){
-	if (ret = '')
-	{
+	
 	$("#doc").val('');
     	$("#note").val('');
-	}
+	
     	$('#signature').jSignature('reset');
     	
     	return false;
@@ -174,11 +173,13 @@ tx.executeSql("INSERT INTO customer_sig (sig_data, doc_num, note, gps_cord) VALU
 	<label for="note">Note:</label>
             Name: <input type="text" name="note" id="note" value="" />
         </div>
-        <button type="button" ontouchstart="recordsig(); return false;">Save</button>
+		<div style="width:100px;">
+        <button type="button" onclick="recordsig(); return false;">Save</button>
+		</div>
         </form>
         <br><br><br>
 	    <div style="width:100px;">
-        <button type="button" ontouchstart="resetForm(); return false;">Reset</button>
+        <button type="button" onclick="resetForm(); return false;">Reset</button>
 	    </div>
         
         </div>
