@@ -153,7 +153,7 @@ function deleteSig(sigid) {
       var formData = {user:user1,sig_data:sig_data1,doc_num:doc_num1,note:note1,gps_cord:gps_cord1,captureTime:captureTime1}; //Array 
  
 $.ajax({
-    url : "http://192.168.254.107/saveSig.php",
+    url : "http://192.168.1.10/saveSig.php",
     type: "POST",
     data : formData,
     async: false,
