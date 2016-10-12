@@ -73,7 +73,7 @@ function getsiglist(){
 	$('#siglist').empty()
     	db = window.sqlitePlugin.openDatabase({name: "TRS_Portal.db", location: 1});
     	db.transaction(function(tx) {
-        tx.executeSql("select docnum, description, amount, id as sigid from docHeader LEFT JOIN customer_sig ON docnum = doc_num ORDER BY description COLLATE NOCASE;", [], function(tx, res) {
+        tx.executeSql("select DISTINCT docnum, description, amount, id as sigid from docHeader LEFT JOIN customer_sig ON docnum = doc_num ORDER BY description COLLATE NOCASE;", [], function(tx, res) {
 		 
           if (res != null && res.rows != null) {
         for (var i = 0; i < res.rows.length; i++) {
@@ -140,7 +140,7 @@ function deleteSig(sigid) {
       var formData = {user:user1,sig_data:sig_data1,doc_num:doc_num1,note:note1,gps_cord:gps_cord1,captureTime:captureTime1}; //Array 
  
 $.ajax({
-    url : "http://192.168.1.10/saveSig.php",
+    url : "http://192.168.254.107/saveSig.php",
     type: "POST",
     data : formData,
     async: false,
@@ -177,7 +177,7 @@ function getDocs() {
 	
       var formData = {docs:s}; //Array 
 $.ajax({
-    url : "http://192.168.1.10/appGetDocs.php",
+    url : "http://192.168.254.107/appGetDocs.php",
     type: "POST",
     data : formData,
     success: function(data, textStatus, jqXHR)
