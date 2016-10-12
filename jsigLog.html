@@ -110,7 +110,11 @@ row.Timestamp + '</a></li>').listview('refresh');
           var row = res.rows.item(i);
           
           
-syncSig(u, row.sig_data, row.doc_num, row.note, row.gps_cord, row.Timestamp, row.id);
+
+		window.setTimeout(function(){
+                 // do whatever you want to do   
+			syncSig(u, row.sig_data, row.doc_num, row.note, row.gps_cord, row.Timestamp, row.id);
+                  }, 600);
         }
       }
           //alert("res.rows.item(0).doc_num: " + res.rows.item(0).doc_num);
@@ -153,7 +157,7 @@ function deleteSig(sigid) {
       var formData = {user:user1,sig_data:sig_data1,doc_num:doc_num1,note:note1,gps_cord:gps_cord1,captureTime:captureTime1}; //Array 
  
 $.ajax({
-    url : "http://192.168.1.10/saveSig.php",
+    url : "http://192.168.254.107/saveSig.php",
     type: "POST",
     data : formData,
     async: false,
