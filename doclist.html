@@ -217,7 +217,8 @@ $.ajax({
     error: function (jqXHR, textStatus, errorThrown)
     {
  alert(textStatus);
-    }
+    },
+	async: false
 });
 	}
 
@@ -248,7 +249,8 @@ $.ajax({
     error: function (jqXHR, textStatus, errorThrown)
     {
  alert("getDocItems " + textStatus);
-    }
+    },
+	async: false
 });
 	
 }
