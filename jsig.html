@@ -145,8 +145,8 @@ function getsigitemlist(docnumba){
           var row = res.rows.item(i);
           //alert(row.docnum);
 		
-			$('#siglist').append('<li data-icon="info"><a href="#" >' + row.item + '<br>' +
-row.desc + ' ---------- $' + row.ship + '</a></li>').listview('refresh');
+			$('#siglist').append('<li data-icon="custom"><a href="#" >' + row.item + '<br>' +
+row.desc + '<br>Shipped: ' + row.ship + '</a></li>').listview('refresh');
 		
         }
       }
