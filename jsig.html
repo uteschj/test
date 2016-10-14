@@ -80,13 +80,18 @@
     	var doc = $("#doc").val();
     	var note = $("#note").val();
 	var extraNotedata = "\\\n";
+	    try {
 	    var listItems = $("#siglist li");
 		listItems.each(function(idx, li) {
     		var product = $(li);
 			var orgship = product.dataset.ship;
+			alert(orgship);
 			var orgItem = product.dataset.item;
+			alert(orgItem);
 			var orgItemID = product.dataset.prodid;
-			var numberbox = product.children('#' + orgItemId + orgItem).val();
+			alert(orgItemID);
+			var numberbox = product.children("#" + orgItemId + orgItem).val();
+			alert(numberbox);
 			if (orgship != numberbox)
 			{
 			extraNotedata = extraNotedata + orgItem + " shipped " + numberbox + "\\\n";	
@@ -94,7 +99,11 @@
 
    		 // and the rest of your code
 		});
-	    
+	    }
+	    catch(errrr)
+	    {
+		alert(errrr);    
+	    }
 	    note = note + extraNotedata;
 	    
     	//alert(gpscordssig);
