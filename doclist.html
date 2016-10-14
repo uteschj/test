@@ -188,6 +188,7 @@ function getDocs() {
 	db = window.sqlitePlugin.openDatabase({name: "TRS_Portal.db", location: 1});
 	//alert('db opened');
 	db.transaction(function(tx) {tx.executeSql('DROP TABLE docHeader;');});
+		db.transaction(function(tx) {tx.executeSql('DROP TABLE docBody;');});
 	
 	}
 	else	
