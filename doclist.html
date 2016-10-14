@@ -236,12 +236,13 @@ $.ajax({
     data : formData,
     success: function(data, textStatus, jqXHR)
     {
-      //alert(data);
+      alert(data);
       var json_obj = $.parseJSON(data);//parse JSON
        for (var i in json_obj) 
             {
+		    //alert(json_obj[i].item);
 		    addItemstoSQL(json_obj[i].doc, json_obj[i].item, json_obj[i].desc, json_obj[i].ship);
-                //alert(json_obj[i].item);
+                
             }
 	    
             },
