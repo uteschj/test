@@ -82,7 +82,7 @@ tx.executeSql("INSERT INTO docBody (docnum, item, desc, ship) VALUES (?,?,?,?);"
       }
       
     }, function(e) {
-      alert("ERROR: " + e.message);
+      alert("addItemstoSQL ERROR: " + e.message);
     });
 	});
      
@@ -243,7 +243,7 @@ $.ajax({
 		    addItemstoSQL(json_obj[i].doc, json_obj[i].item, json_obj[i].desc, json_obj[i].ship);
                 //alert(json_obj[i].item);
             }
-	    $("#doc").val("");
+	    
             },
 	
     error: function (jqXHR, textStatus, errorThrown)
