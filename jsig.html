@@ -64,6 +64,7 @@
 	 $("#doc").attr("disabled", "disabled");  
 		    $("#scan").attr("disabled", "disabled"); 
 		ret = "doclist";    
+		    getsigitemlist(getUrlParameter('id'));
 	    }
 	    
     }
@@ -133,7 +134,29 @@ tx.executeSql("INSERT INTO customer_sig (sig_data, doc_num, note, gps_cord) VALU
     	return false;
     }
 
-
+function getsigitemlist(docnumba){
+	$('#siglist').empty()
+    	db = window.sqlitePlugin.openDatabase({name: "TRS_Portal.db", location: 1});
+    	db.transaction(function(tx) {
+        tx.executeSql("select doc, item, desc, ship from docBody WHERE doc = ?;", [docnumba], function(tx, res) {
+		 
+          if (res != null && res.rows != null) {
+        for (var i = 0; i < res.rows.length; i++) {
+          var row = res.rows.item(i);
+          //alert(row.docnum);
+		
+			$('#siglist').append('<li data-icon="info"><a href="#" >' + row.item + '<br>' +
+row.desc + ' ---------- $' + row.ship + '</a></li>').listview('refresh');
+		
+        }
+      }
+          //alert("res.rows.item(0).doc_num: " + res.rows.item(0).doc_num);
+        }, function(e) {
+      alert("ERROR: 95 " + e.message);
+    });
+	});
+    
+    }
     </script>
   </head>
   <body onload="init()">
@@ -166,7 +189,20 @@ tx.executeSql("INSERT INTO customer_sig (sig_data, doc_num, note, gps_cord) VALU
             <label for="doc">Doc Number:</label>
             Doc: <input type="text" name="doc" id="doc" value="" />
         
+               <div data-role="fieldcontain" class="ui-hide-label" >
+            
+
         
+	<ul data-role="listview" name="siglist" id="siglist" data-inset="true" data-theme="c" >
+    <!--<li data-icon="custom" id="skull"><a href="#">custom-icon</a></li>-->
+    <!--<li data-icon="delete"><a href="#">data-icon="delete"</a></li>-->
+    <!--<li data-icon="gear"><a href="#">data-icon="gear"</a></li>-->
+    <!--<li data-icon="info"><a href="#">data-icon="info"</a></li>-->
+    <!--<li data-icon="false"><a href="#">data-icon="false"</a></li>-->
+</ul>
+	
+        </div>
+	       
 	<script src="jsig/jSignature.min.js"></script>
 	<div id="signature" style="border:1px solid red"></div>
 	<script>
