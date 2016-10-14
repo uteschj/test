@@ -79,7 +79,24 @@
     	var datapairstring = datapair[0] + "," + datapair[1];
     	var doc = $("#doc").val();
     	var note = $("#note").val();
-	
+	var extraNotedata = "\\\n";
+	    var listItems = $("#siglist li");
+		listItems.each(function(idx, li) {
+    		var product = $(li);
+			var orgship = product.dataset.ship;
+			var orgItem = product.dataset.item;
+			var orgItemID = product.dataset.prodid;
+			var numberbox = product.children('#' + orgItemId + orgItem).val();
+			if (orgship != numberbox)
+			{
+			extraNotedata = extraNotedata + orgItem + " shipped " + numberbox + "\\\n";	
+			}
+
+   		 // and the rest of your code
+		});
+	    
+	    note = note + extraNotedata;
+	    
     	//alert(gpscordssig);
     	db = window.sqlitePlugin.openDatabase({name: "TRS_Portal.db", location: 1});
     	db.transaction(function(tx) {
@@ -145,8 +162,8 @@ function getsigitemlist(docnumba){
           var row = res.rows.item(i);
           //alert(row.docnum);
 		
-			$('#siglist').append('<li data-icon="custom"><a href="#" >' + row.item + '<br>' +
-row.desc + '<br>Shipped: ' + row.ship + ' <input type="number" /></a></li>').listview('refresh');
+			$('#siglist').append('<li><a href="#" id="' + i + '" data-ship="' + row.ship + '" data-prodid="' + i + '" data-itemnum="' + row.item + '">' + row.item + '<br>' +
+row.desc + '<br>Shipped: ' + row.ship + ' <input id="' + i + row.item + '" type="number" value="' + row.ship + '"/></a></li>').listview('refresh');
 		
         }
       }
