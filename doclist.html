@@ -40,7 +40,8 @@
 	//alert('db opened');
 	db.transaction(function(tx) {
 		
-	tx.executeSql('CREATE TABLE IF NOT EXISTS docHeader (docnum text primary key, description text, amount text)');
+	tx.executeSql('CREATE TABLE IF NOT EXISTS docHeader (docnum text primary key, description text, amount text);');
+	tx.executeSql('CREATE TABLE IF NOT EXISTS docBody (docnum text, item text, amount text, PRIMARY KEY (docnum, item));');
 
 		
 	});
@@ -57,6 +58,23 @@
     	db.transaction(function(tx) {
 //alert(vdocnum);
 tx.executeSql("INSERT INTO docHeader (docnum, description, amount) VALUES (?,?,?);", [vdocnum, vdescription, vamount], function(tx, res) {
+     // alert("insertId: " + res.insertId + " -- probably 1");
+      if (res.rowsAffected == 1) {
+      	
+	  
+      }
+      
+    }, function(e) {
+      alert("ERROR: " + e.message);
+    });
+	});
+     
+    }
+function addItemstoSQL(vdocnum, vitem, vamount){
+	db = window.sqlitePlugin.openDatabase({name: "TRS_Portal.db", location: 1});
+    	db.transaction(function(tx) {
+//alert(vdocnum);
+tx.executeSql("INSERT INTO docBody (docnum, item, amount) VALUES (?,?,?);", [vdocnum, vitem, vamount], function(tx, res) {
      // alert("insertId: " + res.insertId + " -- probably 1");
       if (res.rowsAffected == 1) {
       	
@@ -187,6 +205,7 @@ $.ajax({
        for (var i in json_obj) 
             {
 		    addDocstoSQL(json_obj[i].docnum, json_obj[i].description, json_obj[i].amount);
+		    getDocItems(json_obj[i].docnum);
                 //alert(json_obj[i].docnum);
             }
         getsiglist();
@@ -200,6 +219,37 @@ $.ajax({
 });
 	}
 
+}
+	    
+function getDocItems(docnumber) {
+  //alert(s + ' ' + pagenumber);
+    
+	
+	
+      var formData = {docs:docnumber}; //Array 
+$.ajax({
+    url : "http://192.168.254.107/appGetDocItems.php",
+    type: "POST",
+    data : formData,
+    success: function(data, textStatus, jqXHR)
+    {
+      //alert(data);
+      var json_obj = $.parseJSON(data);//parse JSON
+       for (var i in json_obj) 
+            {
+		    addItemstoSQL(json_obj[i].doc, json_obj[i].item, json_obj[i].ship);
+                //alert(json_obj[i].docnum);
+            }
+        getsiglist();
+	    $("#doc").val("");
+            },
+	
+    error: function (jqXHR, textStatus, errorThrown)
+    {
+ alert(textStatus);
+    }
+});
+	
 }
     </script>
   </head>
