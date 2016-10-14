@@ -41,7 +41,7 @@
 	db.transaction(function(tx) {
 		
 	tx.executeSql('CREATE TABLE IF NOT EXISTS docHeader (docnum text primary key, description text, amount text);');
-	tx.executeSql('CREATE TABLE IF NOT EXISTS docBody (docnum text, item text, amount text, PRIMARY KEY (docnum, item));');
+	tx.executeSql('CREATE TABLE IF NOT EXISTS docBody (docnum text, item text, desc text, ship text, PRIMARY KEY (docnum, item));');
 
 		
 	});
@@ -70,11 +70,11 @@ tx.executeSql("INSERT INTO docHeader (docnum, description, amount) VALUES (?,?,?
 	});
      
     }
-function addItemstoSQL(vdocnum, vitem, vamount){
+function addItemstoSQL(vdocnum, vitem, vdesc, vamount){
 	db = window.sqlitePlugin.openDatabase({name: "TRS_Portal.db", location: 1});
     	db.transaction(function(tx) {
 //alert(vdocnum);
-tx.executeSql("INSERT INTO docBody (docnum, item, amount) VALUES (?,?,?);", [vdocnum, vitem, vamount], function(tx, res) {
+tx.executeSql("INSERT INTO docBody (docnum, item, desc, ship) VALUES (?,?,?);", [vdocnum, vitem, vdesc, vamount], function(tx, res) {
      // alert("insertId: " + res.insertId + " -- probably 1");
       if (res.rowsAffected == 1) {
       	
@@ -237,7 +237,7 @@ $.ajax({
       var json_obj = $.parseJSON(data);//parse JSON
        for (var i in json_obj) 
             {
-		    addItemstoSQL(json_obj[i].doc, json_obj[i].item, json_obj[i].ship);
+		    addItemstoSQL(json_obj[i].doc, json_obj[i].item, json_obj[i].desc, json_obj[i].ship);
                 //alert(json_obj[i].docnum);
             }
         getsiglist();
