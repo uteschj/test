@@ -148,7 +148,7 @@ function deleteSig(sigid) {
     });
     	
     }
-    function syncSig(user1, sig_data1, doc_num1, note1, gps_cord1, captureTime1, sigid) {
+function syncSig(user1, sig_data1, doc_num1, note1, gps_cord1, captureTime1, sigid) {
     
     var u = window.localStorage["username"];
     
@@ -205,8 +205,9 @@ $.ajax({
        for (var i in json_obj) 
             {
 		    addDocstoSQL(json_obj[i].docnum, json_obj[i].description, json_obj[i].amount);
+		    alert(json_obj[i].docnum);
 		    getDocItems(json_obj[i].docnum);
-                //alert(json_obj[i].docnum);
+                alert("after " + json_obj[i].docnum);
             }
         getsiglist();
 	    $("#doc").val("");
@@ -238,9 +239,8 @@ $.ajax({
        for (var i in json_obj) 
             {
 		    addItemstoSQL(json_obj[i].doc, json_obj[i].item, json_obj[i].desc, json_obj[i].ship);
-                //alert(json_obj[i].docnum);
+                alert(json_obj[i].item);
             }
-        getsiglist();
 	    $("#doc").val("");
             },
 	
