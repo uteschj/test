@@ -41,7 +41,10 @@
 	db.transaction(function(tx) {
 		
 	tx.executeSql('CREATE TABLE IF NOT EXISTS docHeader (docnum text primary key, description text, amount text);');
-	tx.executeSql('CREATE TABLE IF NOT EXISTS docBody (docnum text, item text, desc text, ship text, PRIMARY KEY (docnum, item));');
+	tx.executeSql('CREATE TABLE IF NOT EXISTS docBody (docnum text, item text, desc text, ship text, CONSTRAINT docBody_pk PRIMARY KEY (docnum, item));');
+	}, function(e) {
+      alert("CreateTable ERROR: " + e.message);
+    });
 
 		
 	});
@@ -236,7 +239,7 @@ $.ajax({
     data : formData,
     success: function(data, textStatus, jqXHR)
     {
-      alert(data);
+      //alert(data);
       var json_obj = $.parseJSON(data);//parse JSON
        for (var i in json_obj) 
             {
