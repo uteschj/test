@@ -57,7 +57,7 @@
 	db = window.sqlitePlugin.openDatabase({name: "TRS_Portal.db", location: 1});
     	db.transaction(function(tx) {
 //alert(vdocnum);
-tx.executeSql("INSERT INTO docHeader (docnum, description, amount) VALUES (?,?,?);", [vdocnum, vdescription, vamount], function(tx, res) {
+tx.executeSql("INSERT OR IGNORE INTO docHeader (docnum, description, amount) VALUES (?,?,?);", [vdocnum, vdescription, vamount], function(tx, res) {
      // alert("insertId: " + res.insertId + " -- probably 1");
       if (res.rowsAffected == 1) {
       	
@@ -74,7 +74,7 @@ function addItemstoSQL(vdocnum, vitem, vdesc, vamount){
 	db = window.sqlitePlugin.openDatabase({name: "TRS_Portal.db", location: 1});
     	db.transaction(function(tx) {
 //alert(vdocnum);
-tx.executeSql("INSERT INTO docBody (docnum, item, desc, ship) VALUES (?,?,?,?);", [vdocnum, vitem, vdesc, vamount], function(tx, res) {
+tx.executeSql("INSERT OR IGNORE INTO docBody (docnum, item, desc, ship) VALUES (?,?,?,?);", [vdocnum, vitem, vdesc, vamount], function(tx, res) {
      // alert("insertId: " + res.insertId + " -- probably 1");
       if (res.rowsAffected == 1) {
       	
