@@ -181,7 +181,7 @@ function getsigitemlist(docnumba){
           //alert(row.docnum);
 		
 			$('#siglist').append('<li  data-ship="' + row.ship + '" data-prodid="' + i + '" data-itemnum="' + row.item + '"><a href="#">' + row.item + '<br>' +
-row.desc + '<br>Shipped: ' + row.ship + ' <input id="' + i + row.item + '" type="number" value="' + row.ship + '" tabindex="' + i + '"/></a></li>').listview('refresh');
+row.desc + '<br>Shipped: ' + row.ship + ' <input id="' + i + row.item + '" type="number" value="' + row.ship + '" tabindex="' + i + '" pattern="[0-9]*"/></a></li>').listview('refresh');
 		
         }
       }
