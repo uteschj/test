@@ -84,11 +84,11 @@
 	    var listItems = $("#siglist li");
 		listItems.each(function(idx, li) {
     		var product = $(li);
-			var orgship = product.getAttribute("data-ship");
+			var orgship = product.data("ship");
 			alert(orgship);
-			var orgItem = product.getAttribute("data-item");
+			var orgItem = product.data("item");
 			alert(orgItem);
-			var orgItemID = product.getAttribute("data-prodid");
+			var orgItemID = product.data("prodid");
 			alert(orgItemID);
 			var numberbox = product.children("#" + orgItemId + orgItem).val();
 			alert(numberbox);
