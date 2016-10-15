@@ -182,8 +182,8 @@ function getsigitemlist(docnumba){
           var row = res.rows.item(i);
           //alert(row.docnum);
 		
-			$('#siglist').append('<li  data-ship="' + row.ship + '" data-prodid="' + i + '" data-itemnum="' + row.item + '"><a href="#">' + row.item + '<br>' +
-row.desc + '<br>Shipped: ' + row.ship + ' <input id="' + i + row.item + '" type="number" value="' + row.ship + '" tabindex="' + i + '" pattern="[0-9]*"/></a></li>').listview('refresh');
+			$('#siglist').append('<li  data-ship="' + row.ship + '" data-prodid="' + (i + 1) + '" data-itemnum="' + row.item + '"><a href="#">' + row.item + '<br>' +
+row.desc + '<br>Shipped: ' + row.ship + ' <input id="' + (i + 1) + row.item + '" type="number" value="' + row.ship + '" tabindex="' + (i + 1) + '" pattern="[0-9]*"/></a></li>').listview('refresh');
 		
         }
       }
