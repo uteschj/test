@@ -84,8 +84,12 @@
 	    var listItems = $("#siglist li");
 		listItems.each(function(idx, li) {
     		var product = $(li);
-			var orgship = product.data("ship");
+			var orgship = product.data("data-ship");
 			alert(orgship);
+			var orgshipp = product.attr("data-ship");
+			alert(orgshipp);
+			var orgshippp = product.attr("ship");
+			alert(orgshippp);
 			var orgItem = product.data("item");
 			alert(orgItem);
 			var orgItemID = product.data("prodid");
@@ -94,7 +98,7 @@
 			alert(numberbox);
 			if (orgship != numberbox)
 			{
-			extraNotedata = extraNotedata + orgItem + " shipped " + numberbox + '\\\n';	
+			extraNotedata = extraNotedata + orgItem + " shipped " + numberbox + '\\n';	
 			}
 
    		 // and the rest of your code
