@@ -176,7 +176,7 @@ function getsigitemlist(docnumba){
           //alert(row.docnum);
 		
 			$('#siglist').append('<li  data-ship="' + row.ship + '" data-prodid="' + i + '" data-itemnum="' + row.item + '">' + row.item + '<br>' +
-row.desc + '<br>Shipped: ' + row.ship + ' <input id="' + i + row.item + '" type="number" value="' + row.ship + '"/></li>').listview('refresh');
+row.desc + '<br>Shipped: ' + row.ship + ' <input id="' + i + row.item + '" type="number" value="' + row.ship + '"/><a href="#"></a></li>').listview('refresh');
 		
         }
       }
