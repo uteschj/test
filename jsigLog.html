@@ -112,7 +112,39 @@ row.Timestamp + '</a></li>').listview('refresh');
           
 
 		
-			syncSig(u, row.sig_data, row.doc_num, row.note, row.gps_cord, row.Timestamp, row.id);
+			//syncSig(u, row.sig_data, row.doc_num, row.note, row.gps_cord, row.Timestamp, row.id);
+		
+		
+		
+    
+    //alert(doc_num1);
+    
+      //alert(doc_num1);
+      var formData = {user:u,sig_data:row.sig_data,doc_num:row.doc_num,note:row.note,gps_cord:row.gps_cord,captureTime:row.Timestamp}; //Array 
+ 
+$.ajax({
+    url : "http://192.168.1.10/saveSig.php",
+    type: "POST",
+    data : formData,
+    async: false,
+    success: function(data, textStatus, jqXHR)
+    {
+	   
+       deleteSig(sigid);
+        //jsessionID = data;
+    },
+    error: function (jqXHR, textStatus, errorThrown)
+    {
+ alert(doc_num1 + ' failed');
+ //alert(errorThrown);
+    }
+    
+});
+		
+		
+		
+		
+		
                  
         }
       }
