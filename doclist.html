@@ -196,7 +196,7 @@ function getDocs() {
 	
       var formData = {docs:s}; //Array 
 $.ajax({
-    url : "http://192.168.254.107/appGetDocs.php",
+    url : "http://192.168.1.10/appGetDocs.php",
     type: "POST",
     data : formData,
     success: function(data, textStatus, jqXHR)
@@ -231,7 +231,7 @@ function getDocItems(docnumber) {
 	
       var formData = {docs:docnumber}; //Array 
 $.ajax({
-    url : "http://192.168.254.107/appGetDocItems.php",
+    url : "http://192.168.1.10/appGetDocItems.php",
     type: "POST",
     data : formData,
     success: function(data, textStatus, jqXHR)
