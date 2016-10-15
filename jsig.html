@@ -107,13 +107,15 @@
 		alert(errrr);  
 		    //break;
 	    }
+	    if (extraNotedata != '\r\n')
+	    {
 	    var r = confirm("You are about to report these issues" + extraNotedata);
 	    if (r == true) {
     		note = note + extraNotedata;
 		} else {
    		 return;
 		}
-	    
+	    }
 	    
     	//alert(gpscordssig);
     	db = window.sqlitePlugin.openDatabase({name: "TRS_Portal.db", location: 1});
