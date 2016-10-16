@@ -175,7 +175,7 @@ function getsigitemlist(docnumba){
 	$('#siglist').empty()
     	db = window.sqlitePlugin.openDatabase({name: "TRS_Portal.db", location: 1});
     	db.transaction(function(tx) {
-        tx.executeSql("select docnum, item, desc, ship from docBody WHERE docnum = ?;", [docnumba], function(tx, res) {
+        tx.executeSql("select docnum, item, desc, ship from docBody WHERE docnum = ? ORDER BY bodyid;", [docnumba], function(tx, res) {
 		 
           if (res != null && res.rows != null) {
         for (var i = 0; i < res.rows.length; i++) {
