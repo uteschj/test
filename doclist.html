@@ -34,9 +34,9 @@
     var db;
     function onDeviceReady() {
        //StatusBar.overlaysWebView(false);
-       alert('device ready');
+       //alert('device ready');
        
-	db = window.sqlitePlugin.openDatabase({name: "TRS_Portal.db", location: 'default'});
+	db = window.sqlitePlugin.openDatabase({name: "TRS_Portal.db", location: 1});
 	//alert('db opened');
 	db.transaction(function(tx) {
 		
@@ -46,16 +46,13 @@
 		
 	});
 	
-	  db.transaction(function(tx) {
-    tx.executeSql('CREATE TABLE IF NOT EXISTS DemoTable (name, score)');
-    tx.executeSql('INSERT INTO DemoTable VALUES (?,?)', ['Alice', 101]);
-    tx.executeSql('INSERT INTO DemoTable VALUES (?,?)', ['Betty', 202]);
-  }, function(error) {
-    alert('Transaction ERROR: ' + error.message);
-  }, function() {
-    alert('Populated database OK');
+db.transaction(function(tx) {
+    tx.executeSql('SELECT count(*) AS mycount FROM DemoTable', [], function(tx, rs) {
+      alert('Record count (expected to be 2): ' + rs.rows.item(0).mycount);
+    }, function(tx, error) {
+      alert('SELECT error: ' + error.message);
+    });
   });
-	    
 	    
 	getsiglist();
 	    $('#siglist').focus();
@@ -99,7 +96,7 @@ tx.executeSql("INSERT OR IGNORE INTO docBody (docnum, item, desc, ship, bodyid) 
     }
 function getsiglist(){
 	$('#siglist').empty()
-    	db = window.sqlitePlugin.openDatabase({name: "TRS_Portal.db", location: 'default'});
+    	db = window.sqlitePlugin.openDatabase({name: "TRS_Portal.db", location: 1});
     	db.transaction(function(tx) {
         tx.executeSql("select DISTINCT docnum, description, amount, id as sigid from docHeader LEFT JOIN customer_sig ON docnum = doc_num ORDER BY description COLLATE NOCASE;", [], function(tx, res) {
 		 
