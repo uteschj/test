@@ -36,7 +36,7 @@
        //StatusBar.overlaysWebView(false);
        alert('device ready');
        
-	db = window.sqlitePlugin.openDatabase({name: "TRS_Portal.db", location: 1});
+	db = window.sqlitePlugin.openDatabase({name: "TRS_Portal.db", location: 'default'});
 	//alert('db opened');
 	db.transaction(function(tx) {
 		
