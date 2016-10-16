@@ -41,7 +41,7 @@
 	db.transaction(function(tx) {
 		
 	tx.executeSql('CREATE TABLE IF NOT EXISTS docHeader (docnum text primary key, description text, amount text);');
-	tx.executeSql('CREATE TABLE IF NOT EXISTS docBody (docnum text, item text, desc text, ship text, CONSTRAINT docBody_pk PRIMARY KEY (docnum, item));');
+	tx.executeSql('CREATE TABLE IF NOT EXISTS docBody (docnum text, item text, desc text, ship text, bodyid text, CONSTRAINT docBody_pk PRIMARY KEY (docnum, item));');
 	
 		
 	});
@@ -70,11 +70,11 @@ tx.executeSql("INSERT OR IGNORE INTO docHeader (docnum, description, amount) VAL
 	});
      
     }
-function addItemstoSQL(vdocnum, vitem, vdesc, vamount){
+function addItemstoSQL(vdocnum, vitem, vdesc, vamount, vbodyid){
 	db = window.sqlitePlugin.openDatabase({name: "TRS_Portal.db", location: 1});
     	db.transaction(function(tx) {
 //alert(vdocnum);
-tx.executeSql("INSERT OR IGNORE INTO docBody (docnum, item, desc, ship) VALUES (?,?,?,?);", [vdocnum, vitem, vdesc, vamount], function(tx, res) {
+tx.executeSql("INSERT OR IGNORE INTO docBody (docnum, item, desc, ship, bodyid) VALUES (?,?,?,?, ?);", [vdocnum, vitem, vdesc, vamount, vbodyid], function(tx, res) {
      // alert("insertId: " + res.insertId + " -- probably 1");
       if (res.rowsAffected == 1) {
       	
@@ -183,7 +183,7 @@ function getDocs() {
     var s = $("#doc").val();
 	if (s == "delete")
 	{
-	alert("dropping table docHeader");
+	alert("dropping table docHeader and docBody");
 	//drop the docHeader table
 	db = window.sqlitePlugin.openDatabase({name: "TRS_Portal.db", location: 1});
 	//alert('db opened');
@@ -243,7 +243,7 @@ $.ajax({
        for (var i in json_obj) 
             {
 		    //alert(json_obj[i].item);
-		    addItemstoSQL(json_obj[i].doc, json_obj[i].item, json_obj[i].desc, json_obj[i].ship);
+		    addItemstoSQL(json_obj[i].doc, json_obj[i].item, json_obj[i].desc, json_obj[i].ship, json_obj[i].bodyid);
                 
             }
 	    
