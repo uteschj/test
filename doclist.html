@@ -89,7 +89,7 @@ tx.executeSql("INSERT OR IGNORE INTO docBody (docnum, item, desc, ship, bodyid) 
     }
 function getsiglist(){
 	$('#siglist').empty()
-    	db = window.sqlitePlugin.openDatabase({name: "TRS_Portal.db", location: 1});
+    	db = window.sqlitePlugin.openDatabase({name: "TRS_Portal.db", location: 'default'});
     	db.transaction(function(tx) {
         tx.executeSql("select DISTINCT docnum, description, amount, id as sigid from docHeader LEFT JOIN customer_sig ON docnum = doc_num ORDER BY description COLLATE NOCASE;", [], function(tx, res) {
 		 
