@@ -42,17 +42,12 @@
 		
 	tx.executeSql('CREATE TABLE IF NOT EXISTS docHeader (docnum text primary key, description text, amount text);');
 	tx.executeSql('CREATE TABLE IF NOT EXISTS docBody (docnum text, item text, desc text, ship text, bodyid integer, CONSTRAINT docBody_pk PRIMARY KEY (docnum, item));');
+	tx.executeSql('CREATE TABLE IF NOT EXISTS customer_sig (id integer primary key, sig_data text, doc_num text, note text, gps_cord text, Timestamp DATETIME DEFAULT CURRENT_TIMESTAMP)');
 	
 		
 	});
 	
-db.transaction(function(tx) {
-    tx.executeSql('SELECT count(*) AS mycount FROM DemoTable', [], function(tx, rs) {
-      alert('Record count (expected to be 2): ' + rs.rows.item(0).mycount);
-    }, function(tx, error) {
-      alert('SELECT error: ' + error.message);
-    });
-  });
+
 	    
 	getsiglist();
 	    $('#siglist').focus();
