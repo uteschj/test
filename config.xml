@@ -71,7 +71,7 @@
     -->
 
     <!-- Customize your app and platform with the preference element. -->
-    <preference name="phonegap-version"           value="cli-6.3.0" />          <!-- all: current version of PhoneGap 3.6.3-->
+    <preference name="phonegap-version"           value="3.6.3" />          <!-- all: current version of PhoneGap 3.6.3-->
     <preference name="orientation"                value="default" />        <!-- all: default means both landscape and portrait are enabled -->
     <preference name="target-device"              value="universal" />      <!-- all: possible values handset, tablet, or universal -->
     <preference name="fullscreen"                 value="false" />           <!-- all: hides the status bar at the top of the screen -->
@@ -120,8 +120,8 @@
     <gap:plugin name="org.apache.cordova.vibration" />
     <gap:plugin name="org.apache.cordova.battery-status" />
     
-    <!--<plugin name="com.brodysoft.sqliteplugin" spec="1.0.6" source="pgb" />-->
-        <plugin name="cordova-sqlite-storage" source="npm" />
+    <plugin name="com.brodysoft.sqliteplugin" spec="1.0.6" source="pgb" />
+       <!-- <plugin name="cordova-sqlite-storage" source="npm" /> -->
     
     <feature name="Device">
     <param name="android-package" value="org.apache.cordova.device.Device" />
