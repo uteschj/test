@@ -106,7 +106,7 @@ row.docnum + ' ---------- $' + row.amount + '</a></li>').listview('refresh');
 		}
 		else
 		{
-			$('#siglist').append('<li data-icon="info"><a href="#" onclick="window.location.replace(\'sigView.html?id=' + row.sigid + '\');">' + row.description + '<br>' +
+			$('#siglist').append('<li data-icon="info"><a href="#" onclick="resignPrompt('+ row.sigid +', ' + row.docnum + ');">' + row.description + '<br>' +
 row.docnum + ' ---------- $' + row.amount + '</a></li>').listview('refresh');
 		}
 
