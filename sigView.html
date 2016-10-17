@@ -70,7 +70,8 @@
           var i = new Image();
 	        i.src = "data: " + row.sig_data;
 	        $(i).appendTo($("#sigBox")); // append the image (SVG) to DOM.
-	        $('#sigNote').append('Note: ' + row.note);
+		var notebrstr = row.note.replace(/(?:\r\n|\r|\n)/g, '<br />');
+	        $('#sigNote').append('Note: ' + notebrstr);
 	        
         }
       }
