@@ -120,7 +120,8 @@
     <gap:plugin name="org.apache.cordova.vibration" />
     <gap:plugin name="org.apache.cordova.battery-status" />
     
-    <plugin name="com.brodysoft.sqliteplugin" spec="1.0.6" source="pgb" />
+    <!--<plugin name="com.brodysoft.sqliteplugin" spec="1.0.6" source="pgb" />-->
+        <plugin name="cordova-sqlite-storage" spec="1.0.6" source="npm" />
     
     <feature name="Device">
     <param name="android-package" value="org.apache.cordova.device.Device" />
