@@ -59,7 +59,7 @@
     	//alert("getting sig " + jsigID);
     	db = window.sqlitePlugin.openDatabase({name: "TRS_Portal.db", location: 1});
     	db.transaction(function(tx) {
-        tx.executeSql("select id, doc_num, sig_data, note, Timestamp from customer_sig WHERE id = ?;", [jsigID], function(tx, res) {
+        tx.executeSql("select id, doc_num, sig_data, note, Timestamp, gps_cord from customer_sig WHERE id = ?;", [jsigID], function(tx, res) {
          
           if (res != null && res.rows != null) {
         for (var i = 0; i < res.rows.length; i++) {
@@ -72,6 +72,7 @@
 	        $(i).appendTo($("#sigBox")); // append the image (SVG) to DOM.
 		var notebrstr = row.note.replace(/(?:\r\n|\r|\n)/g, '<br />');
 	        $('#sigNote').append('Note: ' + notebrstr);
+		$('#sigCord').append(row.gps_cord);
 	        
         }
       }
@@ -124,7 +125,8 @@
 	</div>
 	<div id="sigNote">
 	</div>
-	
+	<div id="sigCord">
+	</div>
         </div>
         
         </div>
