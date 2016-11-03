@@ -74,7 +74,7 @@
    var latitude = pos.coords.latitude;
    var longitude = pos.coords.longitude;
 	var gpscordssig = latitude + ", " + longitude;
-	    
+	    alert(gpscordssig);
 	    var datapair = $("#signature").jSignature("getData", "svgbase64");
     	var datapairstring = datapair[0] + "," + datapair[1];
     	var doc = $("#doc").val();
