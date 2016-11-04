@@ -69,10 +69,10 @@
 	    
     }
     function jsigcordget(pos) {
-	    alert("here");
-	alert(pos.coords.latitude);
+	    //alert("here");
+	//alert(pos.coords.latitude);
 	//alert(pos.coords.longitude);
-	    if (pos.coords.latitude == null || pos.coords.longitude == null)
+	    if (pos.code == "3")
 		{
 		var latitude = " ";
    		var longitude = " ";
@@ -84,7 +84,7 @@
 		}
    
 	var gpscordssig = latitude + ", " + longitude;
-	    alert(gpscordssig);
+	    //alert(gpscordssig);
 	    var datapair = $("#signature").jSignature("getData", "svgbase64");
     	var datapairstring = datapair[0] + "," + datapair[1];
     	var doc = $("#doc").val();
@@ -161,7 +161,7 @@ tx.executeSql("INSERT INTO customer_sig (sig_data, doc_num, note, gps_cord) VALU
 
 }
     function recordsig(){
-	    navigator.geolocation.getCurrentPosition(jsigcordget, onError, { timeout:5000});
+	    navigator.geolocation.getCurrentPosition(jsigcordget, jsigcordget, { timeout:5000});
     }
     
     function onError(error) {
