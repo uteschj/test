@@ -129,14 +129,14 @@ $.ajax({
     async: false,
     success: function(data, textStatus, jqXHR)
     {
-	   alert(data);
+	   //alert(data);
        deleteSig(row.id);
         //jsessionID = data;
     },
     error: function (jqXHR, textStatus, errorThrown)
     {
- //alert(doc_num1 + ' failed');
- alert(errorThrown);
+ alert(doc_num1 + ' failed');
+ //alert(errorThrown);
     }
     
 });
@@ -198,7 +198,7 @@ $.ajax({
     async: false,
     success: function(data, textStatus, jqXHR)
     {
-	 alert(data);  
+	 //alert(data);  
        deleteSig(sigid);
         //jsessionID = data;
     },
