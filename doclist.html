@@ -96,18 +96,23 @@ function getsiglist(){
         tx.executeSql("select DISTINCT docnum, description, amount, id as sigid from docHeader LEFT JOIN customer_sig ON docnum = doc_num ORDER BY description COLLATE NOCASE;", [], function(tx, res) {
 		 
           if (res != null && res.rows != null) {
+		  var tmpsig = "";
         for (var i = 0; i < res.rows.length; i++) {
           var row = res.rows.item(i);
           //alert(row.docnum);
-		if (row.sigid == null)
+		if (row.docnum != tmpsig)
 		{
-          $('#siglist').append('<li data-icon="custom"><a href="#" onclick="window.location.replace(\'jsig.html?id=' + row.docnum + '&desc=&amt=' + row.amount + '\');">' + row.description + '<br>' +
-row.docnum + ' ---------- $' + row.amount + '</a></li>').listview('refresh');
-		}
-		else
-		{
-			$('#siglist').append('<li data-icon="info"><a href="#" onclick="resignPrompt('+ row.sigid +', ' + row.docnum + ');">' + row.description + '<br>' +
-row.docnum + ' ---------- $' + row.amount + '</a></li>').listview('refresh');
+			tmpsig = row.docnum;
+			if (row.sigid == null)
+			{
+		  $('#siglist').append('<li data-icon="custom"><a href="#" onclick="window.location.replace(\'jsig.html?id=' + row.docnum + '&desc=&amt=' + row.amount + '\');">' + row.description + '<br>' +
+	row.docnum + ' ---------- $' + row.amount + '</a></li>').listview('refresh');
+			}
+			else
+			{
+				$('#siglist').append('<li data-icon="info"><a href="#" onclick="resignPrompt('+ row.sigid +', ' + row.docnum + ');">' + row.description + '<br>' +
+	row.docnum + ' ---------- $' + row.amount + '</a></li>').listview('refresh');
+			}
 		}
 
         }
