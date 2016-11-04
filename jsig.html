@@ -71,8 +71,17 @@
     function jsigcordget(pos) {
 	//alert(pos.coords.latitude);
 	//alert(pos.coords.longitude);
-   var latitude = pos.coords.latitude;
-   var longitude = pos.coords.longitude;
+	    if (pos.coords.latitude == null || pos.coords.longitude == null)
+		{
+		var latitude = " ";
+   		var longitude = " ";
+		}
+		else
+		{
+		var latitude = pos.coords.latitude;
+   		var longitude = pos.coords.longitude;
+		}
+   
 	var gpscordssig = latitude + ", " + longitude;
 	    alert(gpscordssig);
 	    var datapair = $("#signature").jSignature("getData", "svgbase64");
